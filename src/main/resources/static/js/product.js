@@ -17,7 +17,7 @@ let index={
 			made: $("#made").val(),
 			price: $("#price").val(),
 			category: $("#category").val(),
-			imgName: $("#imgName").val()
+			img: $("#img").val()
 		};
 		$.ajax({
 			type: "POST",
