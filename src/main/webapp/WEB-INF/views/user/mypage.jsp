@@ -161,7 +161,7 @@
 1)  결제가 진행되는 과정에서 직접 취소한 경우<br>
 2)  인터넷 환경 등의 시스템 문제로 인하여 결제가 완료되지 못한 경우<br>
 3)  신용카드 상태 등의 문제로 결제가 실패한 경우 <br>
-<a href="/shop/mypage/mypage_orderlist.php?&amp;" style="font-weight:bold;color: #007fc8;">[주문내역/배송조회 바로가기 &gt;]</a>
+<a href="#" style="font-weight:bold;color: #007fc8;">[주문내역/배송조회 바로가기 &gt;]</a>
 </div><!-- End indiv -->
 
 <div style="width:0;height:0;font-size:0"></div>
