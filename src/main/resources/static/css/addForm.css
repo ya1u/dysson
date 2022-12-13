@@ -1,0 +1,8 @@
+table {
+	margin: 50px auto;
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+tr {
+	margin-bottom: 50px;
+}

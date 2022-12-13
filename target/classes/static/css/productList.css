@@ -1,0 +1,87 @@
+body {
+font-family: CookieRunOTF;
+background-color: white;
+}
+
+.btn-cart {
+  background-color: transparent;
+  position: relative;
+}
+
+.btn-cart .badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.btn-primary-chart {
+  background-color: #333;
+
+}
+
+.btn-primary-chart:hover {
+  background-color: #7beadf;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 1);
+  color: #000000 !important;
+}
+
+.text-pink {
+  color: #333 !important;
+}
+
+.bg-tiffany {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.bg-tiffany:hover {
+  background-color: #333 !important;
+  ;
+  border: #333 !important;
+  color: #000000 !important;
+}
+
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+.jumbotron-bg {
+  background-color: wheat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 200px;
+}
+
+.bg-ligter {
+  background-color: rgba(64, 224, 208, .41);
+
+}
+/* img {
+background-color: antiquewhite;
+} */
+
+@media (min-width: 720px) {
+  .card-pic {
+      height: 120px;
+      background-size: cover;
+      background-position: center center;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .17);
+  transition: box-shadow .3s;
+}
+
+.box-shadow:hover {
+  box-shadow: 0 3px 10px rgba(64, 224, 208, .50);
+}
+
+.btn-hover:hover {
+  background-color: #333;
+  color: #000000 !important;
+}
+.sticky-offset {/* 스틱키 겹침 방지*/
+top: 56px;
+}
