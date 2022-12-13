@@ -51,10 +51,11 @@ public class Product {
 	private String category;
 	
 	@Column(nullable = false, length = 100)
-	private String imgName;
+	private String img;
 	
-	@Column(nullable = false, length = 100)
-	private String imgUrl;
+	/*
+	 * @Column(nullable = false, length = 100) private String imgUrl;
+	 */
 	
 	@OneToMany (mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Review> review;
