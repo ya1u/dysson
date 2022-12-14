@@ -72,20 +72,21 @@
 		  <c:forEach var="product" items="${product.content}">
 		    <div class="item">
 			  <div class="col-xs-12 col-sm-6 col-md-2">
-				<a href="/product/${product.id}"><img src="/image/${product.imgName}" width="" class=""></a>
+				<a href="/product/${product.id}"><img src="/img/${product.imgName}" class="img-responsive center-block"></a>
 				<h4 class="text-center">${product.name}</h4>
 				<h5 class="text-center">${product.price}원</h5>
 			  </div>
 			</div>
 		  </c:forEach>
 		  
-          <div class="item active">
+           <div class="item active">
             <div class="col-xs-12 col-sm-6 col-md-2">
-              <a href="#"><img src="https://images.unsplash.com/photo-1539840093138-9b3e230e5206?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=765a2eb222b1851840a4a157780fb487&auto=format&fit=crop&w=1534&q=80" class="img-responsive center-block"></a>
-              <h4 class="text-center">Slide</h4>
-              <h5 class="text-center">Slide</h5>
+              <a href="#"><img src="/img/soldout.jpg" class="img-responsive center-block"></a>
+              <h4 class="text-center">DYSSON The GreenFan C2</h4>
+              <h5 class="text-center">SOLD OUT</h5>
             </div>
           </div>
+</div>          
 
           <!-- <div class="item">
             <div class="col-xs-12 col-sm-6 col-md-2">

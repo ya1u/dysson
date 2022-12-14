@@ -18,23 +18,23 @@
 		  </tr>
 		  <tr>
 			<th><label for="name">제품 이름</label></th>
-			<td><input type="text" class="form-control" placeholder="Product Name" id="name"></td>
+			<td><input type="text" class="form-control" placeholder="Product Name" id="name" name="name"></td>
 		  </tr>
 		  <tr>
 			<th><label for="price">가격</label></th>
-			<td><input type="number" class="form-control" placeholder="Product Price" id="price"></td>
+			<td><input type="number" class="form-control" placeholder="Product Price" id="price" name="price"></td>
 		  </tr>
 		  <tr>
 			<th><label for="made">제조사</label></th>
-			<td><input type="text" class="form-control" placeholder="Made In" id="made"></td>
+			<td><input type="text" class="form-control" placeholder="Made In" id="made" name="made"></td>
 		  </tr>
 		  <tr>
 			<th><label for="content">제품 소개</label></th>
-			<td><input type="text" class="form-control" placeholder="Product content" id="content"></td>
+			<td><input type="text" class="form-control" placeholder="Product content" id="content" name="content"></td>
 		  </tr>
 		  <tr>
 			<th><label for="imgProduct">제품 이미지</label></th>
-			<td><input type="file" class="form-control" id="imgProduct" name="imgProduct"></td>
+			<td><input type="file" class="form-control" id="imgProduct" name="imgProduct" name="imgProduct"></td>
 		  </tr>
 		</table>
 		</div>

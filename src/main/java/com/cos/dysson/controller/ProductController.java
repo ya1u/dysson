@@ -40,13 +40,13 @@ public class ProductController {
 		return "product/addForm";
 	}
 	
-	@RequestMapping("product/saveProduct")
+	@RequestMapping("/product/saveProduct")
 	public String saveProduct(Product product, MultipartFile imgProduct) throws Exception {
 		String sourceFileName = imgProduct.getOriginalFilename();
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
-		String fileUrl = "C:\\workspace\\image\\";
+		String fileUrl = "C:\\image\\";
 		
 		do {
 			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
