@@ -9,7 +9,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700&subset=latin-ext" rel="stylesheet">
 <link href="/css/store.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/store.css">
 
 <%-- <div class="container">
 	<c:forEach var="product" items="${product.content}">
@@ -74,7 +73,7 @@
 			  <div class="col-xs-12 col-sm-6 col-md-2">
 				<a href="/product/${product.id}"><img src="/img/${product.imgName}" class="img-responsive center-block"></a>
 				<h4 class="text-center">${product.name}</h4>
-				<h5 class="text-center">${product.price}원</h5>
+				<h5 class="text-center"><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</h5>
 			  </div>
 			</div>
 		  </c:forEach>
@@ -82,8 +81,8 @@
            <div class="item active">
             <div class="col-xs-12 col-sm-6 col-md-2">
               <a href="#"><img src="/img/soldout.jpg" class="img-responsive center-block"></a>
-              <h4 class="text-center">DYSSON The GreenFan C2</h4>
-              <h5 class="text-center">SOLD OUT</h5>
+              <h4 class="text-center red">DYSSON The GreenFan C2</h4>
+              <h5 class="text-center red">SOLD OUT</h5>
             </div>
           </div>
 </div>          

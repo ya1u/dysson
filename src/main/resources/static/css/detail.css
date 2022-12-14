@@ -1,0 +1,20 @@
+.proForm {
+	display: flex;
+	justify-content: center;
+}
+
+.img {
+	width: 500px;
+}
+
+.pro {
+	width: 500px;
+}
+
+.pro2 {
+	padding-top: 50px;
+}
+
+#price {
+	color: #AE0000;
+}
