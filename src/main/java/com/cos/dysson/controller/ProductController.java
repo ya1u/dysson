@@ -1,5 +1,9 @@
 package com.cos.dysson.controller;
 
+import java.io.File;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -8,7 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cos.dysson.model.Product;
+import com.cos.dysson.repository.ProductRepository;
 import com.cos.dysson.service.ProductService;
 
 @Controller
@@ -16,6 +24,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	ProductRepository productRepository;
 	
 	// about
 	@GetMapping({"/auth/about"})
@@ -27,6 +38,32 @@ public class ProductController {
 	@GetMapping({"/product/addForm"})
 	public String addForm() {
 		return "product/addForm";
+	}
+	
+	@RequestMapping("/product/saveProduct")
+	public String saveProduct(Product product, MultipartFile imgProduct) throws Exception {
+		String sourceFileName = imgProduct.getOriginalFilename();
+		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
+		File destinationFile;
+		String destinationFileName;
+		String fileUrl = "C:\\image\\";
+		
+		do {
+			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
+			destinationFile = new File(fileUrl + destinationFileName);
+		} while (destinationFile.exists());
+		
+		destinationFile.getParentFile().mkdirs();
+		
+		imgProduct.transferTo(destinationFile);
+		
+		product.setImgName(destinationFileName);
+		product.setImgOriName(sourceFileName);
+		product.setImgUrl(fileUrl);
+		
+		productRepository.save(product);
+		
+		return "redirect:/product/store";
 	}
 	
 	// 제품 전체리스트
