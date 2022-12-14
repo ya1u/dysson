@@ -23,4 +23,11 @@ public class BoardApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
 	}
+	
+	//댓글 작성
+	@PostMapping("/api/board/{boardsId}/reply")
+	public ResponseDto<Integer> replySave(@PathVariable int boardsId @RequestBody Reply reply){
+		boardService.댓글쓰기(replySaveRequestDto);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
 }

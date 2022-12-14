@@ -2,6 +2,7 @@ package com.cos.dysson.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import org.hibernate.annotations.ColumnDefault;
+
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -52,7 +56,8 @@ public class Boards {
 	private Users users;
 	
 	@OneToMany (mappedBy = "boards", fetch = FetchType.EAGER)
-	private List<Reply> reply;
+	@JsonIgnoreProperties({"boards"})//무한참조 방지
+	private List<Reply> replys;
 	
 	@CreationTimestamp
 	private Timestamp createDate;

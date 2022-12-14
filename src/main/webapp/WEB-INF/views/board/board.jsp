@@ -57,7 +57,7 @@
 		<c:forEach var="board" items="${boards.content}">
       		<tr>
       			<td>${board.id}</td>
-      			<td>${board.title}</td>
+      			<td><a href="/board/${board.id}">${board.title}</a></td>
    				<td>${board.users.username}</td>
       			<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 
       		</tr>

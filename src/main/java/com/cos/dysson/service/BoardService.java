@@ -6,14 +6,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.dysson.dto.ReplySaveRequestDto;
 import com.cos.dysson.model.Boards;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.BoardRepository;
+import com.cos.dysson.repository.ReplyRepository;
 
 @Service
 public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
+	@Autowired
+	private ReplyRepository replyRepository;
+	
 	
 	@Transactional
 	public void 관리자글작성(Boards board, Users user) { //title,content
@@ -30,5 +35,12 @@ public class BoardService {
 		return boardRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
 		});
+	}
+	
+	@Transactional
+	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
+		replyRepository.mSave(replySaveRequestDto.getUsersId(),replySaveRequestDto.getBoardsId(),replySaveRequestDto.getContent());
+				
+		
 	}
 }
