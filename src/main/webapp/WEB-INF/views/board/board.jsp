@@ -54,44 +54,48 @@
         </tr>
       </thead>
       <tbody class="text-center">
-        <tr>
-          <td>1</td>
-          <td><a href=#>test</a></td>
-          <td>관리자</td>
-          <td>2022-12-09</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>testesttesttesttesttesttestt</td>
-          <td>관리자</td>
-          <td>2022-12-09</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>test</td>
-          <td>관리자</td>
-          <td>2022-12-09</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>test</td>
-          <td>관리자</td>
-          <td>2022-12-09</td>
-        </tr>
+		<c:forEach var="board" items="${boards.content}">
+      		<tr>
+      			<td>${board.id}</td>
+      			<td>${board.title}</td>
+   				<td>${board.users.username}</td>
+      			<td>${board.createDate}</td> 
+      		</tr>
+      	</c:forEach> 
+      	
       </tbody>
     </table>
-    
-
-      <!-- <ul class="pagination text-center" style="justify-content: center;">
-        <li class="page-item "><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul> -->
       <br><br>
       <div>
         <ul class="pagination justify-content-center">
+        	<c:choose>
+        		<c:when test="${boards.first}">
+        			<li class="page-item disabled"><a class="page-link"
+        				href="?page=${boards.number-1}">${boards.number+1}</a></li>
+        		</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link"
+						href="?page=${boards.number-1}">${boards.number+1}</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${boards.last}">
+					<li class="page-item disabled"><a class="page-link"
+						href="?page=${boards.number+1}">${boards.number+2}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link"
+						href="?page=${boards.number+1}">${boards.number+2}</a></li>
+				</c:otherwise>
+			</c:choose>		
+        			
+        	
+        
+        
+        
+        
+        
+        
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐸ</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">1</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">2</a></li>
