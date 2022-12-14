@@ -50,8 +50,11 @@ public class Product {
 	@Column(nullable = false, length = 20)
 	private String category;
 	
-	@Column(nullable = false, length = 100)
-	private String img;
+	private String imgName;
+	
+	private String imgOriName;
+	
+	private String imgUrl;
 	
 	/*
 	 * @Column(nullable = false, length = 100) private String imgUrl;

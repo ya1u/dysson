@@ -72,7 +72,7 @@
 		  <c:forEach var="product" items="${product.content}">
 		    <div class="item">
 			  <div class="col-xs-12 col-sm-6 col-md-2">
-				<a href="/product/${product.id}"><img src="${product.img}" width="" class=""></a>
+				<a href="/product/${product.id}"><img src="/image/${product.imgName}" width="" class=""></a>
 				<h4 class="text-center">${product.name}</h4>
 				<h5 class="text-center">${product.price}원</h5>
 			  </div>
