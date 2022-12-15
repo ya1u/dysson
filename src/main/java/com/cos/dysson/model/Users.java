@@ -38,7 +38,7 @@ public class Users {
 	//프로젝트에 연결된 DB의 넘버링 전략을 사용
 	private int id;//시퀀스
 	
-	@Column(nullable=false, length=30,unique = true)
+	@Column(nullable=false, length=100,unique = true)
 	private String username;//아이디
 
 	@Column(nullable=false, length=100)//해쉬로 변경하여 암호화 length 크게
