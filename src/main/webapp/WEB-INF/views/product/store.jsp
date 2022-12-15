@@ -45,8 +45,10 @@
 </div> --%>
 
  <!--Item slider text-->
-<input class="btn btn-primary" type="button" value="상품등록(임시)"> 
-<h1 class="text-center"> Category</h1>
+<c:if test="${principal.user.id==1}">
+		<a href="/product/addForm">상품등록(관리자 전용)</a>
+</c:if>
+<h1 class="text-center">Category</h1>
 <ul>
   <li>kitchen</li>
   <li>Air</li>

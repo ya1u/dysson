@@ -10,14 +10,13 @@
 	<hr>
 	<div>
 		<br/><br/>
-		<span id="name"><h2 class="proName">${product.name}</h2></span>
+		<h2 class="proName">${product.name}</h2>
 		<div class="proForm">
 			<span class="pro">
 				
 				<img src="/img/${product.imgName}" class="img">
 			</span>
 			<span class="pro pro2">
-			
 				<table>
 					<tr><th>한정 판매</th></tr>
 					<tr><td>오직 dysson에서만 구매 가능한 상품입니다.</td></tr>
@@ -67,6 +66,7 @@
 	<hr/>
 	<div>
 		<h3>제품 상세</h3>
+		--------------------------------------------
 		<div>${product.content}</div>
 	</div>
 	<hr/>
