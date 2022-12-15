@@ -2,10 +2,10 @@
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/detail.css" rel="stylesheet">
 <div class="container">
-	<button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-	<c:if test="${board.users.id==principal.user.id }">
-		<button id="btn-delete" class="btn btn-danger">삭제</button>
-		<a href="/product/${product.id}/updateForm" class="btn btn-warning">수정</a>
+	<button class="btn btn-secondary" onclick="location.href='/product/store'">돌아가기</button>
+	<c:if test="${principal.user.id==1}">
+		<button id="btn-delete" class="btn btn-danger" onClick="index.deleteById(${product.id})">삭제</button>
+		<a href="/product/updateForm/${product.id}" class="btn btn-warning">수정</a>
 	</c:if>
 	<hr>
 	<div>

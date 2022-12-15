@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -38,7 +39,7 @@ public class Product {
 	@Column(nullable = false, length = 50)
 	private String name; // 상품이름
 	
-	@Column(nullable = false, length = 100)
+	@Lob
 	private String content; // 상품 설명
 	
 	@Column(nullable = false, length = 20)
