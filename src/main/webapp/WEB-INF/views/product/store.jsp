@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700&subset=latin-ext" rel="stylesheet">
+
 <link href="/css/store.css" rel="stylesheet">
 
 <%-- <div class="container">
@@ -67,7 +67,7 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="carousel carousel-showmanymoveone slide" id="itemslider">
+      <div class="carousel carousel-showmanymoveone slide" id="itemslider" data-ride="carousel">
         <div class="carousel-inner">
 		  
 		  <c:forEach var="product" items="${product.content}">

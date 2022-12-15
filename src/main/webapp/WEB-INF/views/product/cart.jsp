@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/cart.css" rel="stylesheet">
-<main id="cart" style="max-width:720px">
-    <div class="back"><a href="#">&#11178; shop</a></div>
+<main id="cart" style="max-width:600px">
+    <div class="back"><a href="/product/store">&#11178; store</a></div>
     <h1>Your Cart</h1>
     <hr>
     <div class="container-fluid">

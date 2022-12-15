@@ -21,9 +21,11 @@ let index={
 			password: $("#password").val(),
 			email: $("#email").val(),
 			phone: $("#phone").val(),
-			address: $("#address").val(),
+			address: $("#address").val().concat(" "+$("#addressDetail").val())
+				
 		};
-		
+
+		console.log(data.address)
 		$.ajax({
 			type:"POST",
 			url:"/auth/joinProc",
@@ -32,7 +34,7 @@ let index={
 			dataType:"json"			
 		}).done(function(resp){
 			alert("회원가입이 완료되었습니다.");
-			
+			location.href="/auth/loginForm";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 			//응답이 비정상

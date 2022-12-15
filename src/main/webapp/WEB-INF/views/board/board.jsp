@@ -11,7 +11,6 @@
 		justify-content: space-between;
 	}
 	.container {
-		min-height:600px;
 		max-width:960px;
 		
 	}

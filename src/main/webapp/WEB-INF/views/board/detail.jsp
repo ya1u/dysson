@@ -56,7 +56,7 @@
 			<div class="card-header">댓글 리스트</div>
 			<ul id="reply-box" class="list-group">
 				<c:forEach var="reply" items="${board.replys}">
-					<li id="reply-1" class="list-gruop-item d-flex justify-content-between">
+					<li class="list-gruop-item d-flex justify-content-between">
 						<div>&nbsp;${reply.content}</div>
 						<div class="d-flex">
 							<div><span style="color:grey;"><fmt:formatDate value="${reply.createDate}" pattern="YY.MM.dd hh:mm"/></span>&nbsp;&nbsp;&nbsp;</div>
