@@ -57,11 +57,20 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
           Account
         </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/auth/loginForm">Login</a>
-          <a class="dropdown-item" href="/auth/mypage">My Page</a>
-          <a class="dropdown-item" href="/auth/cart">Cart</a>
-        </div>
+        <c:choose>
+        	<c:when test="${empty principal }">
+       	        <div class="dropdown-menu">
+		          <a class="dropdown-item" href="/auth/loginForm">Login</a>		          
+        		</div>
+        	</c:when>
+        	<c:otherwise>
+       	        <div class="dropdown-menu">
+		          <a class="dropdown-item" href="/logout">Logout</a>
+		          <a class="dropdown-item" href="/auth/mypage">My Page</a>
+		          <a class="dropdown-item" href="/auth/cart">Cart</a>
+		        </div>
+        	</c:otherwise>
+        </c:choose>
       </li>
     </ul>
   </nav>

@@ -8,7 +8,7 @@
 </style>
 <div style="background-color:white;border-radius:4px;padding:20px;min-height:500px; width:960px; margin: auto;">
 	<br>
-	<h3><span style="font-size:20px">김오영 님의</span> My Page</h3>
+	<h3><span style="font-size:20px">${principal.user.username } 님의</span> My Page</h3>
 	<div style="width:100%;margin-top:20px;margin-bottom:20px;">
 		<table style="width:100%;height:50px;text-align:center;font-weight:bold;border:1px solid #e0e0e0;">
 			<tbody>
@@ -64,54 +64,7 @@
 		<td>미수령</td>
 		<td>확인</td>
 	</tr>
-	<tr>
-		<td>2</td>
-		<td>test</td>
-		<td>2022-12-12</td>
-		<td>10245</td>
-		<td>test</td>
-		<td>test</td>
-		<td>10000</td>
-		<td>2000</td>
-		<td>미수령</td>
-		<td>확인</td>
-	</tr>
-	<tr>
-		<td>3</td>
-		<td>test</td>
-		<td>2022-12-12</td>
-		<td>10245</td>
-		<td>test</td>
-		<td>test</td>
-		<td>10000</td>
-		<td>2000</td>
-		<td>미수령</td>
-		<td>확인</td>
-	</tr>
-	<tr>
-		<td>4</td>
-		<td>test</td>
-		<td>2022-12-12</td>
-		<td>10245</td>
-		<td>test</td>
-		<td>test</td>
-		<td>10000</td>
-		<td>2000</td>
-		<td>미수령</td>
-		<td>확인</td>
-	</tr>		
-	<tr>
-		<td>5</td>
-		<td>test</td>
-		<td>2022-12-12</td>
-		<td>10245</td>
-		<td>test</td>
-		<td>test</td>
-		<td>10000</td>
-		<td>2000</td>
-		<td>미수령</td>
-		<td>확인</td>
-	</tr>	
+
 
 
 </tbody>
