@@ -14,14 +14,9 @@
 	}
 
 </style>
-	<div class="container detail-form" style="width:900px;">
+	<div class="container detail-form" style="width:900px;">	
 		<div>
 			<br/><br/>
-<%-- 			<div class="writeForm">
-				글 번호 : <span id="id"><i>${board.id}</i> </span>
-				작성자 : <span><i>${board.users.username }</i></span>
-				<hr>
-			</div> --%>
 			<hr>
 				<h3>${board.title}</h3>
 		</div>
@@ -34,8 +29,9 @@
 	
 		<div class="btnFlex">
 			<div>
-				글 번호 : <span id="boardsId"><i>${board.id}</i> </span>
-				작성자 : <span><i>${board.users.username }</i></span>
+				글 번호 : <span><i>${board.id}</i> </span>
+				&nbsp;작성자 : <span><i>${board.users.username }</i></span>
+				&nbsp; <span style="color:grey;"><i><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd hh:mm"/></i></span>
 			</div>
 			<div>
 				<button class="btn btn-secondary" onclick="history.back()">목록</button>
@@ -45,9 +41,14 @@
 			</c:if>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-body"><textarea class="form-control" rows="2" id="reply-content"></textarea></div>
-			<div class="card-footer"><button class="btn btn-primary" style="justify-content:row-reverse" id="btn-replySave">등록</button></div>
+		<div class="card d-flex">
+		<div class="card-header">댓글 등록</div>
+			<form class="d-flex">
+				<input type="hidden" id="usersId" value="${principal.user.id }"/>
+				<input type="hidden" id="boardsId" value="${board.id }"/>
+				<div class="card-body"><textarea class="form-control" rows="1" id="reply-content"></textarea></div>
+				<div class="card-footer"><button class="btn btn-primary" id="btn-replySave" style="width:100%; height:100%;">등록</button></div>
+			</form>
 		</div>
 		<br>
 		<br>
@@ -56,12 +57,16 @@
 			<ul id="reply-box" class="list-group">
 				<c:forEach var="reply" items="${board.replys}">
 					<li id="reply-1" class="list-gruop-item d-flex justify-content-between">
-						<div>${reply.content}</div>
+						<div>&nbsp;${reply.content}</div>
 						<div class="d-flex">
-							<div id="usersId">작성자: ${reply.user.username }&nbsp;</div>
-							<button class="badge">삭제</button>
+							<div><span style="color:grey;"><fmt:formatDate value="${reply.createDate}" pattern="YY.MM.dd hh:mm"/></span>&nbsp;&nbsp;&nbsp;</div>
+							<div>&nbsp;${reply.users.username }&nbsp;</div>
+							<c:if test="${board.users.id==principal.user.id}">	
+							<button class="btn btn-danger btn-sm">삭제</button>
+							</c:if>
 						</div>				
-					</li>			
+					</li>
+					<hr>			
 				</c:forEach>			
 			</ul>		
 		</div>

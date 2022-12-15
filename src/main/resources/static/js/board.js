@@ -34,7 +34,7 @@ let index = {
 			boardsId: $("#boardsId").val(),
 			content: $("#reply-content").val()
 		};
-		console.log(data.boardsId);
+		
 		
 		$.ajax({ 
 			type:"POST",
@@ -43,7 +43,7 @@ let index = {
 			contentType:"application/json; charset=utf-8",
 			dataType:"json" 
 		}).done(function(resp){
-			alert("댓글 작성이 완료되었습니다.");
+			/*alert("댓글 작성이 완료되었습니다.");*/
 			location.href=`/board/${data.boardsId}`;
 
 		}).fail(function(error){

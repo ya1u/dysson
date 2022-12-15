@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cos.dysson.dto.ReplySaveRequestDto;
 import com.cos.dysson.dto.ResponseDto;
 import com.cos.dysson.model.Boards;
 import com.cos.dysson.service.BoardService;
@@ -26,7 +27,7 @@ public class BoardApiController {
 	
 	//댓글 작성
 	@PostMapping("/api/board/{boardsId}/reply")
-	public ResponseDto<Integer> replySave(@PathVariable int boardsId @RequestBody Reply reply){
+	public ResponseDto<Integer> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto){
 		boardService.댓글쓰기(replySaveRequestDto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}

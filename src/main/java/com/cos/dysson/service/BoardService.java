@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.dysson.dto.ReplySaveRequestDto;
 import com.cos.dysson.model.Boards;
+import com.cos.dysson.model.Reply;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.BoardRepository;
 import com.cos.dysson.repository.ReplyRepository;
+import com.cos.dysson.repository.UserRepository;
 
 @Service
 public class BoardService {
@@ -18,7 +20,8 @@ public class BoardService {
 	private BoardRepository boardRepository;
 	@Autowired
 	private ReplyRepository replyRepository;
-	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Transactional
 	public void 관리자글작성(Boards board, Users user) { //title,content
@@ -39,7 +42,21 @@ public class BoardService {
 	
 	@Transactional
 	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
-		replyRepository.mSave(replySaveRequestDto.getUsersId(),replySaveRequestDto.getBoardsId(),replySaveRequestDto.getContent());
+		Users user = userRepository.findById(replySaveRequestDto.getUsersId()).orElseThrow(()->{
+			return new IllegalArgumentException("댓글 쓰기 실패: 유저 id를 찾을수 없습니다");
+			
+		});//영속화 완료
+		
+		Boards board = boardRepository.findById(replySaveRequestDto.getBoardsId()).orElseThrow(()->{
+			return new IllegalArgumentException("댓글 쓰기 실패: 게시글 id를 찾을수 없습니다");
+			
+		});//영속화 완료
+		Reply reply = Reply.builder()
+				.users(user)
+				.boards(board)
+				.content(replySaveRequestDto.getContent())
+				.build();
+		replyRepository.save(reply);
 				
 		
 	}
