@@ -57,9 +57,9 @@
 		<c:forEach var="board" items="${boards.content}">
       		<tr>
       			<td>${board.id}</td>
-      			<td>${board.title}</td>
+      			<td><a href="/board/${board.id}">${board.title}</a></td>
    				<td>${board.users.username}</td>
-      			<td>${board.createDate}</td> 
+      			<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 
       		</tr>
       	</c:forEach> 
       	
@@ -71,21 +71,21 @@
         	<c:choose>
         		<c:when test="${boards.first}">
         			<li class="page-item disabled"><a class="page-link"
-        				href="?page=${boards.number-1}">${boards.number+1}</a></li>
+        				href="?page=${boards.number-1}">ᐸ</a></li>
         		</c:when>
 				<c:otherwise>
 					<li class="page-item"><a class="page-link"
-						href="?page=${boards.number-1}">${boards.number+1}</a></li>
+						href="?page=${boards.number-1}">ᐸ</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
 				<c:when test="${boards.last}">
 					<li class="page-item disabled"><a class="page-link"
-						href="?page=${boards.number+1}">${boards.number+2}</a></li>
+						href="?page=${boards.number+1}">ᐳ</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="page-item"><a class="page-link"
-						href="?page=${boards.number+1}">${boards.number+2}</a></li>
+						href="?page=${boards.number+1}">ᐳ</a></li>
 				</c:otherwise>
 			</c:choose>		
         			

@@ -6,14 +6,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.dysson.dto.ReplySaveRequestDto;
 import com.cos.dysson.model.Boards;
+import com.cos.dysson.model.Reply;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.BoardRepository;
+import com.cos.dysson.repository.ReplyRepository;
+import com.cos.dysson.repository.UserRepository;
 
 @Service
 public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
+	@Autowired
+	private ReplyRepository replyRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Transactional
 	public void 관리자글작성(Boards board, Users user) { //title,content
@@ -30,5 +38,26 @@ public class BoardService {
 		return boardRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
 		});
+	}
+	
+	@Transactional
+	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
+		Users user = userRepository.findById(replySaveRequestDto.getUsersId()).orElseThrow(()->{
+			return new IllegalArgumentException("댓글 쓰기 실패: 유저 id를 찾을수 없습니다");
+			
+		});//영속화 완료
+		
+		Boards board = boardRepository.findById(replySaveRequestDto.getBoardsId()).orElseThrow(()->{
+			return new IllegalArgumentException("댓글 쓰기 실패: 게시글 id를 찾을수 없습니다");
+			
+		});//영속화 완료
+		Reply reply = Reply.builder()
+				.users(user)
+				.boards(board)
+				.content(replySaveRequestDto.getContent())
+				.build();
+		replyRepository.save(reply);
+				
+		
 	}
 }

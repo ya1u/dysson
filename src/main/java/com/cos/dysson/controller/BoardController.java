@@ -38,12 +38,13 @@ public class BoardController {
 		model.addAttribute("board",boardService.noticeDetail(id));
 		return "board/detail";
 	}
+	//게시글 페이징
 	@GetMapping("/auth/support")
-	public String index(Model model,@PageableDefault(size = 10, sort = "id", 
-	direction = Sort.Direction.DESC) Pageable pageable) { 
+	public String index(Model model,@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) { 
 		model.addAttribute("boards",boardService.toNotice(pageable));
 		return "board/board";
 	}
+	
 
 	
 	
