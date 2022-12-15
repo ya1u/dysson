@@ -5,6 +5,9 @@
 		display:flex;
 		justify-content:space-between;
 	}
+	img {
+		width:100%;
+	}
 
 </style>
 <div class="container" style="max-width:900px;">
