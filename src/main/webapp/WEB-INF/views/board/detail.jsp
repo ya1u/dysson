@@ -29,7 +29,7 @@
 	
 		<div class="btnFlex">
 			<div>
-				글 번호 : <span><i>${board.id}</i> </span>
+				글 번호 : <span id="id"><i>${board.id}</i> </span>
 				&nbsp;작성자 : <span><i>${board.users.username }</i></span>
 				&nbsp; <span style="color:grey;"><i><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd hh:mm"/></i></span>
 			</div>
@@ -38,18 +38,20 @@
 				<c:if test="${board.users.id==principal.user.id }">		
 					<button id="btn-delete" class="btn btn-danger">삭제</button>
 					<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
-			</c:if>
+				</c:if>
 			</div>
 		</div>
-		<div class="card d-flex">
-		<div class="card-header">댓글 등록</div>
-			<form class="d-flex">
-				<input type="hidden" id="usersId" value="${principal.user.id }"/>
-				<input type="hidden" id="boardsId" value="${board.id }"/>
-				<div class="card-body"><textarea class="form-control" rows="1" id="reply-content"></textarea></div>
-				<div class="card-footer"><button class="btn btn-primary" id="btn-replySave" style="width:100%; height:100%;">등록</button></div>
-			</form>
-		</div>
+		<c:if test="${principal.user.id != null}">
+			<div class="card d-flex">
+			<div class="card-header">댓글 등록</div>
+				<form class="d-flex">
+					<input type="hidden" id="usersId" value="${principal.user.id }"/>
+					<input type="hidden" id="boardsId" value="${board.id }"/>
+					<div class="card-body"><textarea class="form-control" rows="1" id="reply-content"></textarea></div>
+					<div class="card-footer"><button class="btn btn-primary" id="btn-replySave" style="width:100%; height:100%;">등록</button></div>
+				</form>
+			</div>
+		</c:if>
 		<br>
 		<br>
 		<div class="card">
@@ -61,7 +63,7 @@
 						<div class="d-flex">
 							<div><span style="color:grey;"><fmt:formatDate value="${reply.createDate}" pattern="YY.MM.dd hh:mm"/></span>&nbsp;&nbsp;&nbsp;</div>
 							<div>&nbsp;${reply.users.username }&nbsp;</div>
-							<c:if test="${board.users.id==principal.user.id}">	
+							<c:if test="${principal.user.id==reply.users.id}">	
 							<button class="btn btn-danger btn-sm">삭제</button>
 							</c:if>
 						</div>				

@@ -38,16 +38,30 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		
 			.csrf().disable()
+			.rememberMe()
+				.rememberMeParameter("remember")//해당 체크박스의 name 속성 값을 지정			
+				.userDetailsService(principalDetailService)// user정보
+			.and()
 			.authorizeRequests()
-			.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/fonts/**").permitAll()
-			.anyRequest().authenticated()
+			
+			.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/fonts/**","/product/**","/board/**")
+			.permitAll()
+			.anyRequest()//이게 아닌 다른 모든 요청은 
+			.authenticated()//인증이 필요
+			
+			
 		.and()
 			.formLogin()
 			.loginPage("/auth/loginForm")
 			.loginProcessingUrl("/auth/loginProc")
 			
 			.defaultSuccessUrl("/");
+		
+		
+			
+		
 	}
 
 }

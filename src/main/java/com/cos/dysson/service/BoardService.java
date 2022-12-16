@@ -41,6 +41,23 @@ public class BoardService {
 	}
 	
 	@Transactional
+	public void 글삭제하기(int id) {
+		boardRepository.deleteById(id);
+	}
+	@Transactional
+	public void 글수정하기(int id, Boards requestBoard) {
+		Boards board = boardRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다.");
+		}); // 영속화 완료
+		board.setTitle(requestBoard.getTitle());
+		board.setContent(requestBoard.getContent());
+	}
+	
+	
+	
+	
+	
+	@Transactional
 	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
 		Users user = userRepository.findById(replySaveRequestDto.getUsersId()).orElseThrow(()->{
 			return new IllegalArgumentException("댓글 쓰기 실패: 유저 id를 찾을수 없습니다");
@@ -60,4 +77,10 @@ public class BoardService {
 				
 		
 	}
+//	@Transactional
+//	public void 댓글삭제하기(int id) {
+//		replyRepository.deleteById(id);
+//	}
+
+	
 }

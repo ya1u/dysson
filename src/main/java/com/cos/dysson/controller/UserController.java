@@ -1,7 +1,5 @@
 package com.cos.dysson.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.cos.dysson.model.KakaoProfile;
@@ -131,14 +128,14 @@ public class UserController {
 			System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());
 			System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().getEmail());
 		
-			System.out.println("블로그서버 유저네임: " + kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
+			System.out.println("블로그서버 유저네임: " + kakaoProfile.getKakao_account().getEmail());
 			System.out.println("블로그서버 이메일: " + kakaoProfile.getKakao_account().getEmail());
 			
 			System.out.println("블로그서버 패스워드: " + cosKey);
 			
 			//값을 받아서 회원가입 시킴
 			Users kakaoUser = Users.builder()
-					.username(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId())
+					.username(kakaoProfile.getKakao_account().getEmail())
 					.password(cosKey)
 					.email(kakaoProfile.getKakao_account().getEmail())
 					.oauth("kakao")

@@ -33,7 +33,7 @@ a{
   margin :5px 0;
 }
 
-.member input:not(input[type=radio]),.member select{
+.member input:not(input[type=checkbox]),.member select{
   border: 1px solid #dadada;
   padding: 15px;
   width: 100%;

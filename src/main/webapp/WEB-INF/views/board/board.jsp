@@ -21,12 +21,35 @@
 	.item_notice {
 		border-right:1px solid #ccc;
 		padding-right:50px;
-		padding-left:50px;
-	
+		padding-left:50px;	
+	}
+	.support_banner {
+		object-fit:cover;
+		width:60%;
+				
+	}
+/* 	.support {
+		position:relative;
+		
+	}
+	.dysson-support {
+		position:absolute;
+		top:50px;
+		left:700px
+	} */
+@media (max-width: 960px) {
+		.support_banner {
+	   	 width:100%;
 	}
 }
+
 	
 </style>
+
+<div class="support">
+	<img class="support_banner" src="/image/support-banner2.png">
+
+</div>
 <div class="container">
 	<br>
 	<br>
@@ -39,7 +62,9 @@
     <br>
     <div class="buttons">
       <a href="#"><button class="btn btn-success">메인으로 돌아가기</button></a>
+      <c:if test="${principal.user.id != null}">
       <a href="/board/saveForm"><button class="btn btn-secondary float-right">글 작성</button></a>
+      </c:if>
     </div>
     <hr>
     <table class="table  table-sm table-hover">
@@ -66,6 +91,18 @@
     </table>
       <br><br>
       <div>
+      
+      <form action="/board/search" method="GET">
+      	<div class="search">
+      		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+      	</div>
+      	<button>검색하기</button>
+      
+      </form>
+      
+      
+      
+      
         <ul class="pagination justify-content-center">
         	<c:choose>
         		<c:when test="${boards.first}">

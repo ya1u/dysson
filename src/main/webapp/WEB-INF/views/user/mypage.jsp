@@ -14,17 +14,17 @@
 			<tbody>
 			<tr>
 				<td id="mypage_menu_1" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224); background-color: #e0e0e0;">
-					<a href="/shop/mypage/mypage_orderlist.php">
+					<a href="#">
 						<span style="color:black;">주문내역/배송조회</span>
 					</a>
 				</td>
 				<td id="mypage_menu_2" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224); background-color: rgb(255, 255, 255);">
-					<a href="/shop/member/myinfo.php">
+					<a href="#">
 						<span style="color:black;">회원정보관리</span>
 					</a>
 				</td>
 				<td id="mypage_menu_3" style="width:33.33%;border-right:1px solid #e0e0e0;">
-					<a href="/shop/member/hack.php">
+					<a href="#">
 						<span style="color:black;">회원탈퇴</span>
 					</a>
 
@@ -119,5 +119,6 @@
 
 <div style="width:0;height:0;font-size:0"></div>
 </div>
+<!-- <script src="/js/mypage.js"></script> -->
 <%@ include file="../layout/footer.jsp"%>
 

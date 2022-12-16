@@ -3,6 +3,7 @@ package com.cos.dysson.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -55,7 +57,8 @@ public class Boards {
 	@JoinColumn(name="userid")
 	private Users users;
 	
-	@OneToMany (mappedBy = "boards", fetch = FetchType.EAGER)
+	@OrderBy("id desc") //댓글 최신순 정렬
+	@OneToMany (mappedBy = "boards", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"boards"})//무한참조 방지
 	private List<Reply> replys;
 	

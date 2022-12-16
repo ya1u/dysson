@@ -3,7 +3,10 @@ package com.cos.dysson.controller.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +26,30 @@ public class BoardApiController {
 		boardService.관리자글작성(board, principal.getUser());
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
+	}
+	//게시글 삭제
+	@DeleteMapping("/api/board/{id}")
+	public ResponseDto<Integer> deleteById(@PathVariable int id){
+		System.out.println(id);
+		boardService.글삭제하기(id);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+	//댓글 삭제
+//	@DeleteMapping("/api/board/{id}")
+//	public ResponseDto<Integer> deleteById2(@PathVariable int id){
+//		System.out.println(id);
+//		boardService.댓글삭제하기(id);
+//		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+//	}
+	
+	
+	//글수정
+	@PutMapping("/api/board/{id}")
+	public ResponseDto<Integer> update(@PathVariable int id,@RequestBody Boards board){
+		System.out.println("BoardApiController:update id"+id);
+		System.out.println("BoardApiController:update title"+board.getTitle());
+		boardService.글수정하기(id,board);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	
 	//댓글 작성
