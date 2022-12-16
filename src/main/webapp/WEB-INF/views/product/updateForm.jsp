@@ -35,14 +35,14 @@
 		  </tr>
 		  <tr>
 			<th><label for="content">제품 소개</label></th>
-			<td><textarea class="form-control summernote" rows="5" id="content" name="content" value="${product.content}"></textarea></td>
+			<td><pre><textarea class="form-control summernote" rows="5" id="content" name="content">${product.content}</textarea></pre></td>
 		  </tr>
 		  <tr>
 			<th><label for="imgProduct">제품 이미지</label></th>
 			<td><input type="file" class="form-control" id="imgProduct" name="imgProduct" name="imgProduct"></td>
 		  </tr>
 		</table>
-			<p style="color: #AE0000;">※사진 파일 미등록 시 기존의 사진을 그대로 사용</p>
+			<h5 style="color: #AE0000;">※사진 파일 미등록 시 기존의 사진을 그대로 사용</h5>
 		</div>
 			<div class="select_imgProduct"><img src=""/></div>
 		<a href="/product/${product.id}" class="btn btn-warning" style="background-color: #6c757d; border-color: #6c757d; color: #FFF;">돌아가기</a>
