@@ -38,5 +38,14 @@ public class UserService {
 			
 			
 		}
+	
+	@Transactional(readOnly = true)
+	public Users findUser(int id) {
+		Users users = userRepository.findById(id).orElseGet(()->{
+			return new Users();
+		});
+		return users;
 	}
+	
+}
 

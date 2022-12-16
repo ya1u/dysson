@@ -48,4 +48,9 @@ public class ProductService {
 	public void 제품삭제하기(int id) {
 		productRepository.deleteById(id);
 	}
+
+	public Product productView(Integer id) {
+		return productRepository.findById(id).get();
+	}
+
 }

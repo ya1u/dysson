@@ -128,11 +128,5 @@ public class ProductController {
 		 productRepository.save(product);
 		return "redirect:product/store";
 	}
-	
-	// 장바구니
-	@GetMapping("/auth/cart")
-	public String store() {
-		return "product/cart";
-	}
 
 }

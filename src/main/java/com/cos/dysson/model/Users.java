@@ -6,9 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -56,6 +59,10 @@ public class Users {
 	//@ColumnDefault("'user'")
 	@Enumerated(EnumType.STRING)
 	private RoleType roles;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cartId")
+	private Cart cart;
 	
 	private String oauth; //Kakao 회원판별
 	 

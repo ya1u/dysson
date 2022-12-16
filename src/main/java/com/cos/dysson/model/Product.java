@@ -1,5 +1,6 @@
 package com.cos.dysson.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -50,6 +51,9 @@ public class Product {
 	
 	@Column(nullable = false, length = 20)
 	private String category;
+	
+	@OneToMany(mappedBy = "product")
+	private List<CartItem> cartItem = new ArrayList<>();
 	
 	private String imgName;
 	

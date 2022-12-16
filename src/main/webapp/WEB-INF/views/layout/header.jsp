@@ -67,7 +67,7 @@
        	        <div class="dropdown-menu">
 		          <a class="dropdown-item" href="/logout">Logout</a>
 		          <a class="dropdown-item" href="/auth/mypage">My Page</a>
-		          <a class="dropdown-item" href="/auth/cart">Cart</a>
+		          <a class="dropdown-item" href="/cart/${principal.user.id}">Cart</a>
 		        </div>
         	</c:otherwise>
         </c:choose>
