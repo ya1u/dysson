@@ -26,4 +26,17 @@ public class UserService {
 		user.setRoles(RoleType.user);
 		userRepository.save(user); //하나의 트랜젝션
 	}
-}
+	
+	@Transactional(readOnly = true)
+	public Users 회원찾기(String username) {
+		
+		//orElseGet-회원을 찾았는데 없으면 빈 객체를 리턴
+		Users user = userRepository.findByUsername(username).orElseGet(()->{
+			return new Users();
+		});
+		return user;
+			
+			
+		}
+	}
+

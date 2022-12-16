@@ -43,11 +43,9 @@ a{
 
 .member input[type=submit]{
 background-color: #ccc;
-color:#fff;
 cursor: pointer;
 border: 1px solid #dadada;
 border-radius: 5px;
-font-family: 'Noto Sans KR', sans-serif;
 
 }
 
