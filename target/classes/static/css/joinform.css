@@ -7,9 +7,8 @@
 body{
 
   font-size:14px;
-  background-color: #333;
+  background-color: white;
   line-height: 1.5em;
-  color : #ccc;
   margin: 0;
 }
 
@@ -48,18 +47,19 @@ a{
 }
 
 .member input[type=button]{
-background-color: #ccc;
-color:#fff;
-cursor: pointer;
-border: 1px solid #dadada;
-border-radius: 5px;
+	background-color: #ccc;
+	cursor: pointer;
+	border: 1px solid #dadada;
+	border-radius: 5px;
+	text-align:center  !important;
+
 
 
 }
 button{
   width: 100px;
   background-color: #ccc;
-  color: #fff;
+  
   border-radius: 5px;
   border: 1px solid #dadada;
   height: 48px;

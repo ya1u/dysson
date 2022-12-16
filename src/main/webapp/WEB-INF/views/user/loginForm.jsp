@@ -13,7 +13,7 @@
         <input class="userpw" type="password" placeholder="Password" id="password" name="password" style="text-align: left;">
       </div>
       <input type="submit" value="로그인" id="btn-login">
-      <a href="#"><img src="/image/loginkakao.png" style="width: 100%;"> </a>
+      <a href="https://kauth.kakao.com/oauth/authorize?client_id=2fadb3c76663155318a907aa33153a61&redirect_uri=http://localhost:8050/auth/kakao/callback&response_type=code"><img src="/image/loginkakao.png" style="width: 100%;"> </a>
       <div class="textalign">
         <p>회원이 아니신가요?</p>
         <p><a href="/auth/joinForm">회원가입</a></p>
