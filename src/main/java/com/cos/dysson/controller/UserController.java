@@ -3,6 +3,7 @@ package com.cos.dysson.controller;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class UserController {
 	
+	@Value("${cos.key}")
+	private String cosKey;
+	
 	@Autowired
 	private UserService userService;
 	
@@ -52,7 +56,7 @@ public class UserController {
 	
 	//카카오 로그인
 	@GetMapping("/auth/kakao/callback")
-	public @ResponseBody String kakaoCallback(String code) {//Data를 리턴해주는 컨트롤러 함수
+	public String kakaoCallback(String code) {//Data를 리턴해주는 컨트롤러 함수
 		
 		//POST방식으로 key=value 데이터를 요청(카카오쪽으로)
 		
@@ -130,14 +134,14 @@ public class UserController {
 			System.out.println("블로그서버 유저네임: " + kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
 			System.out.println("블로그서버 이메일: " + kakaoProfile.getKakao_account().getEmail());
 			
-			UUID garbagePassword = UUID.randomUUID(); //임시패스워드, 카카오에서 비밀번호 못가져오니까
-			System.out.println("블로그서버 패스워드: " + garbagePassword);
+			System.out.println("블로그서버 패스워드: " + cosKey);
 			
 			//값을 받아서 회원가입 시킴
 			Users kakaoUser = Users.builder()
 					.username(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId())
-					.password(garbagePassword.toString())
+					.password(cosKey)
 					.email(kakaoProfile.getKakao_account().getEmail())
+					.oauth("kakao")
 					.build();
 					
 			//가입자 혹은 비가입자 체크해서 처리
@@ -145,12 +149,13 @@ public class UserController {
 			
 			if(originUser.getUsername()==null) {
 
-				System.out.println("기존회원이 아닙니다...");
+				System.out.println("기존회원이 아니므로 자동 회원가입진행");
 				userService.회원가입(kakaoUser);
 			}
 			
+			System.out.println("자동 로그인 진행");
 			//로그인 처리
-			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), kakaoUser.getPassword()));
+			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), cosKey));
 			SecurityContextHolder.getContext().setAuthentication(authentication);		
 			
 			return "redirect:/";

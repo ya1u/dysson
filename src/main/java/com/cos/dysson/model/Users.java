@@ -47,15 +47,17 @@ public class Users {
 	@Column(nullable=false, length=50)
 	private String email;
 	
-	@Column(nullable=false, length=50)
+	@Column(length=50)
 	private String phone;
 	
-	@Column(nullable=false, length=200)
+	@Column(length=200)
 	private String address;
 	
 	//@ColumnDefault("'user'")
 	@Enumerated(EnumType.STRING)
-	private RoleType roles; 
+	private RoleType roles;
+	
+	private String oauth; //Kakao 회원판별
 	 
 	@CreationTimestamp //시간이 자동으로 입력
 	private Timestamp createDate;

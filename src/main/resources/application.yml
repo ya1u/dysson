@@ -32,6 +32,10 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+
+##외부에 노출되면 안됨.      
+cos:
+  key: koy1234
 #  servlet:
 #    multipart:
 #      enabled: true
