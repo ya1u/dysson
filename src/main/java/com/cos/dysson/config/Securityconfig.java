@@ -40,7 +40,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
 		http
 		
 			.csrf().disable()
-			.rememberMe()
+			.rememberMe()//자동로그인
 				.rememberMeParameter("remember")//해당 체크박스의 name 속성 값을 지정			
 				.userDetailsService(principalDetailService)// user정보
 			.and()

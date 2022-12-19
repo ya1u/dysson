@@ -1,11 +1,18 @@
 package com.cos.dysson.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailAuthenticationException;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailParseException;
+import org.springframework.mail.MailSendException;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.dysson.dto.SendTmpPwdDto;
 import com.cos.dysson.model.RoleType;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.UserRepository;
@@ -62,52 +69,53 @@ public class UserService {
 		//영속화된 persistance 객체의 변화가 감지되면 더티체킹 되어 update문 날림.
 	}
 	
-	//비밀번호 찾기 구현중!
+	@Value("${spring.mail.username}")
+	private String sendFrom;
 	
-//	@Value("${String.mail.username}")
-//	private String sendFrom;
-//	
-//	@Transactional
-//	public void sendTmpPwd(SendTmpPwdDto dto) {
-//		
-//        char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-//                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-//
-//        String tmpPwd = "";
-//        
-//        //문자 배열의 길이의 값을 랜덤으로 10개를 뽑아 구문작성
-//        int idx = 0;
-//        for (int i = 0; i < 10; i++) {
-//        	idx = (int)(charSet.length * Math.random());
-//        	tmpPwd += charSet[idx];
-//        }
-//        try {
-//            SimpleMailMessage message = new SimpleMailMessage();
-//            message.setTo(dto.getEmail());
-//            message.setFrom(sendFrom);
-//            message.setSubject("baeg-won 임시 비밀번호 안내 이메일입니다.");
-//            message.setText("안녕하세요.\n"
-//            		+ "baeg-won 임시비밀번호 안내 관련 이메일 입니다.\n"
-//            		+ "임시 비밀번호를 발급하오니 블로그에 접속하셔서 로그인 하신 후\n"
-//            		+ "반드시 비밀번호를 변경해주시기 바랍니다.\n\n"
-//            		+ "임시 비밀번호 : " + tmpPwd);
-//            javaMailSender.send(message);
-//	        } catch (MailParseException e) {
-//	            e.printStackTrace();
-//	        } catch (MailAuthenticationException e) {
-//	            e.printStackTrace();
-//	        } catch (MailSendException e) {
-//	            e.printStackTrace();
-//	        } catch (MailException e) {
-//	            e.printStackTrace();	      
-//	        }
-//        
-//	        Users user = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> {
-//	            return new IllegalArgumentException("임시 비밀번호 변경 실패: 사용자 이름을 찾을 수 없습니다.");
-//	        });
-//        
-//	        user.setPassword(encodeer.encode(tmpPwd));
-//        }
+	
+	//임시패스워드 발송
+	@Transactional
+	public void sendTmpPwd(SendTmpPwdDto dto) {
+		
+        char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+        String tmpPwd = "";
+
+        // 문자 배열 길이의 값을 랜덤으로 10개를 뽑아 구문을 작성함
+        int idx = 0;
+        for (int i = 0; i < 10; i++) {
+            idx = (int) (charSet.length * Math.random());
+            tmpPwd += charSet[idx];
+        }
+		
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(dto.getEmail());
+            message.setFrom(sendFrom);
+            message.setSubject("Dysson 임시 비밀번호 안내 이메일입니다.");
+            message.setText("안녕하세요.\n"
+            		+ "Dysson 임시비밀번호 안내 관련 이메일 입니다.\n"
+            		+ "임시 비밀번호를 발급하오니 http://localhost:8050/auth/loginForm 에 접속하셔서 로그인 하신 후\n"
+            		+ "반드시 비밀번호를 변경해주시기 바랍니다.\n\n"
+            		+ "임시 비밀번호 : " + tmpPwd);
+            javaMailSender.send(message);
+        } catch (MailParseException e) {
+            e.printStackTrace();
+        } catch (MailAuthenticationException e) {
+            e.printStackTrace();
+        } catch (MailSendException e) {
+            e.printStackTrace();
+        } catch (MailException e) {
+            e.printStackTrace();
+        }
+		
+        Users user = userRepository.findByUsername(dto.getUsername()).orElseThrow(() -> {
+            return new IllegalArgumentException("임시 비밀번호 변경 실패: 사용자 이름을 찾을 수 없습니다.");
+        });
+		
+        user.setPassword(encodeer.encode(tmpPwd));
+	}
 		
 
 	
