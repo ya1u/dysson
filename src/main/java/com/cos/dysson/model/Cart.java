@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 		)
 public class Cart {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_SEQ_GENERATOR1")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "CART_SEQ_GENERATOR1")
 	private int id;
 	
 	private int count;
