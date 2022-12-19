@@ -65,7 +65,7 @@ public class Users {
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cartId")
-	private Cart cart;
+	Cart cart;
 	
 	private String oauth; //Kakao 회원판별
 	 
