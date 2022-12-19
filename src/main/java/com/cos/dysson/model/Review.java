@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 		)
 public class Review {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BALMUDA_SEQ_GENERATOR3")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "BALMUDA_SEQ_GENERATOR3")
 	private int id;
 	
 	@Column(nullable = false, length = 50)

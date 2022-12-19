@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 	)
 public class Reply {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="REPLY_SEQ_GENERATOR1")
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="REPLY_SEQ_GENERATOR1")
 	private int id;
 	@Column(nullable=false, length=200)
 	private String content;

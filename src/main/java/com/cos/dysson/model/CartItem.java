@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 	)
 public class CartItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_SEQ_GENERATOR2")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "CART_SEQ_GENERATOR2")
 	private int id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Users {
 	@Id //primary key
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GENERATOR")
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="USER_SEQ_GENERATOR")
 	//프로젝트에 연결된 DB의 넘버링 전략을 사용
 	private int id;//시퀀스
 	

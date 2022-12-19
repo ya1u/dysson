@@ -42,7 +42,7 @@ public class CartController {
 			System.out.println(userCart);
 		
 			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
-			
+
 			int totalPrice = 0;
 			for (CartItem cartitem : cartItemList) {
 				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
