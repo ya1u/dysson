@@ -59,9 +59,8 @@ public class Users {
 	//@ColumnDefault("'user'")
 	@Enumerated(EnumType.STRING)
 	private RoleType roles;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "cartId")
+
+	@OneToOne(mappedBy = "users")
 	private Cart cart;
 	
 	private String oauth; //Kakao 회원판별

@@ -40,28 +40,28 @@ public class CartController {
 			Cart userCart = users.getCart();
 			System.out.println(users);
 			System.out.println(userCart);
-		
+
 			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
 
 			int totalPrice = 0;
 			for (CartItem cartitem : cartItemList) {
 				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
 		}
-		
+
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalCount", userCart.getCount());
 		model.addAttribute("user", userService.findUser(id));
 		model.addAttribute("user", userService.findUser(id));
-		
+
 		return "/product/cart";
 		}
-		
+
 		else {
 			return "redirect:/";
 		}
-		
+
 	}
-	
+
 	@PostMapping("/users/cart/{id}/{productId}")
 	public String addCartItem(@PathVariable("id") Integer id, @PathVariable("productId") Integer productId, int amount) {
 
