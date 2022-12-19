@@ -13,18 +13,18 @@
 		<table style="width:100%;height:50px;text-align:center;font-weight:bold;border:1px solid #e0e0e0;">
 			<tbody>
 			<tr>
-				<td id="mypage_menu_1" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224); background-color: #e0e0e0;">
-					<a href="#">
+				<td id="mypage_menu_1" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224);background-color: #e0e0e0; ">
+					<a href="/auth/mypage">
 						<span style="color:black;">주문내역/배송조회</span>
 					</a>
 				</td>
-				<td id="mypage_menu_2" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224); background-color: rgb(255, 255, 255);">
-					<a href="#">
-						<span style="color:black;">회원정보관리</span>
+				<td id="mypage_menu_2" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224); ">
+					<a href="/mypage/userInfo">
+						<span style="color:black;">회원정보수정</span>
 					</a>
 				</td>
 				<td id="mypage_menu_3" style="width:33.33%;border-right:1px solid #e0e0e0;">
-					<a href="#">
+					<a href="/mypage/userWithdrawal">
 						<span style="color:black;">회원탈퇴</span>
 					</a>
 

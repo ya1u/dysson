@@ -128,5 +128,11 @@ public class ProductController {
 		 productRepository.save(product);
 		return "redirect:product/store";
 	}
+	
+	//제품 구매하기
+	@GetMapping("/order/orderForm")
+	public String order() {
+		return"product/orderForm";
+	}
 
 }

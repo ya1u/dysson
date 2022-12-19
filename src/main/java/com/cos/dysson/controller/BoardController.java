@@ -55,7 +55,11 @@ public class BoardController {
 		model.addAttribute("boards",boardService.toNotice(pageable));
 		return "board/board";
 	}
-	
+	@GetMapping("/auth/support/askBoard")
+	public String indexAsk() {
+		return "board/askBoard";
+	}
+			
 	//검색기능
 
 
