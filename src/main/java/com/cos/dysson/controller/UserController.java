@@ -1,5 +1,8 @@
 package com.cos.dysson.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.cos.dysson.model.KakaoProfile;
@@ -48,7 +52,19 @@ public class UserController {
 	public String mypage() {
 		return "user/mypage";
 	}
-	
+	@GetMapping("/auth/findPw")
+	public String findPwd() {
+		return "user/findPw";
+	}
+	@GetMapping("/mypage/userInfo")
+	public String userInfo() {
+		return "user/userInfo";
+	}
+	@GetMapping("/mypage/userWithdrawal")
+	public String userWithdrawal() {
+		return "user/userWithdrawal";
+	}
+
 
 	
 	//카카오 로그인

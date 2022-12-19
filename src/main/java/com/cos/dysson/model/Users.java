@@ -43,6 +43,9 @@ public class Users {
 	
 	@Column(nullable=false, length=100,unique = true)
 	private String username;//아이디
+	
+	@Column(length=50)
+	private String name;//이름
 
 	@Column(nullable=false, length=100)//해쉬로 변경하여 암호화 length 크게
 	private String password; 
@@ -62,6 +65,7 @@ public class Users {
 
 	@OneToOne(mappedBy = "users")
 	private Cart cart;
+
 	
 	private String oauth; //Kakao 회원판별
 	 

@@ -45,6 +45,23 @@ public class UserService {
 			
 	}
 	
+	@Transactional
+	public void 회원수정(Users user) {
+		Users persistance = userRepository.findById(user.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("회원 찾기 실패");
+		});
+		String rawPassword=user.getPassword();
+		String encPassword= encodeer.encode(rawPassword);
+		String email = user.getEmail();
+		String address = user.getAddress();
+		persistance.setPassword(encPassword);
+		persistance.setEmail(email);
+		persistance.setAddress(address);
+		
+		//회원수정 메서드종료 = 서비스종료  = 트랜잭션 종료= commit
+		//영속화된 persistance 객체의 변화가 감지되면 더티체킹 되어 update문 날림.
+	}
+	
 	//비밀번호 찾기 구현중!
 	
 //	@Value("${String.mail.username}")
