@@ -1,5 +1,8 @@
 package com.cos.dysson.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailAuthenticationException;
@@ -11,8 +14,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import com.cos.dysson.dto.SendTmpPwdDto;
+import com.cos.dysson.dto.UserRequestDto;
 import com.cos.dysson.model.RoleType;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.UserRepository;
@@ -32,12 +38,44 @@ public class UserService {
 	private BCryptPasswordEncoder encodeer;
 	
 	@Transactional
-	public void 회원가입(Users user) {
+	public void 회원가입(Users user) {	//카카오 로그인위해 메소드 두개사용
 		String rawPassword =user.getPassword();
 		String encPassword = encodeer.encode(rawPassword);
 		user.setPassword(encPassword);
 		user.setRoles(RoleType.user);
 		userRepository.save(user); //하나의 트랜젝션
+	}
+	
+	@Transactional
+	public void 회원가입(UserRequestDto userDto) {
+		
+		Users user = Users.builder()
+				.username(userDto.getUsername())
+				.password(encodeer.encode(userDto.getPassword()))
+				.email(userDto.getEmail())
+				.roles(RoleType.user)
+				.build();
+		
+		userRepository.save(user);
+	}
+	
+	
+//	@Transactional
+//	public void 회원가입(Users user) {
+//		
+//		userRepository.save(user);
+//	}
+	
+	@Transactional(readOnly = true)
+	public Map<String, String> validateHandling(BindingResult bindingResult) {
+		Map<String, String> validatorResult = new HashMap<>();
+		
+		for(FieldError error : bindingResult.getFieldErrors()) {
+			String validKeyName = String.format("valid_%s", error.getField());
+			validatorResult.put(validKeyName, error.getDefaultMessage());
+		}
+		
+		return validatorResult;
 	}
 	
 	@Transactional(readOnly = true)
