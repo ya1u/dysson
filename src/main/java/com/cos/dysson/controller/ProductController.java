@@ -129,7 +129,12 @@ public class ProductController {
 		return "redirect:product/store";
 	}
 	
-	//제품 구매하기
+	//제품 구매폼
+	@GetMapping("/order/orderForm")
+	public String order() {
+		return"product/orderForm";
+	}
+	//제품 구매
 	@GetMapping("/order/orderForm")
 	public String order() {
 		return"product/orderForm";

@@ -138,7 +138,7 @@
             <div class="my-3">
               <div class="form-check">
                 <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                <label class="form-check-label" for="kakaoPay">카카오페이</label>
+                <label class="form-check-label" for="kakaoPay"><img src="/image/kakaoPay2.png"></label>
               </div>
             </div>
 
@@ -153,7 +153,9 @@
 
   </div>
 	<br>
-
+	
+  <!-- iamport.payment -->
+  <
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
   <script src="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.js"></script>
