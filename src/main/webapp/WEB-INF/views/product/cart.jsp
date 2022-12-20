@@ -43,7 +43,7 @@
 
           <div class="row mx-0 mb-2">
             <div class="col-sm-8 p-0 d-inline">
-              <h3>Total</h3>
+              <h3>Total.</h3>
             </div>
             <div class="col-sm-4 p-0">
               <p id="total" style="font-size: 20px"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</h5>
