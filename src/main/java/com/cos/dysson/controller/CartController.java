@@ -19,6 +19,7 @@ import com.cos.dysson.model.Users;
 import com.cos.dysson.service.CartService;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CartController {
@@ -38,8 +39,6 @@ public class CartController {
 		if (principalDetail.getUser().getId() == id) {
 			Users users = userService.findUser(id);
 			Cart userCart = users.getCart();
-			System.out.println(users);
-			System.out.println(userCart);
 
 			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
 
@@ -50,7 +49,7 @@ public class CartController {
 
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalCount", userCart.getCount());
-		model.addAttribute("user", userService.findUser(id));
+		model.addAttribute("cartItems", cartItemList);
 		model.addAttribute("user", userService.findUser(id));
 
 		return "/product/cart";
@@ -59,7 +58,7 @@ public class CartController {
 		else {
 			return "redirect:/";
 		}
-
+//	return "/product/cart";
 	}
 
 	@PostMapping("/users/cart/{id}/{productId}")

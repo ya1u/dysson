@@ -12,8 +12,4 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
 	Cart findByUsersId(int id);
-	
-//	List<CartItem> findAll(Cart userCart);
-
-	List<CartItem> findAll(Cart userCart);
 }

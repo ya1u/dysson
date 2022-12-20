@@ -2,66 +2,52 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/cart.css" rel="stylesheet">
+<style>
+    .col-2 {
+        margin: auto;
+        padding: 0;
+    }
+    .col-5 {
+        margin-top: 45px;
+        width: 200px;
+    }
+</style>
 <main id="cart" style="max-width:600px">
     <div class="back"><a href="/product/store">&#11178; store</a></div>
     <h1>Your Cart</h1>
     <hr>
     <div class="container-fluid">
       <div class="row align-items-start">
-        <div class="col-12 col-sm-8 items">
-          <!--1-->
-          <div class="cartItem row align-items-start">
-            <div class="col-3 mb-2">
-              <img class="w-100" src="image/logo.png" alt="art image">
+        <div class="">
+          <!--product list-->
+          <c:forEach var="cartItem" items="${cartItems}">
+            <div class="cartItem row align-items-start">
+              <div class="col-3 mb-2">
+                <img class="w-100" src="/img/${cartItem.product.imgName}" alt="art image">
+              </div>
+              <div class="col-5 mb-2">
+                <h6 class="" style="font-size: 20px">${cartItem.product.name}</h6>
+<%--                <p class="pl-1 mb-0">20 x 24</p>--%>
+<%--                <p class="pl-1 mb-0">Matte Print</p>--%>
+              </div>
+              <div class="col-2">
+<%--                <p class="cartItemQuantity p-1 text-center">${cartItem.count}</p>--%>
+                <input class="form-control text-center me-3" id="amount" name="amount" type="number" value="${cartItem.count}" style="max-width: 5rem"></input>
+              </div>
+              <div class="col-2">
+                  <p id="cartItem1Price"><fmt:formatNumber value="${(cartItem.count)*(cartItem.product.price)}" pattern="#,###"/>원</p>
+              </div>
             </div>
-            <div class="col-5 mb-2">
-              <h6 class="">Dark Art 1</h6>
-              <p class="pl-1 mb-0">20 x 24</p>
-              <p class="pl-1 mb-0">Matte Print</p>
-            </div>
-            <div class="col-2">
-              <p class="cartItemQuantity p-1 text-center">1</p>
-            </div>
-            <div class="col-2">
-              <p id="cartItem1Price">\6600</p>
-            </div>
-          </div>
-          <hr>
-          <!--2-->
-          <div class="cartItem row align-items-start">
-            <div class="col-3 mb-2">
-              <img class="w-100" src="image/logo.png" alt="art image">
-            </div>
-            <div class="col-5 mb-2">
-              <h6 class="">Dark Art 2</h6>
-              <p class="pl-1 mb-0">20 x 24</p>
-              <p class="pl-1 mb-0">Matte Print</p>
-            </div>
-            <div class="col-2">
-              <p class="cartItemQuantity p-1 text-center">1</p>
-            </div>
-            <div class="col-2">
-              <p id="cartItem1Price">\6600</p>
-            </div>
-          </div>
-          <hr>
-        </div>
-        <!-- <div class="col-12 col-sm-4 p-3 proceed form">
-          <div class="row m-0">
-            <div class="col-sm-8 p-0">
-              <h6>Subtotal</h6>
-            </div>
-            <div class="col-sm-4 p-0">
-              <p id="subtotal">\13200</p>
-            </div>
-          </div>
-          <hr> -->
+            <hr>
+          </c:forEach>
+
           <div class="row mx-0 mb-2">
             <div class="col-sm-8 p-0 d-inline">
-              <h5>Total</h5>
+              <h3>Total</h3>
             </div>
             <div class="col-sm-4 p-0">
-              <p id="total">\13200</p>
+              <p id="total" style="font-size: 20px"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</h5>
+            </div></p>
             </div>
           </div>
           <a href="#"><button id="btn-checkout" class="shopnow"><span>구매하기</span></button></a>
