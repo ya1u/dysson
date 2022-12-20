@@ -16,18 +16,14 @@ import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Table(name="cart")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @SequenceGenerator(
 			name = "CART_SEQ_GENERATOR1"
@@ -42,8 +38,8 @@ public class Cart {
 	
 	private int count;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "userId")
+	@OneToOne
+	@JoinColumn(name = "cartId")
 	private Users users;
 	
 	@OneToMany(mappedBy = "cart")

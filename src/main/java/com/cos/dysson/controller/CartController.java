@@ -19,6 +19,7 @@ import com.cos.dysson.model.Users;
 import com.cos.dysson.service.CartService;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CartController {
@@ -33,35 +34,33 @@ public class CartController {
 	private ProductService productService;
 	
 	// 장바구니
-//	@GetMapping("/cart/{id}")
-//	public String cartPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
-//		if (principalDetail.getUser().getId() == id) {
-//			Users users = userService.findUser(id);
-//			Cart userCart = users.getCart();
-//			System.out.println(users);
-//			System.out.println(userCart);
-//		
-//			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
-//
-//			int totalPrice = 0;
-//			for (CartItem cartitem : cartItemList) {
-//				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
-//		}
-//		
-//		model.addAttribute("totalPrice", totalPrice);
-//		model.addAttribute("totalCount", userCart.getCount());
-//		model.addAttribute("user", userService.findUser(id));
-//		model.addAttribute("user", userService.findUser(id));
-//		
-//		return "/product/cart";
-//		}
-//		
-//		else {
-//			return "redirect:/";
-//		}
-//		
-//	}
-	
+	@GetMapping("/cart/{id}")
+	public String cartPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+		if (principalDetail.getUser().getId() == id) {
+			Users users = userService.findUser(id);
+			Cart userCart = users.getCart();
+
+			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
+
+			int totalPrice = 0;
+			for (CartItem cartitem : cartItemList) {
+				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
+		}
+
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("totalCount", userCart.getCount());
+		model.addAttribute("cartItems", cartItemList);
+		model.addAttribute("user", userService.findUser(id));
+
+		return "/product/cart";
+		}
+
+		else {
+			return "redirect:/";
+		}
+//	return "/product/cart";
+	}
+
 	@PostMapping("/users/cart/{id}/{productId}")
 	public String addCartItem(@PathVariable("id") Integer id, @PathVariable("productId") Integer productId, int amount) {
 

@@ -35,21 +35,22 @@ public class ProductController {
 	public String about() {
 		return "about/about";
 	}
-	
+
 	// 제품 등록
 	@GetMapping({"/product/addForm"})
 	public String addForm() {
 		return "product/addForm";
 	}
-	
+
 	@RequestMapping("/product/saveProduct")
 	public String saveProduct(Product product, MultipartFile imgProduct) throws Exception {
 		String sourceFileName = imgProduct.getOriginalFilename();
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
-		String fileUrl = "C:\\image\\";
-		
+//		String fileUrl = "C:\\image\\"; 외부경로 window
+		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
+
 		do {
 			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
 			destinationFile = new File(fileUrl + destinationFileName);
@@ -92,7 +93,8 @@ public class ProductController {
 	
 	@RequestMapping("/updateProduct")
 	public String updateProduct(Product product, MultipartFile imgProduct, HttpServletRequest req) throws Exception{
-		String fileUrl = "C:\\image\\";	//외부경로
+//		String fileUrl = "C:\\image\\";	//외부경로 window
+		String fileUrl = "/Users/yalu/Documents/image/";	//외부경로 mac
 
 		// 새로운 파일이 등록되었는지 확인
 		 if(imgProduct.getOriginalFilename() != null && imgProduct.getOriginalFilename() != "") {

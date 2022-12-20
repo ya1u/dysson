@@ -82,7 +82,7 @@
 		  
            <div class="item active">
             <div class="col-xs-12 col-sm-6 col-md-2">
-              <a href="#"><img src="/img/soldout.jpg" class="img-responsive center-block"></a>
+              <a href="#"><img src="/image/soldout.jpg" class="img-responsive center-block"></a>
               <h4 class="text-center red">DYSSON The GreenFan C2</h4>
               <h5 class="text-center red">SOLD OUT</h5>
             </div>
