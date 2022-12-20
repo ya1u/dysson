@@ -57,9 +57,11 @@ public class CartService {
 		
 	}
 
-//	@Transactional(readOnly = true)
-//	public List<CartItem> allUserCartView(Cart userCart) {
-//		return cartRepository.findAll(userCart);
-//	}
+
+	 @Transactional(readOnly = true)
+	 public List<CartItem> allUserCartView(Cart userCart) {
+		return cartItemRepositoory.findByCart(userCart);
+	}
+
 
 }
