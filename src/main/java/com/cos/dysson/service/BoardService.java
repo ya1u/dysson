@@ -24,17 +24,17 @@ public class BoardService {
 	private UserRepository userRepository;
 	
 	@Transactional
-	public void 관리자글작성(Boards board, Users user) { //title,content
+	public void 글작성(Boards board, Users user) { //title,content
 		board.setCount(0);
 		board.setUsers(user);
 		boardRepository.save(board);
 	}
 	@Transactional(readOnly = true)
-	public Page<Boards> toNotice(Pageable pageable) { //공지글 목록
+	public Page<Boards> toNotice(Pageable pageable) { //글 목록
 		return boardRepository.findAll(pageable);
 	}
 	@Transactional(readOnly = true)
-	public Boards noticeDetail(int id) { // 공지글 상세보기
+	public Boards detail(int id) { // 글 상세보기
 		return boardRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
 		});
@@ -78,8 +78,8 @@ public class BoardService {
 		
 	}
 //	@Transactional
-//	public void 댓글삭제하기(int id) {
-//		replyRepository.deleteById(id);
+//	public void 댓글삭제(int replyId) {
+//		replyRepository.deleteById(replyId);
 //	}
 
 	

@@ -7,4 +7,5 @@ import com.cos.dysson.model.Cart;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
 	Cart findByUsersId(int id);
+
 }
