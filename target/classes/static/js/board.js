@@ -23,6 +23,11 @@ let index = {
 	},
 	save: function() {
 		let data = {
+<<<<<<< HEAD
+=======
+			secret: $("#secret").val(),
+			category: $("#category").val(),
+>>>>>>> parent of 7ac73a6 (test)
 			title: $("#title").val(),
 			content: $("#content").val()
 		};
@@ -78,6 +83,24 @@ let index = {
 		});
 	},
 	
+<<<<<<< HEAD
+=======
+	replyDelete: function(boardId,replyId) {
+
+		$.ajax({
+			type:"DELETE",
+			url:"/api/board/${boardId}/reply/${replyId}",
+			contentType:"application/json; charset=utf-8",
+			dataType:"json"
+		}).done(function(resp){
+			alert("댓글삭제 성공.");
+			location.href="/board/${boardId}";
+		}).fail(function(error){
+			alert(JSON.stringify(error));
+		});
+	},
+	
+>>>>>>> parent of 7ac73a6 (test)
 /*	deleteById: function(){
 		let id=$("#id").text();
 		

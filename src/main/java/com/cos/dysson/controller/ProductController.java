@@ -48,6 +48,7 @@ public class ProductController {
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
+
 //		String fileUrl = "C:\\image\\"; 외부경로 window
 		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
 
