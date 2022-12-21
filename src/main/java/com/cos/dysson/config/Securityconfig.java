@@ -40,13 +40,13 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
 		http
 		
 			.csrf().disable()
-			.rememberMe()//자동로그인
+			.rememberMe()
 				.rememberMeParameter("remember")//해당 체크박스의 name 속성 값을 지정			
 				.userDetailsService(principalDetailService)// user정보
 			.and()
 			.authorizeRequests()
 			
-			.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/fonts/**","/product/**","/board/**","/img/**")
+			.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/fonts/**","/product/**","/board/**")
 			.permitAll()
 			.anyRequest()//이게 아닌 다른 모든 요청은 
 			.authenticated()//인증이 필요

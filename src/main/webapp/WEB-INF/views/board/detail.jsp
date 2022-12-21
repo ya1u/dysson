@@ -35,7 +35,7 @@
 			</div>
 			<div>
 				<button class="btn btn-secondary" onclick="history.back()">목록</button>
-				<c:if test="${board.users.id==principal.user.id || principal.user.roles eq 'admin'}">		
+				<c:if test="${board.users.id==principal.user.id }">		
 					<button id="btn-delete" class="btn btn-danger">삭제</button>
 					<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
 				</c:if>
@@ -58,13 +58,13 @@
 			<div class="card-header">댓글 리스트</div>
 			<ul id="reply-box" class="list-group">
 				<c:forEach var="reply" items="${board.replys}">
-					<li id="reply-${reply.id}" class="list-gruop-item d-flex justify-content-between">
+					<li class="list-gruop-item d-flex justify-content-between">
 						<div>&nbsp;${reply.content}</div>
 						<div class="d-flex">
 							<div><span style="color:grey;"><fmt:formatDate value="${reply.createDate}" pattern="YY.MM.dd hh:mm"/></span>&nbsp;&nbsp;&nbsp;</div>
 							<div>&nbsp;${reply.users.username }&nbsp;</div>
 							<c:if test="${principal.user.id==reply.users.id}">	
-							<button onClick="index.replyDelete(${board.id},${reply.id})" class="btn btn-danger btn-sm">삭제</button>
+							<button class="btn btn-danger btn-sm">삭제</button>
 							</c:if>
 						</div>				
 					</li>

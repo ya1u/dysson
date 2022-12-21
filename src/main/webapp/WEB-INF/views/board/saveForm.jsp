@@ -10,7 +10,6 @@
 </style>
 <div class="container" style="max-width:900px;">
 	<form>
-		<input type="hidden" id="category" value="notice">
 		<div class="form-group">
 			<label for="title">Title</label>
 			<input type="text" class="form-control" placeholder="Enter title" id="title" style="text-align:left;">

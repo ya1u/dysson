@@ -65,12 +65,5 @@ public class Boards {
 	@CreationTimestamp
 	private Timestamp createDate;
 	
-	@Column(nullable = false, length = 20)
-	private String category;
-	
-	@Column(length=1)
-	private boolean secret;
-	
-	
 
 }

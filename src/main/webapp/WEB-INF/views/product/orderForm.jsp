@@ -137,14 +137,14 @@
 
             <div class="my-3">
               <div class="form-check">
-                <input id="kakaoPay" name="paymentMethod" type="radio" class="form-check-input" required checked>
-                <label class="form-check-label" for="kakaoPay"><img src="/image/kakaoPay2.png"></label>
+                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="kakaoPay">카카오페이</label>
               </div>
             </div>
 
             <hr class="my-4">
 
-            <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay">구매하기</button>
+            <button class="w-100 btn btn-secondary btn-lg" type="submit" id="">구매하기</button>
           </form>
         </div>
         
@@ -153,17 +153,10 @@
 
   </div>
 	<br>
-	
-  <!-- iamport.payment -->
-  <script>
-  
-  
-  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
   <script src="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.js"></script>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/kakaoAddress.js"></script>
-  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-  <script src="/js/payment.js"></script>
 <%@ include file="../layout/footer.jsp"%>

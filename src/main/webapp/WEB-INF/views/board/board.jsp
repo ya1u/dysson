@@ -79,14 +79,12 @@
       </thead>
       <tbody class="text-center">
 		<c:forEach var="board" items="${boards.content}">
-			<c:if test="${board.category eq 'notice'}">
-	      		<tr>
-	      			<td>${board.id}</td>
-	      			<td><a href="/board/${board.id}">${board.title}</a></td>
-	   				<td>${board.users.username}</td>
-	      			<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 
-	      		</tr>
-	      	</c:if>	
+      		<tr>
+      			<td>${board.id}</td>
+      			<td><a href="/board/${board.id}">${board.title}</a></td>
+   				<td>${board.users.username}</td>
+      			<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 
+      		</tr>
       	</c:forEach> 
       	
       </tbody>
@@ -94,18 +92,18 @@
       <br><br>
       <div>
       
-<!--       <form action="/board/search" method="GET">
+      <form action="/board/search" method="GET">
       	<div class="search">
       		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
       	</div>
       	<button>검색하기</button>
       
-      </form> -->
+      </form>
       
       
       
       
-      <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center">
         	<c:choose>
         		<c:when test="${boards.first}">
         			<li class="page-item disabled"><a class="page-link"
@@ -126,21 +124,22 @@
 						href="?page=${boards.number+1}">ᐳ</a></li>
 				</c:otherwise>
 			</c:choose>		
-        		
+        			
+        	
         
         
         
         
         
         
-<!--           <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐸ</a></li>
+          <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐸ</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">1</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">2</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">3</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">4</a></li>
           <li><a href="#" style="margin-right: 5px;" class="text-secondary">5</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐳ</a></li> -->
-        </ul> 
+          <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐳ</a></li>
+        </ul>
 
       </div>
   </div>

@@ -23,8 +23,6 @@ let index = {
 	},
 	save: function() {
 		let data = {
-			secret: $("#secret").val(),
-			category: $("#category").val(),
 			title: $("#title").val(),
 			content: $("#content").val()
 		};
@@ -75,21 +73,6 @@ let index = {
 		}).done(function(resp){
 			alert("삭제가 완료되었습니다.");
 			location.href="/auth/support";
-		}).fail(function(error){
-			alert(JSON.stringify(error));
-		});
-	},
-	
-	replyDelete: function(boardId,replyId) {
-
-		$.ajax({
-			type:"DELETE",
-			url:"/api/board/${boardId}/reply/${replyId}",
-			contentType:"application/json; charset=utf-8",
-			dataType:"json"
-		}).done(function(resp){
-			alert("댓글삭제 성공.");
-			location.href="/board/${boardId}";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		});

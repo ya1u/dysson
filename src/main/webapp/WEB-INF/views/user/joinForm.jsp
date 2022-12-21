@@ -8,39 +8,35 @@
 	      <!--<a href="#"><img class="logo" src="/image/logo.png"></a>  -->
 	
 	      <div class="field">
-	          <label for="username"><b><span style="color:red;">*</span>아이디</b></label>
+	          <b>아이디</b>
 	          <div class="field-id">
 	            
-	            <input type="text" placeholder="UserID" class="item" id="username" name="username" style="text-align: left;">
+	            <input type="text" placeholder="UserID" class="item" id="username" name="username" oninput="checkId()" style="text-align: left;">
 	            <!-- id ajax 중복체크 -->
 <!-- 				<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span> -->
 	            <button class="item" id="idCheck">중복확인</button>
-
+	            <span id="checkMessage"></span>
 	          </div>
-	          <p id="valid_username"></p>
 	      </div>
 	      <div class="field">
-	          <label for="password"><b><span style="color:red;">*</span>비밀번호</b></label>
+	          <b>비밀번호</b>
 	          <input class="userpw" type="password" id="password" placeholder="Password" style="text-align: left;">
 	      </div>
-	      <p id="valid_password"></p>
-	      
 	      <div class="field">
-	          <b><span style="color:red;">*</span>비밀번호 재확인</b> 
+	          <b>비밀번호 재확인</b> 
 	          <input class="userpw-confirm" type="password" placeholder="Password_check" id="pwcheck" style="text-align: left;"> 
 	      </div>
 	      <div class="field">
 	          <b>이름</b>
 	          <input type="text" placeholder="Name" id="name" style="text-align: left;">
 	      </div>
-			<p id="valid_name"></p>
+	
 	
 	      <div class="field">
-	         <label for="email"><b><span style="color:red;">*</span>Email</b></label>
+	          <b>Email</b>
 	          <input type="email" placeholder="Email" id="email" style="text-align: left;">
 	      </div>
-	      <p id="valid_email"></p>
 	      <div class="field">
 	        <b>전화번호</b>
 	        <input type="text" placeholder="Telephone" id="phone" style="text-align: left;">
@@ -58,7 +54,7 @@
 	</div>
   </form>
 <script src="/js/user.js"></script>
-<!-- <script src="/js/joinCheck.js"></script> -->
+<script src="/js/joinCheck.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/kakaoAddress.js"></script>

@@ -23,11 +23,10 @@ public class BoardApiController {
 	//글 작성
 	@PostMapping("/api/board")
 	public ResponseDto<Integer> save(@RequestBody Boards board, @AuthenticationPrincipal com.cos.dysson.config.auth.PrincipalDetail principal) {
-		boardService.글작성(board, principal.getUser());
+		boardService.관리자글작성(board, principal.getUser());
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 		
 	}
-	
 	//게시글 삭제
 	@DeleteMapping("/api/board/{id}")
 	public ResponseDto<Integer> deleteById(@PathVariable int id){
@@ -35,10 +34,11 @@ public class BoardApiController {
 		boardService.글삭제하기(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
-//	//댓글 삭제
-//	@DeleteMapping("/api/board/${boardId}/reply/${replyId}")
-//	public ResponseDto<Integer> replyDelete(@PathVariable int replyId){
-//		boardService.댓글삭제(replyId);
+	//댓글 삭제
+//	@DeleteMapping("/api/board/{id}")
+//	public ResponseDto<Integer> deleteById2(@PathVariable int id){
+//		System.out.println(id);
+//		boardService.댓글삭제하기(id);
 //		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 //	}
 	
@@ -58,6 +58,4 @@ public class BoardApiController {
 		boardService.댓글쓰기(replySaveRequestDto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
-	
-	
 }
