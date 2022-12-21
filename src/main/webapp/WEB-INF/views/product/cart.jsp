@@ -9,7 +9,10 @@
     }
     .col-5 {
         margin-top: 45px;
-        width: 200px;
+        width: 150px;
+    }
+    h3 {
+      float: right;
     }
 </style>
 <main id="cart" style="max-width:600px">
@@ -35,7 +38,10 @@
                 <input class="form-control text-center me-3" id="amount" name="amount" type="number" value="${cartItem.count}" style="max-width: 5rem"></input>
               </div>
               <div class="col-2">
-                  <p id="cartItem1Price"><fmt:formatNumber value="${(cartItem.count)*(cartItem.product.price)}" pattern="#,###"/>원</p>
+                <p id="cartItem1Price"><fmt:formatNumber value="${(cartItem.count)*(cartItem.product.price)}" pattern="#,###"/>원</p>
+              </div>
+              <div class="col-2">
+                <a href="/user/cart/${user.id}/${cartItem.id}/delete" class="btn btn-warning" style="background-color: #DC3545; border: #DC3545;">삭제</a>
               </div>
             </div>
             <hr>
@@ -43,10 +49,10 @@
 
           <div class="row mx-0 mb-2">
             <div class="col-sm-8 p-0 d-inline">
-              <h3>Total</h3>
+              <h3>Total.</h3>
             </div>
             <div class="col-sm-4 p-0">
-              <p id="total" style="font-size: 20px"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</h5>
+              <p id="total" style="font-size: 20px; padding-top: 5px"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</h5>
             </div></p>
             </div>
           </div>

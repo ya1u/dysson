@@ -1,6 +1,5 @@
 package com.cos.dysson.controller;
 
-import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import com.cos.dysson.model.Users;
 import com.cos.dysson.service.CartService;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CartController {
@@ -58,7 +56,39 @@ public class CartController {
 		else {
 			return "redirect:/";
 		}
-//	return "/product/cart";
+	}
+
+	// 장바구니에서 물건 삭제
+// 삭제하고 남은 상품의 총 개수
+	@GetMapping("/user/cart/{id}/{cartItemId}/delete")
+	public String deleteCartItem(@PathVariable("id") Integer id, @PathVariable("cartItemId") Integer itemId, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+		if (principalDetail.getUser().getId() == id) {
+			CartItem cartItem = cartService.findCartItemById(itemId);
+
+			cartService.cartItemDelete(itemId);
+
+			Cart userCart = cartService.findUserCart(id);
+
+			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
+
+			int totalPrice = 0;
+			for (CartItem cartitem : cartItemList) {
+				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
+			}
+
+			userCart.setCount(userCart.getCount()-cartItem.getCount());
+
+			model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("totalCount", userCart.getCount());
+			model.addAttribute("cartItems", cartItemList);
+			model.addAttribute("user", userService.findUser(id));
+
+			return "/product/cart";
+		}
+		// 로그인 id와 장바구니 삭제하려는 유저의 id가 같지 않는 경우
+		else {
+			return "redirect:/main";
+		}
 	}
 
 	@PostMapping("/users/cart/{id}/{productId}")
