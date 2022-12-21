@@ -63,5 +63,16 @@ public class CartService {
 		return cartItemRepositoory.findByCart(userCart);
 	}
 
+	@Transactional(readOnly = true)
+	public CartItem findCartItemById(Integer itemId) {
+		return cartItemRepositoory.findById(itemId).get();
+	}
 
+	public void cartItemDelete(Integer itemId) {
+		cartItemRepositoory.deleteById(itemId);
+	}
+
+	public Cart findUserCart(Integer id) {
+		return cartRepository.findByUsersId(id);
+	}
 }
