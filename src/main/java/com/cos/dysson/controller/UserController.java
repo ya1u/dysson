@@ -37,6 +37,7 @@ public class UserController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+
 	@GetMapping("/auth/joinForm")
 	public String joinForm() {
 		return "user/joinForm";

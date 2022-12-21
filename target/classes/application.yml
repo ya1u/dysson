@@ -12,20 +12,18 @@ spring:
     username: dysson
     password: 1234
     driver-class-name: oracle.jdbc.driver.OracleDriver
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=Asia/Seoul
-#    username: dysson
-#    password: 1234
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+    
         
   jpa:
     open-in-view: true
+
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       #JPA가 사용하는 기본 넘버링 전략을 사용하지 않는다.
@@ -33,6 +31,7 @@ spring:
     show-sql: true
     properties:
       hibernate.format_sql: true
+      
 
   jackson:
     serialization:
@@ -47,7 +46,9 @@ spring:
         smtp:
           auth: true
           starttls:
-            enable: true
+            enable: true  sql:    init:
+      mode: always      schema-locations: classpath:import.sql     
+        #  datasource:      #    driver-class-name: com.mysql.cj.jdbc.Driver      #    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=Asia/Seoul      #    username: dysson      #    password: 1234
 ##!!외부에 노출되면 안됨!!.      
 cos:
   key: koy1234

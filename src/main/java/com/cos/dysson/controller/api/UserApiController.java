@@ -49,6 +49,7 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
+	
 	//회원정보수정
 	@PutMapping("/user")
 	public ResponseDto<Integer> update(@RequestBody Users user) {

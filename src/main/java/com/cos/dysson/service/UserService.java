@@ -59,6 +59,12 @@ public class UserService {
 		userRepository.save(user);
 	}
 	
+	@Transactional
+	public void adminJoin(Users user) {
+		
+		user.setRoles(RoleType.admin);
+		userRepository.save(user);
+	}
 	
 //	@Transactional
 //	public void 회원가입(Users user) {

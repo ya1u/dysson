@@ -40,6 +40,7 @@ public class BoardController {
 		return "board/askUpdateForm";
 	}
 	
+	
 	@GetMapping({"","/"})
 	public String index(@AuthenticationPrincipal PrincipalDetail principal) {
 		return "index";
