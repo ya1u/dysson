@@ -20,7 +20,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name="cart")
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -40,7 +39,7 @@ public class Cart {
 	private int count;
 	
 	@OneToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "cartId")
 	private Users users;
 	
 	@OneToMany(mappedBy = "cart")
@@ -60,5 +59,5 @@ public class Cart {
 		cart.setUsers(users);
 		return cart;
 	}
-
+	
 }

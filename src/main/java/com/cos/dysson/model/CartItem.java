@@ -14,11 +14,11 @@ import lombok.*;
 
 @Table(name = "cartItem")
 //@Data
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+//@Builder
 @Entity
 @SequenceGenerator(
 		name = "CART_SEQ_GENERATOR2"
