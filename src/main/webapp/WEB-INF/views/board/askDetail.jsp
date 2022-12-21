@@ -34,7 +34,9 @@
 				&nbsp; <span style="color:grey;"><i><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd hh:mm"/></i></span>
 			</div>
 			<div>
+				
 				<button class="btn btn-secondary" onclick="history.back()">목록</button>
+				<!-- 본인과 관리자만 삭제 및 수정 -->
 				<c:if test="${board.users.id==principal.user.id || principal.user.roles eq 'admin'}">		
 					<button id="btn-delete" class="btn btn-danger">삭제</button>
 					<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>

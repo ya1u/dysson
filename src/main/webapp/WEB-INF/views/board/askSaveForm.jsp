@@ -9,8 +9,11 @@
 
 </style>
 <div class="container" style="max-width:900px;">
+<h4>1:1 문의글 작성</h4>
+<hr>
 	<form>
-		<input type="hidden" id="category" value="notice">
+		<input type="hidden" id="category" value="ask">
+		<input type="hidden" id="secret" value="true">
 		<div class="form-group">
 			<label for="title">Title</label>
 			<input type="text" class="form-control" placeholder="Enter title" id="title" style="text-align:left;">
