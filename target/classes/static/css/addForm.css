@@ -1,0 +1,14 @@
+table {
+	margin: 50px auto;
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+tr {
+	margin-bottom: 50px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

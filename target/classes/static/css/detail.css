@@ -1,0 +1,78 @@
+.proForm {
+	display: flex;
+	justify-content: center;
+}
+
+.img {
+	width: 100%;
+	min-width: 300px;
+	max-width: 500px;
+}
+
+.pro {
+	max-width: 500px;
+	width: 80%;
+}
+
+.pro2 {
+	width: 600px;
+	padding-top: 50px;
+}
+
+#price {
+	color: #AE0000;
+}
+
+#name .proName {
+	text-align: center;
+}
+
+tr {
+	height: 30px
+}
+
+td, th {
+	width: auto;
+	text-align: left;
+	padding-left: 15px;
+}
+
+.title-box {
+	text-align: left;
+	font-weight: 100;
+	padding-left: 15px;
+}
+
+.korSub {
+	font-size: 1.0rem;
+	font-weight: 100;
+	color: grey;
+}
+
+.hash {
+	color: silver;
+	border: 1px solid silver;
+	border-radius: 3px;
+	padding: 2px;
+}
+
+.buy {
+	display: flex;
+	justify-content: center;
+}
+
+.btn_buy {
+	width: 250px;
+	background: black;
+	color: white;
+	border: 1px solid black;
+	margin-right: 16px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .proForm {
+    display: block;
+  }
+  
+}
