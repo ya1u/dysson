@@ -57,7 +57,10 @@
 <div class="container">
   <div class="row" id="slider-text">
     <div class="col-md-6" >
-      <h2>NEW COLLECTION</h2>
+
+     
+      <h2>NEW Collection</h2>
+
     </div>
   </div>
 </div>
