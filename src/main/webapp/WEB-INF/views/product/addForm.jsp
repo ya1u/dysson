@@ -11,7 +11,7 @@
 			<th><label for="category">카테고리</label></th>
 			<td><select name="category" id="category">
 				<option value="">--Category select--</option>
-				<option value="KICHEN">KICHEN</option>
+				<option value="KITCHEN">KITCHEN</option>
 				<option value="AIR">AIR</option>
 				<option value="CLEANER">CLEANER</option>				
 			</select>

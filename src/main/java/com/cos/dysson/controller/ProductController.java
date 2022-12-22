@@ -1,6 +1,7 @@
 package com.cos.dysson.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,6 +41,28 @@ public class ProductController {
 	@GetMapping({"/product/addForm"})
 	public String addForm() {
 		return "product/addForm";
+	}
+	//카테고리
+	@GetMapping("/product/store/kitchen")
+	public String kitchen(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+//		List<Product> productKitchen = productService.productKitchen();
+		model.addAttribute("productKitchen", productService.productKitchen(pageable));
+		return "product/store";
+		
+	}
+	@GetMapping("/product/store/Air")
+	public String air(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+//		List<Product> productKitchen = productService.productKitchen();
+		model.addAttribute("productKitchen", productService.productAir(pageable));
+		return "product/store";
+		
+	}
+	@GetMapping("/product/store/Cleaner")
+	public String cleaner(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+//		List<Product> productKitchen = productService.productKitchen();
+		model.addAttribute("productKitchen", productService.productCleaner(pageable));
+		return "product/store";
+		
 	}
 
 	@RequestMapping("/product/saveProduct")
