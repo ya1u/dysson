@@ -14,8 +14,18 @@
     h3 {
       float: right;
     }
+    .cnt {
+      width: 120px;
+      display: flex;
+    }
+    .me-3 {
+      margin-left: 16px;
+    }
+    .ambtn {
+
+    }
 </style>
-<main id="cart" style="max-width:600px">
+<main id="cart" style="max-width:650px">
     <div class="back"><a href="/product/store">&#11178; store</a></div>
     <h1>Your Cart</h1>
     <hr>
@@ -33,9 +43,11 @@
 <%--                <p class="pl-1 mb-0">20 x 24</p>--%>
 <%--                <p class="pl-1 mb-0">Matte Print</p>--%>
               </div>
-              <div class="col-2">
+              <div class="col-2 cnt">
 <%--                <p class="cartItemQuantity p-1 text-center">${cartItem.count}</p>--%>
-                <input class="form-control text-center me-3" id="amount" name="amount" type="number" value="${cartItem.count}" style="max-width: 5rem"></input>
+                <button class="ambtn" onclick="location.href='/api/cartItem/minus/${cartItem.id}/${user.id}'">&nbsp;-&nbsp;</button>
+                <input class="form-control text-center me-3" id="amount" name="amount" type="text" value="${cartItem.count}" style="max-width: 3rem"></input>
+                <button class="ambtn" onclick="location.href='/api/cartItem/plus/${cartItem.id}/${user.id}'">&nbsp;+&nbsp;</button>
               </div>
               <div class="col-2">
                 <p id="cartItem1Price"><fmt:formatNumber value="${(cartItem.count)*(cartItem.product.price)}" pattern="#,###"/>원</p>
