@@ -1,8 +1,11 @@
 package com.cos.dysson.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +54,22 @@ public class ProductService {
 
 	public Product productView(Integer id) {
 		return productRepository.findById(id).get();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Product> productKitchen(Pageable pageable) {
+		String category = "KITCHEN";
+		return productRepository.findByCategory(pageable, category);
+	}
+	@Transactional(readOnly = true)
+	public List<Product> productAir(Pageable pageable) {
+		String category = "AIR";
+		return productRepository.findByCategory(pageable, category);
+	}
+	@Transactional(readOnly = true)
+	public List<Product> productCleaner(Pageable pageable) {
+		String category = "CLEANER";
+		return productRepository.findByCategory(pageable, category);
 	}
 
 }

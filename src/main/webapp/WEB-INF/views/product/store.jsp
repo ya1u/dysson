@@ -48,11 +48,11 @@
 <c:if test="${principal.user.id==1}">
 		<a href="/product/addForm">상품등록(관리자 전용)</a>
 </c:if>
-<h1 class="text-center">Category</h1>
+<h1 class="text-center"><a href="/product/store">Category</a></h1>
 <ul>
-  <li>kitchen</li>
-  <li>Air</li>
-  <li>Cleaner</li>
+  <li><a href="/product/store/kitchen"> kitchen</a></li>
+  <li><a href="/product/store/Air">Air</a></li>
+  <li><a href="/product/store/Cleaner">Cleaner</a></li>
 </ul>
 <div class="container">
   <div class="row" id="slider-text">
@@ -69,6 +69,16 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="carousel carousel-showmanymoveone slide" id="itemslider" data-ride="carousel">
         <div class="carousel-inner">
+        
+        <c:forEach var="productKitchen" items="${productKitchen}">
+		    <div class="item">
+			  <div class="col-xs-12 col-sm-6 col-md-2">
+				<a href="/product/${productKitchen.id}"><img src="/img/${productKitchen.imgName}" class="img-responsive center-block"></a>
+				<h4 class="text-center">${productKitchen.name}</h4>
+				<h5 class="text-center"><fmt:formatNumber value="${productKitchen.price}" pattern="#,###"/>원</h5>
+			  </div>
+			</div>
+		  </c:forEach>
 		  
 		  <c:forEach var="product" items="${product.content}">
 		    <div class="item">
