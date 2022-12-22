@@ -56,7 +56,7 @@
 	<div class="noticeList"> 
 	    <b style="font-size: 24px;" class="item_notice"><a href="/auth/support">공지사항</a></b>
 	    <b style="font-size: 24px;" class="item_notice"><a href="/auth/support/askBoard">1:1 문의</a></b>
-	    <b style="font-size: 24px;" class="item_notice"><a href="#">상품후기</a></b>
+	    <!-- <b style="font-size: 24px;" class="item_notice"><a href="#">상품후기</a></b> -->
     </div>
     <br>
     <br>
@@ -82,7 +82,12 @@
 			<c:if test="${board.category eq 'notice'}">
 	      		<tr>
 	      			<td>${board.id}</td>
-	      			<td><a href="/board/${board.id}">${board.title}</a></td>
+	      			<td><a href="/board/${board.id}">${board.title}</a>
+	      			<!-- 댓글0일때 표시 안되게함 -->
+							<c:if test="${board.replyCnt > 0 }">
+								<c:out value="[${board.replyCnt}]"/>
+							</c:if>
+	      			</td>
 	   				<td>${board.users.username}</td>
 	      			<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 
 	      		</tr>

@@ -99,6 +99,10 @@
       					<c:when test="${principal.user.id == board.users.id || principal.user.roles eq 'admin'}">
       						<td><a href="/askBoard/${board.id}">${board.title}</a>
       							<img src="/image/lock2.png" style="width:15px">	
+      						<!-- 댓글0일때 표시 안되게함 -->
+      							<c:if test="${board.replyCnt > 0 }">
+      								<c:out value="[${board.replyCnt}]"/>
+      							</c:if>      						
       						</td> 
     						<td>${board.users.username}</td>
 	      					<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 
@@ -106,6 +110,10 @@
       					<c:otherwise>
       						<td>1:1 문의글 입니다...
       							<img src="/image/lock2.png" style="width:15px">	
+      							<!-- 댓글0일때 표시 안되게함 -->
+      							<c:if test="${board.replyCnt > 0 }">
+      								<c:out value="[${board.replyCnt}]"/>
+      							</c:if>
       						</td>
     						<td>${board.users.username}</td>
 	      					<td><fmt:formatDate value="${board.createDate}" pattern="YYYY-MM-dd"/></td> 

@@ -19,6 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -61,6 +62,9 @@ public class Boards {
 	@OneToMany (mappedBy = "boards", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"boards"})//무한참조 방지
 	private List<Reply> replys;
+	
+	@Formula("(SELECT count(1) FROM reply r WHERE r.boardsid = id)")
+	private int replyCnt;
 	
 	@CreationTimestamp
 	private Timestamp createDate;
