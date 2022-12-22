@@ -54,8 +54,8 @@
 	<br>
 	<br>
 	<div class="noticeList"> 
-	    <b style="font-size: 24px;" class="item_notice"><a href="/auth/support">공지사항</a></b>
-	    <b style="font-size: 24px;" class="item_notice"><a href="/auth/support/askBoard">1:1 문의</a></b>
+	    <b style="font-size: 24px;" class="item_notice"><a href="/auth/support" class="hvr-shadow">공지사항</a></b>
+	    <b style="font-size: 24px;" class="item_notice"><a href="/auth/support/askBoard" class="hvr-shadow">1:1 문의</a></b>
 	    
     </div>
     <br>
