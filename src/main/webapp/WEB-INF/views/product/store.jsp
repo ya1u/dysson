@@ -46,7 +46,7 @@
 
  <!--Item slider text-->
 <c:if test="${principal.user.id==1}">
-		<a href="/product/addForm">상품등록(관리자 전용)</a>
+		<a href="/product/addForm" class="hvr-icon-buzz">상품등록(관리자 전용)</a>
 </c:if>
 <h1 class="text-center"><a href="/product/store">Category</a></h1>
 <ul>
