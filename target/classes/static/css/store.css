@@ -15,6 +15,10 @@ li {
   overflow: hidden;
 }
 
+a {
+  color: black;
+}
+
 #slider-text h2 {
   
   font-weight: 400;
