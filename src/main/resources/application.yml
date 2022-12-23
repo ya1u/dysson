@@ -7,16 +7,16 @@ server:
       enabled: true
       force: true
 spring:
-#  datasource:
-#    url: jdbc:oracle:thin:@127.0.0.1:1521:XE
-#    username: dysson
-#    password: 1234
-#    driver-class-name: oracle.jdbc.driver.OracleDriver
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=Asia/Seoul
+    url: jdbc:oracle:thin:@127.0.0.1:1521:XE
     username: dysson
     password: 1234
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=Asia/Seoul
+#    username: dysson
+#    password: 1234
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -47,7 +47,7 @@ spring:
         smtp:
           auth: true
           starttls:
-            enable: true
+            enable: true          
 ##!!외부에 노출되면 안됨!!.      
 cos:
   key: koy1234

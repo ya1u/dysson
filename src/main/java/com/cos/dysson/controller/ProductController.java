@@ -1,7 +1,8 @@
 package com.cos.dysson.controller;
 
 import java.io.File;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -71,8 +72,8 @@ public class ProductController {
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
-//		String fileUrl = "C:\\image\\"; // 외부경로 window
-		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
+		String fileUrl = "C:\\image\\"; // 외부경로 window
+//		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
 
 		do {
 			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
@@ -97,6 +98,8 @@ public class ProductController {
 	public String list(Model model, @PageableDefault(size = 6, sort = "id",
 	direction = Sort.Direction.ASC) Pageable pageable) {
 		model.addAttribute("product", productService.제품리스트(pageable));
+		
+		
 		return "product/store";
 	}
 	
@@ -104,7 +107,16 @@ public class ProductController {
 	@GetMapping("/product/{id}")
 	public String findById(@PathVariable int id, Model model) {
 		model.addAttribute("product", productService.제품상세보기(id));
+		Map<Integer, String> rate = new HashMap<Integer, String>();
+		rate.put(0, "☆☆☆☆☆");
+		rate.put(1, "★☆☆☆☆");
+		rate.put(2, "★★☆☆☆");
+		rate.put(3, "★★★☆☆");
+		rate.put(4, "★★★★☆");
+		rate.put(5, "★★★★★");
+		model.addAttribute("rate", rate);
 		return "product/detail";
+
 	}
 	
 	// 제품 수정하기
@@ -116,8 +128,8 @@ public class ProductController {
 	
 	@RequestMapping("/updateProduct")
 	public String updateProduct(Product product, MultipartFile imgProduct, HttpServletRequest req) throws Exception{
-//		String fileUrl = "C:\\image\\";	//외부경로 window
-		String fileUrl = "/Users/yalu/Documents/image/";	//외부경로 mac
+		String fileUrl = "C:\\image\\";	//외부경로 window
+//		String fileUrl = "/Users/yalu/Documents/image/";	//외부경로 mac
 
 		// 새로운 파일이 등록되었는지 확인
 		 if(imgProduct.getOriginalFilename() != null && imgProduct.getOriginalFilename() != "") {

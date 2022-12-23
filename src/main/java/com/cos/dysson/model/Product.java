@@ -53,7 +53,7 @@ public class Product {
 	
 	@OneToMany(mappedBy = "product")
 	private List<CartItem> cartItem = new ArrayList<>();
-	
+		
 	private String imgName;
 	
 	private String imgOriName;

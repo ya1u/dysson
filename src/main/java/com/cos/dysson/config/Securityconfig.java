@@ -46,7 +46,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeRequests()
 			
-			.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/fonts/**","/product/**","/board/**","/img/**")
+			.antMatchers("/","/auth/**","/js/**","/css/**","/image/**","/fonts/**","/product/**","/board/**","/img/**","/_assets/**")
 			.permitAll()
 			.anyRequest()//이게 아닌 다른 모든 요청은 
 			.authenticated()//인증이 필요

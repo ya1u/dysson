@@ -1,6 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/detail.css" rel="stylesheet">
+<style>
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+.rate {
+	color:#FFB900;
+	
+	
+}
+.rate-image{
+	background-image:url(/image/rate.PNG);
+	background-repeat:no-repeat;
+	background-position: 5px 9px;
+}
+
+
+</style>
+
 <div class="container">
 	<button class="btn btn-secondary" onclick="location.href='/product/store'">돌아가기</button>
 	<c:if test="${principal.user.id==1}">
@@ -18,6 +68,7 @@
 			</span>
 			<span class="pro pro2">
 				<table>
+					<tr><td><span class="rate">★★★★</span>(154)</td></tr>
 					<tr><th>한정 판매</th></tr>
 					<tr><td>오직 dysson에서만 구매 가능한 상품입니다.</td></tr>
 				</table>
@@ -79,7 +130,83 @@
 		<div>${product.content}</div>
 	</div>
 	<hr/>
+	
+	
+	<!-- 리뷰 -->
+	<h3> 제품 리뷰 </h3>
+	 	<form class="mb-3" name="myform" id="myform">
+	<fieldset>
+		<span class="text-bold">별점을 선택해주세요</span>
+		<input type="radio" name="reviewStar" value="5" id="rate1" ><label
+			for="rate1">★</label>
+		<input type="radio" name="reviewStar" value="4" id="rate2" ><label
+			for="rate2">★</label>
+		<input type="radio" name="reviewStar" value="3" id="rate3" ><label
+			for="rate3">★</label>
+		<input type="radio" name="reviewStar" value="2" id="rate4" ><label
+			for="rate4">★</label>
+		<input type="radio" name="reviewStar" value="1" id="rate5" ><label
+			for="rate5">★</label>
+	</fieldset>
+	<div>
+		<input type="hidden" id="usersId" value="${principal.user.id }"/>
+		<input type="hidden" id="productId" value="${product.id }"/>
+		<textarea class="col-auto form-control" id="content" rows="1"
+				  placeholder="좋은 상품평을 남겨주시면 Dysson에 큰 힘이 됩니다! 포인트 5000p도 지급!!"></textarea>
+		
+	</div>
+	<div class="d-flex flex-row-reverse">
+		<button type="button" class="btn btn_review" id="btn-reviewSave" >리뷰등록</button>
+	</div>
+
+		
+		
+
+	</form>	
+
+<table class="table table-stripped" id="reviews">
+    <thead>
+        <tr>
+            <th style="width:10%">Rating</th> <!-- 평점 -->
+            <th style="width:10%">User</th>
+            <th style="width:60%">content</th>
+            <th style="width:20%">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <!-- 평점 기준 별표시 출력 -->
+            
+            <c:forEach var="review" items="${product.review}">
+            	<tr>
+            		<td class="rate-image"><c:forEach var="rate" items="${rate}" varStatus="status" begin="1" end="${ review.rate }"><span class="rate">★</span></c:forEach></td>
+            		<td>${review.users.username}</td>
+            		<td>${review.content}</td>
+            		<td><fmt:formatDate value="${review.createDate}" pattern="YYYY-MM-dd"/></td>
+            	
+            	
+            
+            	</tr>
+            </c:forEach>
+            
+<!--             <tr>
+                <td class="rate">★★★★★</td>
+                <td>익명</td>
+                <td>내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</td>
+                <td>2022-12-23</td>
+            </tr> -->
+    
+        
+    </tbody>
+</table>
+
+
+	
+	
+
 </div>
 <br/>
 <script type="text/javascript" src="/js/product.js"></script>
+<!-- <script type="text/javascript" src="/js/review.js"></script> -->
+
 <%@ include file="../layout/footer.jsp"%>

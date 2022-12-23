@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cos.dysson.dto.ResponseDto;
+import com.cos.dysson.dto.ReviewSaveRequestDto;
 import com.cos.dysson.model.Product;
 import com.cos.dysson.service.ProductService;
 
@@ -18,6 +19,7 @@ public class ProductApiController {
 
 	@Autowired
 	private ProductService productService;
+	
 	
 	@PostMapping("/api/product")
 	public ResponseDto<Integer> save(@RequestBody Product product) {
@@ -34,6 +36,17 @@ public class ProductApiController {
 	@DeleteMapping("/api/product/{id}")
 	public ResponseDto<Integer> deleteById(@PathVariable int id) {
 		productService.제품삭제하기(id);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+	
+	//리뷰작성
+	@PostMapping("/api/product/{productId}/review")
+	public ResponseDto<Integer> reviewSave(@RequestBody ReviewSaveRequestDto reviewSaveRequestDto){
+	
+		
+		productService.reviewSave(reviewSaveRequestDto);
+		
+		System.out.println(reviewSaveRequestDto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 }

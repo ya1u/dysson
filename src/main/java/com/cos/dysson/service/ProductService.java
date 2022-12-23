@@ -9,14 +9,25 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.dysson.dto.ReviewSaveRequestDto;
 import com.cos.dysson.model.Product;
+import com.cos.dysson.model.Review;
+import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.ProductRepository;
+import com.cos.dysson.repository.ReviewRepository;
+import com.cos.dysson.repository.UserRepository;
 
 @Service
 public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private ReviewRepository reviewRepository;
+	
+	@Autowired 
+	private UserRepository userRepository;
 	
 	@Transactional
 	public void 제품등록(Product product) {
@@ -70,6 +81,29 @@ public class ProductService {
 	public List<Product> productCleaner(Pageable pageable) {
 		String category = "CLEANER";
 		return productRepository.findByCategory(pageable, category);
+	}
+	
+	@Transactional
+	public void reviewSave(ReviewSaveRequestDto reviewSaveRequestDto) {
+		System.out.println(reviewSaveRequestDto.getUsersId());
+		Users user = userRepository.findById(reviewSaveRequestDto.getUsersId()).orElseThrow(()->{
+			return new IllegalArgumentException("리뷰 쓰기 실패: 유저 id를 찾을수 없습니다");
+			
+		});//영속화 완료
+		
+		Product product = productRepository.findById(reviewSaveRequestDto.getProductId()).orElseThrow(()->{
+			return new IllegalArgumentException("리뷰 쓰기 실패: 상품 id를 찾을수 없습니다");
+			
+		});//영속화 완료
+		Review review = Review.builder()
+				.users(user)
+				.product(product)
+				.rate(reviewSaveRequestDto.getRate())
+				.content(reviewSaveRequestDto.getContent())
+				.build();
+		reviewRepository.save(review);
+				
+		
 	}
 
 }

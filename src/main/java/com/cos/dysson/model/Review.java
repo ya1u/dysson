@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,6 +20,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Table(name="review")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,8 +37,8 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "BALMUDA_SEQ_GENERATOR3")
 	private int id;
 	
-	@Column(nullable = false, length = 50)
-	private String title;
+	@Column(nullable = false, length = 10)
+	private int rate;
 	
 	@Lob
 	private String content;
