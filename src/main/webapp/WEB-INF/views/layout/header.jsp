@@ -70,7 +70,7 @@
        	        <div class="dropdown-menu">
 		          <a class="dropdown-item" href="/logout">Logout</a>
 		          <a class="dropdown-item" href="/auth/mypage">My Page</a>
-		          <a class="dropdown-item" href="/cart/${principal.user.id}">Cart</a>
+                    <a class="dropdown-item d-flex" href="/cart/${principal.user.id}">Cart&nbsp;&nbsp;&nbsp;<div class="blue"><span>${user.cart.count}</span></div></a>
 		        </div>
         	</c:otherwise>
         </c:choose>

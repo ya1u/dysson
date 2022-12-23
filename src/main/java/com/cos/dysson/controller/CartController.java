@@ -19,6 +19,8 @@ import com.cos.dysson.service.CartService;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.service.UserService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class CartController {
 	
@@ -33,7 +35,7 @@ public class CartController {
 	
 	// 장바구니
 	@GetMapping("/cart/{id}")
-	public String cartPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+	public String cartPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail, HttpSession httpSession) {
 		if (principalDetail.getUser().getId() == id) {
 			Users users = userService.findUser(id);
 			Cart userCart = users.getCart();
@@ -48,7 +50,7 @@ public class CartController {
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalCount", userCart.getCount());
 		model.addAttribute("cartItems", cartItemList);
-		model.addAttribute("user", userService.findUser(id));
+//		httpSession.setAttribute("user", userService.findUser(id));
 
 		return "/product/cart";
 		}
@@ -59,9 +61,9 @@ public class CartController {
 	}
 
 	// 장바구니에서 물건 삭제
-// 삭제하고 남은 상품의 총 개수
-	@GetMapping("/user/cart/{id}/{cartItemId}/delete")
-	public String deleteCartItem(@PathVariable("id") Integer id, @PathVariable("cartItemId") Integer itemId, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+	// 삭제하고 남은 상품의 총 개수
+	@GetMapping("/user/cart/{userId}/{cartItemId}/delete")
+	public String deleteCartItem(@PathVariable("userId") Integer id, @PathVariable("cartItemId") Integer itemId, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		if (principalDetail.getUser().getId() == id) {
 			CartItem cartItem = cartService.findCartItemById(itemId);
 
@@ -76,7 +78,12 @@ public class CartController {
 				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
 			}
 
-			userCart.setCount(userCart.getCount()-cartItem.getCount());
+			int cnt = userCart.getCount()-cartItem.getCount();
+			userCart.setCount(cnt);
+
+			cartService.minusCount(id, cnt);
+
+
 
 			model.addAttribute("totalPrice", totalPrice);
 			model.addAttribute("totalCount", userCart.getCount());

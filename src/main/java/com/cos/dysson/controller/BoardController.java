@@ -2,6 +2,7 @@ package com.cos.dysson.controller;
 
 import java.util.List;
 
+import com.cos.dysson.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,11 +18,16 @@ import com.cos.dysson.config.auth.PrincipalDetail;
 import com.cos.dysson.model.Boards;
 import com.cos.dysson.service.BoardService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
-	
+
+	@Autowired
+	private UserService userService;
+
 //	@GetMapping("/auth/support")
 //	public String board() {
 //		return "board/board";
@@ -41,9 +47,13 @@ public class BoardController {
 	}
 	
 	@GetMapping({"","/"})
-	public String index(@AuthenticationPrincipal PrincipalDetail principal) {
+	public String index(@AuthenticationPrincipal PrincipalDetail principal, HttpSession httpSession) {
+		if(principal!=null) {
+			httpSession.setAttribute("user", userService.findUser(principal.getUser().getId()));
+		}
 		return "index";
 	}
+
 	//공지작성페이지
 	@GetMapping({"/board/saveForm"})
 	public String saveForm() { 

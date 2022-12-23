@@ -75,4 +75,28 @@ public class CartService {
 	public Cart findUserCart(Integer id) {
 		return cartRepository.findByUsersId(id);
 	}
+
+	@Transactional
+    public void plusCartCount(int userId) {
+		Cart cart = cartRepository.findByUsersId(userId);
+
+		int count = cart.getCount();
+
+		cart.setCount(count+1);
+    }
+
+	@Transactional
+	public void minusCartCount(int userId) {
+		Cart cart = cartRepository.findByUsersId(userId);
+
+		int count = cart.getCount();
+		cart.setCount(count-1);
+	}
+
+	@Transactional
+	public void minusCount(Integer id, int cnt) {
+		Cart cart = cartRepository.findByUsersId(id);
+
+		cart.setCount(cnt);
+	}
 }

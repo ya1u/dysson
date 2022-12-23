@@ -17,3 +17,12 @@ a:hover { text-decoration:none !important }
   height: 100px;
   background-color: #212529;
 }
+
+.blue {
+  border: 1px solid dodgerblue;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px;
+  background-color: dodgerblue;
+  color: #FFF;
+}

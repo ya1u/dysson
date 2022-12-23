@@ -21,9 +21,6 @@
     .me-3 {
       margin-left: 16px;
     }
-    .ambtn {
-
-    }
 </style>
 <main id="cart" style="max-width:650px">
     <div class="back"><a href="/product/store">&#11178; store</a></div>
@@ -53,7 +50,7 @@
                 <p id="cartItem1Price"><fmt:formatNumber value="${(cartItem.count)*(cartItem.product.price)}" pattern="#,###"/>원</p>
               </div>
               <div class="col-2">
-                <a href="/user/cart/${user.id}/${cartItem.id}/delete" class="btn btn-warning" style="background-color: #DC3545; border: #DC3545;">삭제</a>
+                <a href="/user/cart/${principal.user.id}/${cartItem.id}/delete" class="btn btn-warning" style="background-color: #DC3545; border: #DC3545;">삭제</a>
               </div>
             </div>
             <hr>
