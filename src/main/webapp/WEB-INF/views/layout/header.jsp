@@ -61,16 +61,23 @@
           Account
         </a>
         <c:choose>
-        	<c:when test="${empty principal }">
+        	<c:when test="${empty principal}">
        	        <div class="dropdown-menu">
 		          <a class="dropdown-item" href="/auth/loginForm">Login</a>		          
         		</div>
         	</c:when>
         	<c:otherwise>
        	        <div class="dropdown-menu">
-		          <a class="dropdown-item" href="/logout">Logout</a>
-		          <a class="dropdown-item" href="/auth/mypage">My Page</a>
-                    <a class="dropdown-item d-flex" href="/cart/${principal.user.id}">Cart&nbsp;&nbsp;&nbsp;<div class="blue"><span>${user.cart.count}</span></div></a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+		            <a class="dropdown-item" href="/auth/mypage">My Page</a>
+                    <c:choose>
+                      <c:when test="${empty user.cart.count}">
+                          <a class="dropdown-item d-flex" href="/cart/${principal.user.id}">Cart&nbsp;&nbsp;&nbsp;<div class="blue"><span>0</span></div></a>
+                      </c:when>
+                      <c:otherwise>
+                          <a class="dropdown-item d-flex" href="/cart/${principal.user.id}">Cart&nbsp;&nbsp;&nbsp;<div class="blue"><span>${user.cart.count}</span></div></a>
+                      </c:otherwise>
+                    </c:choose>
 		        </div>
         	</c:otherwise>
         </c:choose>

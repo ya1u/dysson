@@ -36,27 +36,32 @@ public class CartController {
 	// 장바구니
 	@GetMapping("/cart/{id}")
 	public String cartPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail, HttpSession httpSession) {
-		if (principalDetail.getUser().getId() == id) {
-			Users users = userService.findUser(id);
-			Cart userCart = users.getCart();
+		Users users = userService.findUser(id);
+		Cart userCart = users.getCart();
+		if(userCart!=null) {
+			if (principalDetail.getUser().getId() == id) {
+//				Users users = userService.findUser(id);
+//				Cart userCart = users.getCart();
 
-			List<CartItem> cartItemList = cartService.allUserCartView(userCart);
+				List<CartItem> cartItemList = cartService.allUserCartView(userCart);
 
-			int totalPrice = 0;
-			for (CartItem cartitem : cartItemList) {
-				totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
-		}
+				int totalPrice = 0;
+				for (CartItem cartitem : cartItemList) {
+					totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
+				}
 
-		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("totalCount", userCart.getCount());
-		model.addAttribute("cartItems", cartItemList);
-//		httpSession.setAttribute("user", userService.findUser(id));
+				model.addAttribute("totalPrice", totalPrice);
+				model.addAttribute("totalCount", userCart.getCount());
+				model.addAttribute("cartItems", cartItemList);
+				httpSession.setAttribute("user", userService.findUser(id));
 
-		return "/product/cart";
-		}
+				return "/product/cart";
 
-		else {
-			return "redirect:/";
+			} else {
+				return "redirect:/";
+			}
+		} else {
+			return "product/cart";
 		}
 	}
 
@@ -83,14 +88,12 @@ public class CartController {
 
 			cartService.minusCount(id, cnt);
 
-
-
 			model.addAttribute("totalPrice", totalPrice);
 			model.addAttribute("totalCount", userCart.getCount());
 			model.addAttribute("cartItems", cartItemList);
 			model.addAttribute("user", userService.findUser(id));
 
-			return "/product/cart";
+			return "redirect:/cart/"+id;
 		}
 		// 로그인 id와 장바구니 삭제하려는 유저의 id가 같지 않는 경우
 		else {

@@ -5,13 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.cos.dysson.config.auth.PrincipalDetail;
+import com.cos.dysson.service.UserService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +35,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductRepository productRepository;
+
+	@Autowired
+	private UserService userService;
 	
 	// about
 	@GetMapping({"/auth/about"})
@@ -105,7 +112,10 @@ public class ProductController {
 	
 	// 제품 상세보기
 	@GetMapping("/product/{id}")
-	public String findById(@PathVariable int id, Model model) {
+	public String findById(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetail principal, HttpSession httpSession) {
+		if(principal!=null) {
+			httpSession.setAttribute("user", userService.findUser(principal.getUser().getId()));
+		}
 		model.addAttribute("product", productService.제품상세보기(id));
 		Map<Integer, String> rate = new HashMap<Integer, String>();
 		rate.put(0, "☆☆☆☆☆");
