@@ -45,7 +45,7 @@
 .rate-image{
 	background-image:url(/image/rate.PNG);
 	background-repeat:no-repeat;
-	background-position: 5px 9px;
+	background-position: 4px 9px;
 }
 
 
