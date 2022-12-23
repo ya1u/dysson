@@ -40,19 +40,7 @@
           
           
 <!-- 장바구니 불러오기 코드 미구현-->          
-<%--      <c:foreach var="p" items="${ }">
-		      <c:if test="${not empty }">
-			      <ul class="list-group mb-3">
-				      <li class="list-group-item d-flex justify-content-between lh-sm">
-					      <div>
-						      <h6 class="my-0">${product.name}</h6>
-						      <small class="text-muted"><a href="#">상세정보</a></small>
-					      </div>
-					      <span class="text-muted">${product.price}</span>
-				      </li>
-		          </ul>
-	          </c:if>
-          </c:foreach> --%>
+          
             
            <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -66,7 +54,7 @@
             
             <li class="list-group-item d-flex justify-content-between">
               <span>합계 </span>
-              <strong>\210,000</strong>
+              <strong><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</strong>
             </li>
           </ul>
           <!-- 카트목록끝 -->

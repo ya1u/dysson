@@ -56,7 +56,19 @@ public class CartService {
 		cart.setCount(cart.getCount() + amount);
 		
 	}
+	@Transactional
+	public void 카트수정(Cart cart) {
+		Cart persistance = cartRepository.findById(cart.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("카트 찾기 실패");
+		});
+		int count = cart.getCount();
 
+		persistance.setCount(count);
+
+		
+		//회원수정 메서드종료 = 서비스종료  = 트랜잭션 종료= commit
+		//영속화된 persistance 객체의 변화가 감지되면 더티체킹 되어 update문 날림.
+	}
 
 	 @Transactional(readOnly = true)
 	 public List<CartItem> allUserCartView(Cart userCart) {

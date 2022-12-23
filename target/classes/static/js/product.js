@@ -5,7 +5,11 @@ let index={
 		});
 		$("btn-update").on("click",()=>{
 			this.update();
+			
 		});
+		$("#btn-reviewSave").on("click",()=>{
+			this.reviewSave();
+		})
 	},
 	add: function() {
 		let data = {
@@ -65,5 +69,30 @@ let index={
 			alert(JSON.stringify(error));
 		});
 	},
+	
+	reviewSave: function() {
+		let data = {
+			usersId: $("#usersId").val(),
+			productId: $("#productId").val(),
+			rate: $('[name=reviewStar]:checked').val(),
+			content: $("#content").val()
+			
+			
+		}
+		$.ajax({ 
+			type:"POST",
+			url:`/api/product/${data.productId}/review`,
+			data:JSON.stringify(data), 
+			contentType:"application/json; charset=utf-8",
+			dataType:"json" 
+		}).done(function(resp){
+			alert("리뷰 등록 완료되었습니다.");
+			location.href=`/product/${data.productId}`;
+		}).fail(function(error){
+			alert(JSON.stringify(error));
+		});					
+	
+	},				
+	
 }
 index.init();
