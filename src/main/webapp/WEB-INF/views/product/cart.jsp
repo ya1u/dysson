@@ -1,3 +1,4 @@
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
@@ -61,11 +62,11 @@
               <h3>Total.</h3>
             </div>
             <div class="col-sm-4 p-0">
-              <p id="total" style="font-size: 20px; padding-top: 5px"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</h5>
-            </div></p>
+                <h5 id="total" style="font-size: 20px; padding-top: 5px"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</h5>
+            </div>
             </div>
           </div>
-          <a href="#"><button id="btn-checkout" class="shopnow"><span>구매하기</span></button></a>
+          <a href="/order/orderForm"><button id="btn-checkout" class="shopnow"><span>구매하기</span></button></a>
         </div>
       </div>
     </div>

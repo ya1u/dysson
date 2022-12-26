@@ -111,4 +111,15 @@ public class CartService {
 
 		cart.setCount(cnt);
 	}
+
+	public void allCartItemDelete(int id) {
+		List<CartItem> cartItems = cartItemRepositoory.findAll();
+
+		for (CartItem cartItem : cartItems) {
+			if (cartItem.getCart().getUsers().getId() == id) {
+				cartItem.getCart().setCount(0);
+				cartItemRepositoory.deleteById(cartItem.getId());
+			}
+		}
+	}
 }

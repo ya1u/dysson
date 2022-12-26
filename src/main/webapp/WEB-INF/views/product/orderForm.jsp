@@ -35,13 +35,13 @@
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
-            <span class="badge bg-secondary rounded-pill">3</span>
+            <span class="badge rounded-pill" style="background: dodgerblue">${user.cart.count}</span>
           </h4>
           
           
-<!-- 장바구니 불러오기 코드 미구현-->          
-          
-            
+<!-- 장바구니 불러오기 코드 미구현-->
+
+
            <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
