@@ -8,5 +8,5 @@ import com.cos.dysson.model.Boards;
 
 
 public interface BoardRepository extends JpaRepository<Boards,Integer>{
-	
+	 Page<Boards> findByTitleContaining(String searchKeyword, Pageable pageable);
 }

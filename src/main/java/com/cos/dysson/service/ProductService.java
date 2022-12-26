@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +58,30 @@ public class ProductService {
 	}
 	
 	@Transactional
+	public Product ratingAvg(int productId,int rate) {
+		Product product = productRepository.findById(productId).orElseThrow(() -> {
+			return new IllegalArgumentException("제품 찾기 실패");
+		});
+	
+		double count = product.getRatingCount();
+
+		count++;
+
+		
+		double sum = product.getRatingSum() + rate;
+		
+		double avg = sum / count;
+		
+		System.out.println("평균평균평균평균평균평균평균평균평균평균평균평균평균평균평균"+avg);
+		product.setRatingCount(count);
+		product.setRatingSum(sum);
+		product.setRatingAvg(Math.round(avg));
+		System.out.println("zkdnsxm third"+count);
+		
+		return product;
+	}
+	
+	@Transactional
 	public void 제품삭제하기(int id) {
 		productRepository.deleteById(id);
 	}
@@ -82,6 +105,7 @@ public class ProductService {
 		String category = "CLEANER";
 		return productRepository.findByCategory(pageable, category);
 	}
+
 	
 	@Transactional
 	public void reviewSave(ReviewSaveRequestDto reviewSaveRequestDto) {
@@ -105,5 +129,7 @@ public class ProductService {
 				
 		
 	}
+
+	
 
 }

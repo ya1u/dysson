@@ -87,7 +87,7 @@ let index={
 			dataType:"json" 
 		}).done(function(resp){
 			alert("리뷰 등록 완료되었습니다.");
-			location.href=`/product/${data.productId}`;
+			location.href=`/product/reviewAvg/${data.productId}/${data.rate}`;
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		});					

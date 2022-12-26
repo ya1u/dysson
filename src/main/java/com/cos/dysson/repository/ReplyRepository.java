@@ -6,4 +6,5 @@ import com.cos.dysson.model.Reply;
 
 public interface ReplyRepository extends JpaRepository<Reply,Integer>{
 	
+	
 }

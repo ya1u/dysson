@@ -5,7 +5,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Formula;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "product")
 //@Data
@@ -48,7 +54,20 @@ public class Product {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	private Users seller;
-		
+	
+	@Formula("(SELECT count(1) FROM review r WHERE r.productid = id)")
+	private int reviewCnt;
+	
+
+	@Column(length = 10) 
+	private double ratingAvg;
+	
+	@Column
+	private double ratingCount = 0;
+	
+	@Column
+	private double ratingSum = 0;
+
 	private String imgName;
 	
 	private String imgOriName;

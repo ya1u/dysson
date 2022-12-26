@@ -1,8 +1,7 @@
 package com.cos.dysson.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
-import com.cos.dysson.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,10 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cos.dysson.config.auth.PrincipalDetail;
-import com.cos.dysson.model.Boards;
+import com.cos.dysson.repository.BoardRepository;
 import com.cos.dysson.service.BoardService;
-
-import javax.servlet.http.HttpSession;
+import com.cos.dysson.service.UserService;
 
 @Controller
 public class BoardController {
@@ -27,6 +25,9 @@ public class BoardController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BoardRepository boardRepository;
 
 //	@GetMapping("/auth/support")
 //	public String board() {
@@ -80,20 +81,37 @@ public class BoardController {
 	
 	//공지 페이징
 	@GetMapping("/auth/support")
-	public String notice(Model model,@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) { 
-		model.addAttribute("boards",boardService.toNotice(pageable));
-		return "board/board";
+	public String notice(Model model,@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) { 
+//		model.addAttribute("boards",boardService.toNotice(pageable));
+		
+	    if(searchKeyword == null)
+	        model.addAttribute("boards", boardService.toNotice(pageable));
+	    else {
+	        model.addAttribute("boards", boardRepository.findByTitleContaining(searchKeyword, pageable));
+	    }
+	    
+	    return "board/board";
+		
 	}
+	
 	
 	//1대1문의 페이징
 	@GetMapping("/auth/support/askBoard")
-	public String ask(Model model,@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) { 
-		model.addAttribute("boards",boardService.toNotice(pageable));
+	public String ask(Model model,@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) { 
+		
+	    if(searchKeyword == null)
+	        model.addAttribute("boards", boardService.toNotice(pageable));
+	    else {
+	        model.addAttribute("boards", boardRepository.findByTitleContaining(searchKeyword, pageable));
+	    }
+	    
 		return "board/askBoard";
 	}
 
 			
-	//검색기능
+	
 
 
 	
