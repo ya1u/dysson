@@ -37,6 +37,47 @@
 		top:50px;
 		left:700px
 	} */
+		.search {
+	  width: 20%;
+	  right:100px;
+	 
+	  display:flex;
+	 
+	  
+	
+	  
+	}
+	
+	.searchTerm {
+	  width: 100%;
+	  border: 3px solid #333;
+	  border-right: none;
+	  padding: 5px;
+	  
+	  border-radius: 5px 0 0 5px;
+	  outline: none;
+	  color: #9DBFAF;
+	  
+	  
+	  
+	}
+	
+	.searchTerm:focus{
+	  color: #333;
+	}
+	
+	.searchButton {
+	  width: 40px;
+	  
+	  border: 1px solid #333;
+	  background: #333;
+	  text-align: center;
+	  color: #fff;
+	  border-radius: 0 5px 5px 0;
+	  cursor: pointer;
+	  font-size: 20px;
+	  margin-left:auto;
+	}
 @media (max-width: 960px) {
 		.support_banner {
 	   	 width:100%;
@@ -126,22 +167,23 @@
       	
       </tbody>
    	 </table>
-      <br><br>
+        <form action="/auth/support/askBoard" method="GET">
+		    <div class="search">
+		       <input type="text" class="searchTerm" placeholder="Search" name="searchKeyword">
+		       <button type="submit" class="searchButton">
+		         <i class="fa fa-search"></i>
+		      </button>
+		    </div>
+			<br>
+		</form>
+      
+      
       <div>
+          
       
-<!--       <form action="/board/search" method="GET">
-      	<div class="search">
-      		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      	</div>
-      	<button>검색하기</button>
-      
-      </form> -->
-      
-      
-      
-      
+    
         <ul class="pagination justify-content-center">
-        	<c:choose>
+<%--         	<c:choose>
         		<c:when test="${boards.first}">
         			<li class="page-item disabled"><a class="page-link"
         				href="?page=${boards.number-1}">ᐸ</a></li>
@@ -160,7 +202,26 @@
 					<li class="page-item"><a class="page-link"
 						href="?page=${boards.number+1}">ᐳ</a></li>
 				</c:otherwise>
-			</c:choose>		
+			</c:choose>	 --%>
+			
+			
+			
+        <c:choose>
+            <c:when test="${boards.first}">
+                <li class="page-item disabled"><a class="page-link" href="?page=${boards.number - 1}">Prev</a></li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item"><a class="page-link" href="?page=${boards.number - 1}&searchKeyword=${param.searchKeyword}">Prev</a></li>
+            </c:otherwise>
+        </c:choose>
+        <c:choose>
+            <c:when test="${boards.last}">
+                <li class="page-item disabled"><a class="page-link" href="?page=${boards.number + 1}">Next</a></li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item"><a class="page-link" href="?page=${boards.number + 1}&searchKeyword=${param.searchKeyword}">Next</a></li>
+            </c:otherwise>
+        </c:choose>	
         			
         	
         

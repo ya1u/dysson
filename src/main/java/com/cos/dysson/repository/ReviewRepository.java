@@ -6,5 +6,10 @@ import com.cos.dysson.model.Review;
 
 
 public interface ReviewRepository extends JpaRepository<Review,Integer>{
+
+	
+	
+	   
+
 	
 }

@@ -7,8 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.cos.dysson.config.auth.PrincipalDetail;
-import com.cos.dysson.service.UserService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +19,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cos.dysson.config.auth.PrincipalDetail;
 import com.cos.dysson.model.Product;
 import com.cos.dysson.repository.ProductRepository;
 import com.cos.dysson.service.ProductService;
+import com.cos.dysson.service.UserService;
 
 @Controller
 public class ProductController {
@@ -72,6 +73,8 @@ public class ProductController {
 		return "product/store";
 		
 	}
+	
+
 
 	@RequestMapping("/product/saveProduct")
 	public String saveProduct(Product product, MultipartFile imgProduct) throws Exception {
@@ -79,8 +82,8 @@ public class ProductController {
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
-//		String fileUrl = "C:\\image\\"; // 외부경로 window
-		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
+		String fileUrl = "C:\\image\\"; // 외부경로 window
+//		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
 
 		do {
 			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
@@ -124,10 +127,21 @@ public class ProductController {
 		rate.put(3, "★★★☆☆");
 		rate.put(4, "★★★★☆");
 		rate.put(5, "★★★★★");
+		
+		Map<Integer, String> ratingAvg = new HashMap<Integer, String>();
+		ratingAvg.put(0, "☆☆☆☆☆");
+		ratingAvg.put(1, "★☆☆☆☆");
+		ratingAvg.put(2, "★★☆☆☆");
+		ratingAvg.put(3, "★★★☆☆");
+		ratingAvg.put(4, "★★★★☆");
+		ratingAvg.put(5, "★★★★★");
 		model.addAttribute("rate", rate);
+		model.addAttribute("ratingAvg", ratingAvg);
 		return "product/detail";
 
 	}
+	
+
 	
 	// 제품 수정하기
 	@GetMapping("/product/updateForm/{id}")
@@ -138,8 +152,8 @@ public class ProductController {
 	
 	@RequestMapping("/updateProduct")
 	public String updateProduct(Product product, MultipartFile imgProduct, HttpServletRequest req) throws Exception{
-//		String fileUrl = "C:\\image\\";	//외부경로 window
-		String fileUrl = "/Users/yalu/Documents/image/";	//외부경로 mac
+		String fileUrl = "C:\\image\\";	//외부경로 window
+//		String fileUrl = "/Users/yalu/Documents/image/";	//외부경로 mac
 
 		// 새로운 파일이 등록되었는지 확인
 		 if(imgProduct.getOriginalFilename() != null && imgProduct.getOriginalFilename() != "") {
@@ -186,5 +200,15 @@ public class ProductController {
 	public String order() {
 		return"product/order";
 	}
+	
+	@GetMapping("/product/reviewAvg/{productId}/{rate}")
+	public String reviewAvg(@PathVariable int productId ,@PathVariable int rate) {
+		Product product = productService.ratingAvg(productId,rate);
+		
+		productRepository.save(product);
+		
+		return "redirect:/product/" + productId;
+	}
+	
 
 }
