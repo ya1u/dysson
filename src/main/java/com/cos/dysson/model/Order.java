@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "order")
+@Table(name = "orders")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

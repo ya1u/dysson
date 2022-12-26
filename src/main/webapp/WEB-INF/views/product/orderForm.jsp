@@ -19,6 +19,9 @@
   	*:not(header){
   		text-align:left;
   	}
+    .mb-4, p {
+      text-align: center;
+    }
 
 
   </style>
