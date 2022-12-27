@@ -51,8 +51,8 @@
 			<script>
 			  $("#imgProduct").change(function(){
 			   if(this.files && this.files[0]) {
-			    var reader = new FileReader;
-			    reader.onload = function(data) {
+				   const reader = new FileReader;
+				   reader.onload = function(data) {
 			     $(".select_imgProduct img").attr("src", data.target.result).width(500);        
 			    }
 			    reader.readAsDataURL(this.files[0]);
@@ -65,7 +65,7 @@
 		        });
 			 </script>
 			 
-<%-- 			 <%=request.getRealPath("/") %><br><br> --%>
+<%-- 			 <%=request.getRealPath("/") %><br><br>--%>
 	<hr>
 </div>
 <!-- <script type="text/javascript" src="/js/product.js"></script> -->
