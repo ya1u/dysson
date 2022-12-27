@@ -129,6 +129,14 @@ public class ProductController {
 	        model.addAttribute("product", productRepository.findByNameContaining(searchKeyword, pageable));
 	    }	
 		
+		Map<Integer, String> ratingAvg = new HashMap<Integer, String>();
+		ratingAvg.put(0, "☆☆☆☆☆");
+		ratingAvg.put(1, "★☆☆☆☆");
+		ratingAvg.put(2, "★★☆☆☆");
+		ratingAvg.put(3, "★★★☆☆");
+		ratingAvg.put(4, "★★★★☆");
+		ratingAvg.put(5, "★★★★★");		
+		model.addAttribute("ratingAvg", ratingAvg);
 	
 		
 		

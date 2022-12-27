@@ -6,8 +6,15 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+  tomcat:    max-http-form-post-size: 50MB               
   error:    include-binding-errors: always
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  sql:    init:      mode: always
   datasource:
     url: jdbc:oracle:thin:@127.0.0.1:1521:XE
     username: dysson
@@ -24,15 +31,17 @@ spring:
       suffix: .jsp
         
   jpa:
+    defer-datasource-initialization: true
     open-in-view: true
     hibernate:
-      ddl-auto: update
+    
+      ddl-auto: create-drop
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       #JPA가 사용하는 기본 넘버링 전략을 사용하지 않는다.
       use-new-id-generator-mappings: false
     show-sql: true
-    properties:
+    properties:                   
       hibernate.format_sql: true
 
   jackson:
@@ -52,8 +61,4 @@ spring:
 ##!!외부에 노출되면 안됨!!.      
 cos:
   key: koy1234
-#  servlet:
-#    multipart:
-#      enabled: true
-#      max-file-size: 10MB
-#      max-request-size: 50MB
+  

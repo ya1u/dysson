@@ -89,7 +89,7 @@
 			</span>
 			<span class="pro pro2" style="text-align:left;">
 
-						<div class="rate-image1 rateAvg" style="width:90px; display:inline-block;">
+						<div class="rate-image1 rateAvg";">
 						
 							<c:forEach var="product" items="${ratingAvg}" varStatus="status" begin="1" end="${product.ratingAvg}">
 							
@@ -169,7 +169,7 @@
 	<h3> 제품 리뷰 </h3>
 		<input type="hidden" id="usersId" value="${principal.user.id }"/>
 		<input type="hidden" id="productId" value="${product.id }"/>
-		<c:if test="principal.user.id != null ">
+		<c:if test="${principal.user.id != null}">
 	 	<form class="mb-3" name="myform" id="myform">
 	<fieldset>
 		<span class="text-bold">별점을 선택해주세요</span>
@@ -187,14 +187,14 @@
 
 		
 	<div>
->
+
 		
 		<textarea class="col-auto form-control" id="content" rows="1"
 				  placeholder="좋은 상품평을 남겨주시면 Dysson에 큰 힘이 됩니다! 포인트 5000p도 지급!!"></textarea>
 		
 	</div>
 	<div class="d-flex flex-row-reverse">
-		<button type="button" class="btn btn_review" id="btn-reviewSave" >리뷰등록</button>
+		<button type="button" class="btn btn_review" id="btn-reviewSave">리뷰등록</button>
 		
 	</div>
 		

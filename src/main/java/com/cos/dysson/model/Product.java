@@ -72,6 +72,7 @@ public class Product {
 	
 	private String imgOriName;
 	
+//	@ColumnDefault("'C:\\image\\'")
 	private String imgUrl;
 	
 	/*

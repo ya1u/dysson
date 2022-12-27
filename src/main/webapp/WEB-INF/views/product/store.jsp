@@ -118,7 +118,11 @@
       <div class="carousel carousel-showmanymoveone slide" id="itemslider" data-ride="carousel">
         <div class="carousel-inner">
         
+        
+
         <c:forEach var="productKitchen" items="${productKitchen}">
+        
+		   
 		    <div class="item">
 			  <div class="col-xs-12 col-sm-6 col-md-2">
 				<a href="/product/${productKitchen.id}"><img src="/img/${productKitchen.imgName}" class="img-responsive center-block"></a>

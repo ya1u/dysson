@@ -53,6 +53,9 @@ public class UserService {
 				.username(userDto.getUsername())
 				.password(encodeer.encode(userDto.getPassword()))
 				.email(userDto.getEmail())
+				.address(userDto.getAddress())
+				.name(userDto.getName())
+				.phone(userDto.getPhone())
 				.roles(RoleType.user)
 				.build();
 		
