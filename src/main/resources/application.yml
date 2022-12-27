@@ -20,7 +20,7 @@ spring:
       max-request-size: 50MB
   sql:
     init:
-      mode: always
+      mode: never
 
   error:
     include-binding-errors: always
@@ -44,7 +44,7 @@ spring:
     open-in-view: true
     hibernate:
     
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       #JPA가 사용하는 기본 넘버링 전략을 사용하지 않는다.

@@ -40,4 +40,4 @@ INSERT INTO product(id,name,made,price,category,ratingAvg,ratingCount,ratingSum,
 VALUES(18,'Dysson 손 진공 청소기','Dysson',99000,'CLEANER',0,0,0,'cleaner6.jpg','cleaner6.jpg','C:\\image\\','<p><img src="/img/detailC6.jpg"></p>');
 
 INSERT INTO users(id,username,password,email,phone,address,roles)
-VALUES(1,'admin','$2a$10$AD9E8Ne7SawgY6pDBsPeGOZRn6SYrzRvSH0xlY.Da6LOBJoFWiKMK','admin@admin.com','01012345678','청와대','admin');
+VALUES(1,'admin','$2a$10$AD9E8Ne7SawgY6pDBsPeGOZRn6SYrzRvSH0xlY.Da6LOBJoFWiKMK','admin@admin.com','01012345678','서울 종로구 청와대로 1 (청와대)','admin');

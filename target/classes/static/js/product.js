@@ -5,7 +5,6 @@ let index={
 		});
 		$("btn-update").on("click",()=>{
 			this.update();
-			
 		});
 		$("#btn-reviewSave").on("click",()=>{
 			this.reviewSave();
