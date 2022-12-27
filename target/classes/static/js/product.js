@@ -4,8 +4,7 @@ let index={
 			this.add();
 		});
 		$("btn-update").on("click",()=>{
-			this.update();
-			
+			this.update();			
 		});
 		$("#btn-reviewSave").on("click",()=>{
 			this.reviewSave();

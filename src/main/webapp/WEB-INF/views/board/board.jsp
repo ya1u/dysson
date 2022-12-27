@@ -97,7 +97,7 @@
     <br>
     <div class="buttons">
       <a href="#"><button class="btn btn-success">메인으로 돌아가기</button></a>
-      <c:if test="${principal.user.id != null}">
+      <c:if test="${principal.user.roles eq 'admin'}">
       <a href="/board/saveForm"><button class="btn btn-secondary float-right">글 작성</button></a>
       </c:if>
     </div>

@@ -12,6 +12,10 @@ let index = {
 		});
 		
 		$("#btn-replySave").on("click",()=>{
+			if(document.querySelector("#reply-content").value == null) {
+				alert("댓글을 입력해주세요")
+				return false;
+			}
 			this.replySave();
 			
 		})

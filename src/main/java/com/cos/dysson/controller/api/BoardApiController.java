@@ -55,6 +55,7 @@ public class BoardApiController {
 	//댓글 작성
 	@PostMapping("/api/board/{boardsId}/reply")
 	public ResponseDto<Integer> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto){
+		
 		boardService.댓글쓰기(replySaveRequestDto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}

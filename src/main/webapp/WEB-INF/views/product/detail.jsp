@@ -253,7 +253,7 @@
 		window.location.href = url;
 	}
 </script>
-<script>
+
 <script type="text/javascript" src="/js/product.js"></script>
 <!-- <script type="text/javascript" src="/js/review.js"></script> -->
 
