@@ -19,6 +19,9 @@
   	*:not(header){
   		text-align:left;
   	}
+    .mb-4, p {
+      text-align: center;
+    }
 
 
   </style>
@@ -34,29 +37,51 @@
       <div class="row g-3">
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge rounded-pill" style="background: dodgerblue">${user.cart.count}</span>
+            <c:choose>
+              <c:when test="${Count != null}">
+                <span class="text-muted">Product</span>
+                <span class="badge rounded-pill" style="background: dodgerblue">${Count}</span>
+              </c:when>
+              <c:otherwise>
+                <span class="text-muted">Your Cart</span>
+                <span class="badge rounded-pill" style="background: dodgerblue">${user.cart.count}</span>
+              </c:otherwise>
+            </c:choose>
           </h4>
           
           
 <!-- 장바구니 불러오기 코드 미구현-->
 
-
            <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
+             <c:choose>
+             <c:when test="${cartItems != null}">
+             <c:forEach var="cartItem" items="${cartItems}">
+             <li class="list-group-item d-flex justify-content-between lh-sm">
               <div>
-                <h6 class="my-0">전기난로</h6>
+                <h6 class="my-0">${cartItem.product.name} / ${cartItem.count}EA</h6>
                 <small class="text-muted">상세정보</small>
               </div>
-              <span class="text-muted">\90,000</span>
+              <span class="text-muted"><fmt:formatNumber value="${(cartItem.count)*(cartItem.product.price)}" pattern="#,###"/>원</span>
+              </c:forEach>
+               </c:when>
+               <c:otherwise>
+               <li class="list-group-item d-flex justify-content-between lh-sm">
+                 <div>
+                   <h6 class="my-0">${product.name} / ${Count}EA</h6>
+                   <small class="text-muted">상세정보</small>
+                 </div>
+                 <span class="text-muted"><fmt:formatNumber value="${(Count)*(product.price)}" pattern="#,###"/>원</span>
+               </c:otherwise>
+               </c:choose>
             </li>
-            
+
             
             <li class="list-group-item d-flex justify-content-between">
               <span>합계 </span>
               <strong><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</strong>
             </li>
-          </ul>
+           </ul>
+
           <!-- 카트목록끝 -->
 
         </div>

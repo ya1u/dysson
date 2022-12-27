@@ -139,10 +139,10 @@
 				</table>
 				</section><hr>
 				<section class="buy">
-					<button class="btn btn_buy" onclick="location.href='/order/orderForm'">바로구매</button>
 					<form class="d-flex" action="/users/cart/${principal.user.id}/${product.id}" method="post">
+					<button type="button" class="btn btn_buy" onclick="inputValueChange()">바로구매</button>
                     <div class="d-flex">
-                    <input class="form-control text-center me-3" id="amount" name="amount" type="num" value="1" style="max-width: 3rem"/>
+                    <input class="form-control text-center me-3" id="amount" name="amount" type="num" value="1" onchange="inputValueChange()" style="max-width: 3rem"/>
 <!--                         <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             장바구니
@@ -245,6 +245,15 @@
 
 </div>
 <br/>
+<script type="text/javascript">
+	function inputValueChange(){
+		let inputValue = document.getElementById('amount').value;
+		let url = '/order/product/${principal.user.id}/${product.id}/' + inputValue;
+		console.log(url);
+		window.location.href = url;
+	}
+</script>
+<script>
 <script type="text/javascript" src="/js/product.js"></script>
 <!-- <script type="text/javascript" src="/js/review.js"></script> -->
 

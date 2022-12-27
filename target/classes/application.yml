@@ -6,25 +6,41 @@ server:
       charset: UTF-8
       enabled: true
       force: true
-  tomcat:    max-http-form-post-size: 50MB               
-  error:    include-binding-errors: always
+
+  tomcat:
+    max-http-form-post-size: 50MB
+               
+  error:
+    include-binding-errors: always
 spring:
   servlet:
     multipart:
       enabled: true
       max-file-size: 50MB
       max-request-size: 50MB
-  sql:    init:      mode: always
+  sql:
+    init:
+      mode: always
   datasource:
     url: jdbc:oracle:thin:@127.0.0.1:1521:XE
     username: dysson
     password: 1234
     driver-class-name: oracle.jdbc.driver.OracleDriver
+
+  error:
+    include-binding-errors: always
+spring:
+
 #  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=Asia/Seoul
+#    url: jdbc:oracle:thin:@127.0.0.1:1521:XE
 #    username: dysson
 #    password: 1234
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=Asia/Seoul
+    username: dysson
+    password: 1234
   mvc:
     view:
       prefix: /WEB-INF/views/
