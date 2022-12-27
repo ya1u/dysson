@@ -66,7 +66,14 @@
             </div>
             </div>
           </div>
-          <a href="/order/orderForm"><button id="btn-checkout" class="shopnow"><span>구매하기</span></button></a>
+          <c:choose>
+            <c:when test="${totalPrice > 0}">
+              <a href="/order/cart/${principal.user.id}"><button id="btn-checkout" class="shopnow"><span>구매하기</span></button></a>
+            </c:when>
+            <c:otherwise>
+              <a href="#"><button id="btn-checkout" class="shopnow" onclick="alert('장바구니가 비었습니다.')"><span>구매하기</span></button></a>
+            </c:otherwise>
+          </c:choose>
         </div>
       </div>
     </div>

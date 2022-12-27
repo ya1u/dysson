@@ -2,10 +2,7 @@ package com.cos.dysson.controller;
 
 import com.cos.dysson.config.auth.PrincipalDetail;
 import com.cos.dysson.model.*;
-import com.cos.dysson.service.CartService;
-import com.cos.dysson.service.OrderService;
-import com.cos.dysson.service.SaleService;
-import com.cos.dysson.service.UserService;
+import com.cos.dysson.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +31,54 @@ public class OrderController {
     @Autowired
     private SaleService saleService;
 
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("/order/cart/{id}")
+    public String orderCart(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail, HttpSession httpSession) {
+        Users users = userService.findUser(id);
+        Cart userCart = users.getCart();
+        if (userCart != null) {
+            if (principalDetail.getUser().getId() == id) {
+//				Users users = userService.findUser(id);
+//				Cart userCart = users.getCart();
+
+                List<CartItem> cartItemList = cartService.allUserCartView(userCart);
+
+                int totalPrice = 0;
+                for (CartItem cartitem : cartItemList) {
+                    totalPrice += cartitem.getCount() * cartitem.getProduct().getPrice();
+                }
+
+                model.addAttribute("totalPrice", totalPrice);
+                model.addAttribute("totalCount", userCart.getCount());
+                model.addAttribute("cartItems", cartItemList);
+                httpSession.setAttribute("user", userService.findUser(id));
+
+                return "/product/orderForm";
+
+            }
+        }
+        return "/";
+    }
+
+    @GetMapping("/order/product/{id}/{productId}/{amount}")
+    public String orderProduct(@PathVariable Integer id, @PathVariable Integer productId, @PathVariable Integer amount, Model model, PrincipalDetail principalDetail) {
+//        if (principalDetail.getUser().getId() == id) {
+            Product product = productService.제품상세보기(productId);
+
+            model.addAttribute("totalPrice", (product.getPrice() * amount));
+            model.addAttribute("Count", amount);
+            model.addAttribute("product", product);
+
+            return "/product/orderForm";
+//        }
+//        return "/";
+    }
+
     // 장바구니 상품 전체 주문
     @Transactional
-    @PostMapping("cart/checkout/{id}")
+    @PostMapping("/cart/checkout/{id}")
     public String cartCheckout(@PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetail principalDetails, Model model) {
         // 로그인이 되어있는 유저의 id와 주문하는 id가 같아야 함
         List<CartItem> userCartItems = null;

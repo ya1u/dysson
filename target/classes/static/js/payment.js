@@ -43,8 +43,8 @@ let index = {
 					msg = '결제가 완료되었습니다';
 					msg += '\n고유ID : ' + resp.imp_uid;
 					msg += '\n상점 거래ID : ' + resp.merchant_uid;
-					msg += '\결제 금액 : ' + resp.paid_amount;
-					msg += '\카트 승인번호 : ' + resp.apply_num;
+					msg += '\n결제 금액 : ' + resp.paid_amount;
+					msg += '\n카트 승인번호 : ' + resp.apply_num;
 					
 					alert(msg);
 					
@@ -53,7 +53,7 @@ let index = {
 				}
 			});
 			//성공시 이동 페이지
-			
+
 			location.href="/";
 		}else {
 			msg = '결제에 실패하였습니다'
