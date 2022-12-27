@@ -7,8 +7,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <link href="/css/store.css" rel="stylesheet">
+<style>
+	.search {
+	  width: 10%;
+	  display:flex; 
+	  margin:auto;
+	}
+	
+	.searchTerm {
+	  width: 100%;
+	  border: 3px solid #333;
+	  border-right: none;
+	  padding: 5px;	  
+	  border-radius: 5px 0 0 5px;
+	  outline: none;
+	  color: #9DBFAF;
+	  	  
+	}
+	
+	.searchTerm:focus{
+	  color: #333;
+	}
+	
+	.searchButton {
+	  width: 40px;  
+	  border: 1px solid #333;
+	  background: #333;
+	  text-align: center;
+	  color: #fff;
+	  border-radius: 0 5px 5px 0;
+	  cursor: pointer;
+	  font-size: 20px;
+	  margin-left:auto;
+	}
+</style>
 
 <%-- <div class="container">
 	<c:forEach var="product" items="${product.content}">
@@ -48,12 +82,23 @@
 <c:if test="${principal.user.id==1}">
 		<a href="/product/addForm" class="hvr-icon-buzz">상품등록(관리자 전용)</a>
 </c:if>
+<!-- 상품검색 -->
+  
+  <form action="/product/store" method="GET" style="text-align: center;">
+    <div class="search">
+       <input type="text" class="searchTerm" placeholder="Search" name="searchKeyword">
+       <button type="submit" class="searchButton">
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </form>
 <h1 class="text-center"><a href="/product/store">Category</a></h1>
 <ul>
   <li><a href="/product/store/kitchen"> kitchen</a></li>
   <li><a href="/product/store/Air">Air</a></li>
   <li><a href="/product/store/Cleaner">Cleaner</a></li>
 </ul>
+
 <div class="container">
   <div class="row" id="slider-text">
     <div class="col-md-6" >

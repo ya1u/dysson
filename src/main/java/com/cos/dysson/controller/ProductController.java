@@ -53,23 +53,39 @@ public class ProductController {
 	}
 	//카테고리
 	@GetMapping("/product/store/kitchen")
-	public String kitchen(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+	public String kitchen(Model model,@PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
 //		List<Product> productKitchen = productService.productKitchen();
-		model.addAttribute("productKitchen", productService.productKitchen(pageable));
+		if(searchKeyword == null)
+	        model.addAttribute("productKitchen", productService.productKitchen(pageable));
+	    else {
+	        model.addAttribute("productKitchen", productRepository.findByNameContaining(searchKeyword, pageable));
+	    }		
 		return "product/store";
 		
 	}
 	@GetMapping("/product/store/Air")
-	public String air(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+	public String air(Model model,@PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
 //		List<Product> productKitchen = productService.productKitchen();
-		model.addAttribute("productKitchen", productService.productAir(pageable));
+		if(searchKeyword == null)
+	        model.addAttribute("productKitchen", productService.productAir(pageable));
+	    else {
+	        model.addAttribute("productKitchen", productRepository.findByNameContaining(searchKeyword, pageable));
+	    }		
+
 		return "product/store";
 		
 	}
 	@GetMapping("/product/store/Cleaner")
-	public String cleaner(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+	public String cleaner(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
 //		List<Product> productKitchen = productService.productKitchen();
-		model.addAttribute("productKitchen", productService.productCleaner(pageable));
+		if(searchKeyword == null)
+	        model.addAttribute("productKitchen", productService.productCleaner(pageable));
+	    else {
+	        model.addAttribute("productKitchen", productRepository.findByNameContaining(searchKeyword, pageable));
+	    }	
 		return "product/store";
 		
 	}
@@ -105,9 +121,15 @@ public class ProductController {
 	
 	// 제품 전체리스트
 	@GetMapping("/product/store")
-	public String list(Model model, @PageableDefault(size = 6, sort = "id",
-	direction = Sort.Direction.ASC) Pageable pageable) {
-		model.addAttribute("product", productService.제품리스트(pageable));
+	public String list(Model model, @PageableDefault(size = 6, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
+		if(searchKeyword == null)
+	        model.addAttribute("product", productService.제품리스트(pageable));
+	    else {
+	        model.addAttribute("product", productRepository.findByNameContaining(searchKeyword, pageable));
+	    }	
+		
+	
 		
 		
 		return "product/store";

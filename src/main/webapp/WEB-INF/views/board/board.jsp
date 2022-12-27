@@ -133,13 +133,13 @@
     </table>
       
     <form action="/auth/support" method="GET">
-    <div class="search">
-       <input type="text" class="searchTerm" placeholder="Search" name="searchKeyword">
-       <button type="submit" class="searchButton">
-         <i class="fa fa-search"></i>
-      </button>
-    </div>
-	<br>
+	    <div class="search">
+	       <input type="text" class="searchTerm" placeholder="Search" name="searchKeyword">
+	       <button type="submit" class="searchButton">
+	         <i class="fa fa-search"></i>
+	      </button>
+	    </div>
+		<br>
 	</form>
       <div>
       

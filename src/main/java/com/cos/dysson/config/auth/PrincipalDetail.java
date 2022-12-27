@@ -37,6 +37,11 @@ public class PrincipalDetail implements UserDetails{
 		// TODO Auto-generated method stub
 		return user.getUsername();
 	}
+	
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return user.getAddress();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {

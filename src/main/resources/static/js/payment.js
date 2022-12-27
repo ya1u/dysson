@@ -1,10 +1,14 @@
 let index = {
 	init: function() {
 		$("#btn-pay").on("click",()=>{
-			this.pay();
-			
+			this.pay();			
+		});
+		$("#same-address").on("click",()=>{
+			this.same();			
 		});
 	},
+	
+	
 	
 	pay: function() {
 		var IMP = window.IMP;
@@ -64,7 +68,17 @@ let index = {
 			alert(msg);
 		}
 			
-		});													
+		});
+		
+															
+	},
+	same: function(){
+		let id=$("#id").val();
+		
+		let data={
+			title: $("#title").val(),
+			content: $("#content").val()
+		};
 	}			
 }
 
