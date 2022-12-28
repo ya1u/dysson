@@ -69,7 +69,12 @@
         	<c:otherwise>
        	        <div class="dropdown-menu">
                     <a class="dropdown-item" href="/logout">Logout</a>
+                    <c:if test="${principal.user.roles eq 'user'}">
 		            <a class="dropdown-item" href="/auth/mypage">My Page</a>
+                    </c:if>
+                    <c:if test="${principal.user.roles eq 'admin'}">
+                      <a class="dropdown-item" href="/admin">관리자 페이지</a>
+                    </c:if>
                     <c:choose>
                       <c:when test="${empty user.cart.count}">
                           <a class="dropdown-item d-flex" href="/cart/${principal.user.id}">Cart&nbsp;&nbsp;&nbsp;<div class="blue"><span>0</span></div></a>

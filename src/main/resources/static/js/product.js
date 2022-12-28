@@ -45,6 +45,19 @@ let index={
 			alert(JSON.stringify(error));
 		});
 	},
+	deleteById2: function(id) {
+		console.log(id);
+		$.ajax({
+			type: "DELETE",
+			url: `/api/product/${id}`,
+			dataType: "json"
+		}).done(function(resp) {
+			alert("제품이 삭제되었습니다.");
+			location.href = "/admin";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	},
 	update: function() {
 		let id = $("#id").val();
 		

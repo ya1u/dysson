@@ -142,66 +142,26 @@
 		<br>
 	</form>
       <div>
-      
 
-   
+    <!-- 페이징 -->
+    <c:set var="startPage" value="${boards.number - boards.number % 5}" />
+    <ul class="pagination justify-content-center">
+        <li class="page-item <c:if test='${boards.number < 5}'>disabled</c:if>">
+            <a class="page-link" href="/admin?category=${param.category}&page=${startPage - 5}&searchKeyword=${param.searchKeyword}"><</a>
+        </li>
+        <c:forEach var="page" begin="1" end="5">
+            <c:if test="${(startPage + page) <= boards.totalPages}">
+                <li class="page-item <c:if test='${boards.number eq startPage + page - 1}'>active</c:if>">
+                    <a class="page-link" href="/admin?category=${param.category}&page=${startPage + page - 1}&searchKeyword=${param.searchKeyword}">${startPage + page}</a>
+                </li>
+            </c:if>
+        </c:forEach>
+        <li class="page-item <c:if test='${startPage + 5 > boards.totalPages}'>disabled</c:if>">
+            <a class="page-link" href="/admin?category=${param.category}&page=${startPage + 5}&searchKeyword=${param.searchKeyword}">></a>
+        </li>
+    </ul>
+    <!-- 페이징 끝 -->
 
-      
-      
-      <ul class="pagination justify-content-center">
-<%--         	<c:choose>
-        		<c:when test="${boards.first}">
-        			<li class="page-item disabled"><a class="page-link"
-        				href="?page=${boards.number-1}">ᐸ</a></li>
-        		</c:when>
-				<c:otherwise>
-					<li class="page-item"><a class="page-link"
-						href="?page=${boards.number-1}">ᐸ</a></li>
-				</c:otherwise>
-			</c:choose>
-			<c:choose>
-				<c:when test="${boards.last}">
-					<li class="page-item disabled"><a class="page-link"
-						href="?page=${boards.number+1}">ᐳ</a></li>
-				</c:when>
-				<c:otherwise>
-					<li class="page-item"><a class="page-link"
-						href="?page=${boards.number+1}">ᐳ</a></li>
-				</c:otherwise>
-			</c:choose>	 --%>	
-			
-			
-     <c:choose>
-            <c:when test="${boards.first}">
-                <li class="page-item disabled"><a class="page-link" href="?page=${boards.number - 1}">Prev</a></li>
-            </c:when>
-            <c:otherwise>
-                <li class="page-item"><a class="page-link" href="?page=${boards.number - 1}&searchKeyword=${param.searchKeyword}">Prev</a></li>
-            </c:otherwise>
-        </c:choose>
-        <c:choose>
-            <c:when test="${boards.last}">
-                <li class="page-item disabled"><a class="page-link" href="?page=${boards.number + 1}">Next</a></li>
-            </c:when>
-            <c:otherwise>
-                <li class="page-item"><a class="page-link" href="?page=${boards.number + 1}&searchKeyword=${param.searchKeyword}">Next</a></li>
-            </c:otherwise>
-        </c:choose>
-        		
-        
-        
-        
-        
-        
-        
-<!--           <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐸ</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">1</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">2</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">3</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">4</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">5</a></li>
-          <li><a href="#" style="margin-right: 5px;" class="text-secondary">ᐳ</a></li> -->
-        </ul> 
 
       </div>
   </div>

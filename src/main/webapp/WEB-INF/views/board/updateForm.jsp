@@ -25,7 +25,7 @@
 	</form>
 	
 	<div class="buttons">
-		<button id="" class="btn btn-danger">뒤로가기</button>
+		<button class="btn btn-danger"><a href="javascript:history.back();">뒤로가기</a></button>
 		<button id="btn-update" class="btn btn-primary">수정</button>
 	</div>
 </div>

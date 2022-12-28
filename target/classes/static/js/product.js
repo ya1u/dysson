@@ -4,7 +4,7 @@ let index={
 			this.add();
 		});
 		$("btn-update").on("click",()=>{
-			this.update();			
+			this.update();
 		});
 		$("#btn-reviewSave").on("click",()=>{
 			this.reviewSave();
@@ -41,6 +41,19 @@ let index={
 		}).done(function(resp) {
 			alert("제품이 삭제되었습니다.");
 			location.href = "/product/store";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	},
+	deleteById2: function(id) {
+		console.log(id);
+		$.ajax({
+			type: "DELETE",
+			url: `/api/product/${id}`,
+			dataType: "json"
+		}).done(function(resp) {
+			alert("제품이 삭제되었습니다.");
+			location.href = "/admin";
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});

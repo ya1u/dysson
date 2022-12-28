@@ -74,7 +74,7 @@
 
 <div class="container">
 	<button class="btn btn-secondary" onclick="location.href='/product/store'">돌아가기</button>
-	<c:if test="${principal.user.id==1}">
+	<c:if test="${principal.user.roles eq 'admin'}">
 		<button id="btn-delete" class="btn btn-danger" onClick="index.deleteById(${product.id})">삭제</button>
 		<a href="/product/updateForm/${product.id}" class="btn btn-warning">수정</a>
 	</c:if>
@@ -89,7 +89,7 @@
 			</span>
 			<span class="pro pro2" style="text-align:left;">
 
-						<div class="rate-image1 rateAvg";">
+						<div class="rate-image1 rateAvg">
 						
 							<c:forEach var="product" items="${ratingAvg}" varStatus="status" begin="1" end="${product.ratingAvg}">
 							

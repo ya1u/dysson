@@ -11,7 +11,7 @@
 <link href="/css/store.css" rel="stylesheet">
 <style>
 	.search {
-	  width: 10%;
+	  width: 200px;
 	  display:flex; 
 	  margin:auto;
 	}
@@ -42,6 +42,11 @@
 	  font-size: 20px;
 	  margin-left:auto;
 	}
+    @media screen and (max-width: 720px ) {
+        .search{
+            width: 50%;
+        }
+    }
 </style>
 
 <%-- <div class="container">
@@ -121,8 +126,8 @@
         
 
         <c:forEach var="productKitchen" items="${productKitchen}">
-        
-		   
+
+
 		    <div class="item">
 			  <div class="col-xs-12 col-sm-6 col-md-2">
 				<a href="/product/${productKitchen.id}"><img src="/img/${productKitchen.imgName}" class="img-responsive center-block"></a>
