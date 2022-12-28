@@ -52,7 +52,7 @@ public class Product {
 	private List<CartItem> cartItem = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "sellerId")
 	private Users seller;
 	
 	@Formula("(SELECT count(1) FROM review r WHERE r.productid = id)")

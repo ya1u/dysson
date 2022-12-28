@@ -87,7 +87,7 @@
         </div>
         <div class="col-md-7 col-lg-8">
           <h4 class="mb-3">상품구매</h4>
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation">
             <div class="row g-3">
               <div class="col-sm-6">
                 <label for="name" class="form-label">이름</label>
@@ -157,7 +157,25 @@
 
             <hr class="my-4">
 
-            <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay">구매하기</button>
+            <%--카트구매 시 필요 데이터--%>
+            <input type="hidden" name="userId" id="userId" value="${principal.user.id}">
+            <input type="hidden" name="cartId" id="cartId" value="${user.cart.id}">
+            <input type="hidden" name="totalPrice" id="totalPrice" value="${totalPrice}">
+            <%---------------------%>
+
+            <%--개별구매 시 필요 데이터--%>
+            <input type="hidden" name="productId" id="productId" value="${product.id}">
+            <input type="hidden" name="amount" id="amount" value="${Count}">
+            <%---------------------%>
+
+            <c:choose>
+              <c:when test="${Count != null}">
+                <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay-product">구매하기(개별)</button>
+              </c:when>
+              <c:otherwise>
+                <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay-cart">구매하기(장바구니)</button>
+              </c:otherwise>
+            </c:choose>
           </form>
         </div>
         

@@ -1,26 +1,13 @@
 package com.cos.dysson.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Table(name="users")
 @SequenceGenerator (
@@ -30,10 +17,11 @@ import lombok.NoArgsConstructor;
 		, allocationSize = 1
 		
 	)
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 @Entity
 public class Users {
 	@Id //primary key
@@ -66,7 +54,26 @@ public class Users {
 	@OneToOne(mappedBy = "users")
 	private Cart cart;
 
-	
+	// 판매자가 가지고 있는 상품들
+	@OneToMany(mappedBy = "seller")
+	private List<Product> products = new ArrayList<>();
+
+	// 구매자의 주문
+	@OneToMany(mappedBy = "user")
+	private List<Order> userOrder = new ArrayList<>();
+
+	// 구매자의 주문 상품들
+	@OneToMany(mappedBy = "user")
+	private List<OrderItem> userOrderItem = new ArrayList<>();
+
+	// 판매자의 판매 상품들
+	@OneToMany(mappedBy = "seller")
+	private List<SaleItem> sellerSaleItem = new ArrayList<>();
+
+	// 판매자의 판매
+	@OneToMany(mappedBy = "seller")
+	private List<Sale> sellerSale;
+
 	private String oauth; //Kakao 회원판별
 	 
 	@CreationTimestamp //시간이 자동으로 입력

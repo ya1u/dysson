@@ -34,6 +34,11 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/order/complete")
+    public String orderCompletePage() {
+        return "/order/complete";
+    }
+
     @GetMapping("/order/cart/{id}")
     public String orderCart(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetail principalDetail, HttpSession httpSession) {
         Users users = userService.findUser(id);
@@ -81,8 +86,7 @@ public class OrderController {
     @PostMapping("/cart/checkout/{id}")
     public String cartCheckout(@PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetail principalDetails, Model model) {
         // 로그인이 되어있는 유저의 id와 주문하는 id가 같아야 함
-        List<CartItem> userCartItems = null;
-        int totalPrice = 0;
+        System.out.println(id);
         if (principalDetails.getUser().getId() == id) {
             Users user = userService.findUser(id);
 
@@ -90,10 +94,10 @@ public class OrderController {
             Cart userCart = cartService.findUserCart(user.getId());
 
             // 유저 카트 안에 있는 상품들
-            userCartItems = cartService.allUserCartView(userCart);
+            List<CartItem> userCartItems = cartService.allUserCartView(userCart);
 
             // 최종 결제 금액
-            totalPrice = 0;
+            int totalPrice = 0;
             for (CartItem cartItem : userCartItems) {
                 totalPrice += cartItem.getCount() * cartItem.getProduct().getPrice();
             }
@@ -117,13 +121,15 @@ public class OrderController {
 
             // 장바구니 상품 모두 삭제
             cartService.allCartItemDelete(id);
+
+            model.addAttribute("totalPrice", totalPrice);
+            model.addAttribute("cartItems", userCartItems);
+            model.addAttribute("user", userService.findUser(id));
+
+            return "/order/complet";
+        } else {
+            return "redirect:/";
         }
-
-        model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("cartItems", userCartItems);
-        model.addAttribute("user", userService.findUser(id));
-
-        return "redirect:/cart/" + id;
     }
 
 }
