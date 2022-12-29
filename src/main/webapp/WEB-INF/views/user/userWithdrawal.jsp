@@ -82,13 +82,14 @@
 				<p>계정탈퇴를 하기 위해 비밀번호를 다시 한 번 입력해 주세요.</p>
 				<div style="margin-bottom: 16px">
 					<span>아이디</span>
-					<strong>koy6204</strong>
+					<strong>${principal.user.username }</strong>
 				</div>
 				<%--<label for="input_password" >비밀번호</label>--%>
 				<input type="hidden" id="userId" value="${principal.user.id }"/>
-				<input type="password" id="input_password" placeholder="Password" class="input-pwd" >
-				<button class="pwdbtn" type="submit" id="btn-del" style="display: block;">확인</button>
-
+				<input type="hidden" id="userPwd" value="${principal.user.password }"/>
+				<input type="password" name="pwd" placeholder="Password" class="input-pwd" id="inputPwd">
+				<button class="pwdbtn" type="button"  style="display: block;" onClick="index2.deleteById2(${principal.user.id})">확인</button>
+<%--				<button class="pwdbtn" type="button"  style="display: block;" onclick="location.href='/mypage/userWithdrawal/'"> 확인</button>--%>
 			</div>
 
 	</div>
@@ -97,4 +98,5 @@
 </div>
 <!-- <script src="/js/mypage.js"></script> -->
 <%@ include file="../layout/footer.jsp"%>
+<%--<script type="text/javascript" src="/js/user.js"></script>--%>
 

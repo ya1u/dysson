@@ -45,10 +45,15 @@ public class UserService {
 		user.setRoles(RoleType.user);
 		userRepository.save(user); //하나의 트랜젝션
 	}
+
+	@Transactional
+	public void pwdCompare(int pwd) {
+
+	}
 	
 	@Transactional
 	public void 회원가입(UserRequestDto userDto) {
-		
+		System.out.println("테스트테스트테스트테스트테스트테스트테스트" + userDto);
 		Users user = Users.builder()
 				.username(userDto.getUsername())
 				.password(encodeer.encode(userDto.getPassword()))
