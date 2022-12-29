@@ -9,10 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cos.dysson.dto.ResponseDto;
 import com.cos.dysson.dto.SendTmpPwdDto;
@@ -55,6 +52,14 @@ public class UserApiController {
 		//json 형태를 받기위한 RequestBody
 		userService.회원수정(user);
 		
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+
+
+	@DeleteMapping("/user/{id}")
+	public ResponseDto<Integer> deleteById(@PathVariable int id){
+		System.out.println(id);
+		userService.userDel(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 	}
 	

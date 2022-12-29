@@ -1,5 +1,6 @@
 package com.cos.dysson.controller;
 
+import com.cos.dysson.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +35,10 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+
+	@Autowired
+	private UserRepository userRepository;
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
@@ -58,7 +63,10 @@ public class UserController {
 		return "user/userInfo";
 	}
 	@GetMapping("/mypage/userWithdrawal")
-	public String userWithdrawal() {
+	public String userWithdrawal(Model model) {
+
+
+
 		return "user/userWithdrawal";
 	}
 

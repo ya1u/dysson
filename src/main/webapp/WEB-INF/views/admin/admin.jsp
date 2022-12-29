@@ -108,7 +108,7 @@
                     <th>${user.name}</th>
                     <th>${user.email}</th>
                     <th><fmt:formatDate value="${user.createDate}" pattern="YYYY-MM-dd"/></th>
-                    <th><button class="btn btn-kick" onclick="userKick(${user.id})">회원 삭제</button></th>
+                    <th><button class="btn btn-kick" onClick="index2.deleteById(${user.id})" id="btn-del">회원 삭제</button></th>
                 </tr>
         </c:forEach>
         </tbody>
@@ -222,3 +222,4 @@
     }
 </script>
 <script type="text/javascript" src="/js/product.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>

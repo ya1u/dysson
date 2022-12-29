@@ -5,6 +5,46 @@
 	a {
 		text-decoration: none;
 	}
+	.box-pwd-chk{
+		border: 1px solid #d3d3d3;
+		height: 420px;
+
+	}
+	.header-title {
+		padding: 20px 0 18px;
+		border-bottom: 1px solid #e4e4e4;
+	}
+	.box-pwd-input {
+		padding: 50px 64px 40px;
+	}
+	.pwdbtn {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 65px;
+		color: #fff;
+		text-align: center;
+		line-height: 65px;
+		background-color: #333;
+		font-size: 22px;
+		margin-top: 16px;
+		border: none;
+	}
+	.input-pwd {
+		position: relative;
+		width: 100%;
+		height: 67px;
+		padding: 23px;
+		background: #fff;
+		border: 1px solid #d9d9d9;
+		color: #222;
+		font-size: 21px;
+		font-weight: 400;
+		outline: 0;
+		box-sizing: border-box;
+	}
+
+
 </style>
 <div style="background-color:white;border-radius:4px;padding:20px;min-height:500px; width:960px; margin: auto;">
 	<br>
@@ -35,10 +75,24 @@
 		</tbody>
 		</table>	
 	</div>
-<!-- 		<div class="form-group">
-			<label for="pwd">Password</label> <input type="password" "
-				class="form-control" placeholder="Enter password" id="password">
-		</div> -->
+
+		<div class="box-pwd-chk">
+			<h2 class="header-title">비밀번호 확인</h2>
+			<div class="box-pwd-input">
+				<p>계정탈퇴를 하기 위해 비밀번호를 다시 한 번 입력해 주세요.</p>
+				<div style="margin-bottom: 16px">
+					<span>아이디</span>
+					<strong>koy6204</strong>
+				</div>
+				<%--<label for="input_password" >비밀번호</label>--%>
+				<input type="hidden" id="userId" value="${principal.user.id }"/>
+				<input type="password" id="input_password" placeholder="Password" class="input-pwd" >
+				<button class="pwdbtn" type="submit" id="btn-del" style="display: block;">확인</button>
+
+			</div>
+
+	</div>
+
 
 </div>
 <!-- <script src="/js/mypage.js"></script> -->

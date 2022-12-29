@@ -1,4 +1,4 @@
-let index={
+let index2={
 	init: function(){
 		$("#btn-save").on("click",()=>{
 			
@@ -18,36 +18,7 @@ let index={
 			this.update();
 		});
 		
-		
 	},
-	
-/*	save: function(){
-		let data={
-			username: $("#username").val(),
-			name: $("#name").val(),
-			password: $("#password").val(),
-			email: $("#email").val(),
-			phone: $("#phone").val(),
-			address: $("#address").val().concat(" "+$("#addressDetail").val())
-				
-		};
-
-		console.log(data.address)
-		$.ajax({
-			type:"POST",
-			url:"/auth/joinProc",
-			data:JSON.stringify(data),
-			contentType:"application/json; charset=utf-8",
-			dataType:"json"			
-		}).done(function(resp){
-			alert("회원가입이 완료되었습니다.");
-			location.href="/auth/loginForm";
-		}).fail(function(error){
-			alert(JSON.stringify(error));
-			//응답이 비정상
-		});
-	
-	},*/
 	
 	save: function(){
 		let data={
@@ -166,8 +137,23 @@ let index={
 	    }).fail(function(error) {
 	        alert(JSON.stringify(error));
 	    });
-}
+	},
+
+	deleteById: function(id) {
+		console.log(id);
+
+		$.ajax({
+			type: "DELETE",
+			url: `/user/${id}`,
+			dataType: "json"
+		}).done(function(resp) {
+			alert("계정이 탈퇴되었습니다.");
+			location.href = "/admin";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	}
 		
 	
 }
-index.init();
+index2.init();

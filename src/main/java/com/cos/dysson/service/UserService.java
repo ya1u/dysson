@@ -61,6 +61,11 @@ public class UserService {
 		
 		userRepository.save(user);
 	}
+
+	@Transactional
+	public void userDel(int id) { //유저삭제
+		userRepository.deleteById(id);
+	}
 	
 	
 //	@Transactional
