@@ -80,4 +80,8 @@ public class OrderService {
 
         orderItemRepository.save(cancelItem);
     }
+
+    public List<Order> findByUserId(Integer id) {
+        return orderRepository.findOrdersByUserId(id);
+    }
 }

@@ -166,6 +166,7 @@
             <%--개별구매 시 필요 데이터--%>
             <input type="hidden" name="productId" id="productId" value="${product.id}">
             <input type="hidden" name="amount" id="amount" value="${Count}">
+            <input type="hidden" name="price" id="price" value="${product.price}">
             <%---------------------%>
 
             <c:choose>

@@ -70,7 +70,7 @@
        	        <div class="dropdown-menu">
                     <a class="dropdown-item" href="/logout">Logout</a>
 
-		            <a class="dropdown-item" href="/auth/mypage">My Page</a>
+		            <a class="dropdown-item" href="/mypage/${principal.user.id}">My Page</a>
 
                     <c:if test="${principal.user.roles eq 'admin'}">
                       <a class="dropdown-item" href="/admin">관리자 페이지</a>
