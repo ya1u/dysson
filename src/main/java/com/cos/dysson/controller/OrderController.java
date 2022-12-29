@@ -31,8 +31,9 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/order/complete")
-    public String orderCompletePage() {
+    @GetMapping("/order/complete/{id}")
+    public String orderCompletePage(@PathVariable("id") Integer id,@AuthenticationPrincipal PrincipalDetail principal, HttpSession httpSession) {
+        httpSession.setAttribute("user", userService.findUser(principal.getUser().getId()));
         return "/order/complete";
     }
 
@@ -83,7 +84,6 @@ public class OrderController {
     @PostMapping("/cart/checkout/{id}")
     public String cartCheckout(@PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetail principalDetails, Model model) {
         // 로그인이 되어있는 유저의 id와 주문하는 id가 같아야 함
-        System.out.println(id);
         if (principalDetails.getUser().getId() == id) {
             Users user = userService.findUser(id);
 
@@ -120,10 +120,41 @@ public class OrderController {
             model.addAttribute("cartItems", userCartItems);
             model.addAttribute("user", userService.findUser(id));
 
-            return "/order/complet";
+            return "/order/complete";
         } else {
             return "redirect:/";
         }
     }
 
+    // 개별 상품 주문
+    @Transactional
+    @PostMapping("/product/checkout/{id}/{productId}/{count}")
+    public String productCheckout(@PathVariable("id") Integer id, @PathVariable("productId") Integer productId, @PathVariable("count") Integer count, @AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+        // 로그인이 되어있는 유저의 id와 주문하는 id가 같아야 함
+        if (principalDetail.getUser().getId() == id) {
+            Users user = userService.findUser(id);
+            Product product = productService.productView(productId);
+
+            // 최종 결제금액
+            int totalPrice = product.getPrice() * count;
+
+            orderService.addOneItemOrder(user.getId(), product, count);
+
+            return "/order/complete";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    // 주문 취소하기 기능
+    @Transactional
+    @GetMapping("/order/cancel/{id}/{orderId}")
+    public String orderCancel(@PathVariable("id") Integer id ,@PathVariable("orderId") Integer orderId) {
+        Users user = userService.findUser(id);
+        List<OrderItem> orderItem = orderService.findUserOrderItems(id);
+
+//        orderService.orderCancel(user, orderItem);
+
+        return "redirect:/mypage/"+id;
+    }
 }

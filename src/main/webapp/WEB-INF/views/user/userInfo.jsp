@@ -17,7 +17,7 @@
 			<tbody>
 			<tr>
 				<td id="mypage_menu_1" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224); ">
-					<a href="/auth/mypage">
+					<a href="/mypage/${principal.user.id}">
 						<span style="color:black;">주문내역/배송조회</span>
 					</a>
 				</td>

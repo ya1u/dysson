@@ -1,6 +1,8 @@
 package com.cos.dysson.controller;
 
+import com.cos.dysson.model.Order;
 import com.cos.dysson.repository.UserRepository;
+import com.cos.dysson.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -27,6 +29,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 public class UserController {
 	
@@ -41,6 +47,9 @@ public class UserController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private OrderService orderService;
 	
 	@GetMapping("/auth/joinForm")
 	public String joinForm() {
@@ -50,8 +59,11 @@ public class UserController {
 	public String loginForm() {
 		return "user/loginForm";
 	}
-	@GetMapping("/auth/mypage")
-	public String mypage() {
+	@GetMapping("/mypage/{id}")
+	public String mypage(@PathVariable("id") Integer id, Model model) {
+		List<Order> order = orderService.findByUserId(id);
+
+		model.addAttribute("orders", order);
 		return "user/mypage";
 	}
 	@GetMapping("/auth/findPw")

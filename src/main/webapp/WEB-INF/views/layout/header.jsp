@@ -69,9 +69,9 @@
         	<c:otherwise>
        	        <div class="dropdown-menu">
                     <a class="dropdown-item" href="/logout">Logout</a>
-                    <c:if test="${principal.user.roles eq 'user'}">
-		            <a class="dropdown-item" href="/auth/mypage">My Page</a>
-                    </c:if>
+
+		            <a class="dropdown-item" href="/mypage/${principal.user.id}">My Page</a>
+
                     <c:if test="${principal.user.roles eq 'admin'}">
                       <a class="dropdown-item" href="/admin">관리자 페이지</a>
                     </c:if>

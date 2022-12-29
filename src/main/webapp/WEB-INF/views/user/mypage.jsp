@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<style>
-	a {
-		text-decoration: none;
-	}
-</style>
+<link href="/css/mypage.css" rel="stylesheet">
+<%
+  pageContext.setAttribute("price",0);
+%>
 <div style="background-color:white;border-radius:4px;padding:20px;min-height:500px; width:960px; margin: auto;">
 	<br>
 	<h3><span style="font-size:20px">${principal.user.username } 님의</span> My Page</h3>
@@ -14,7 +13,7 @@
 			<tbody>
 			<tr>
 				<td id="mypage_menu_1" style="width: 33.33%; border-right: 1px solid rgb(224, 224, 224);background-color: #e0e0e0; ">
-					<a href="/auth/mypage">
+					<a href="/mypage/${principal.user.id}">
 						<span style="color:black;">주문내역/배송조회</span>
 					</a>
 				</td>
@@ -41,35 +40,53 @@
 <table width="100%" >
 <tbody >
 	<tr style="background-color:#e0e0e0;height:40px;font-weight:bold;color:#505050;">
-		<th>번호</th>
-		<th>구분</th>
-		<th>주문일시</th>
 		<th>주문번호</th>
+		<th>주문일시</th>
 		<th>결제방법</th>
 		<th>주문금액</th>
-		<th>취소금액</th>
-		<th>주문상태</th>
 		<th>수령확인</th>
+		<th>주문상태</th>
 		<th>상세보기</th>
+		<th> - </th>
 	</tr>
-	<tr >
-		<td>1</td>
-		<td>test</td>
-		<td>2022-12-12</td>
-		<td>10245</td>
-		<td>test</td>
-		<td>test</td>
-		<td>10000</td>
-		<td>2000</td>
-		<td>미수령</td>
-		<td>확인</td>
-	</tr>
+	<c:forEach var="order" items="${orders}">
+		<c:set var = "total" value = "0" />
+		<tr style="line-height: 50px">
+			<td>${order.id}</td>
+			<td>${order.createDate}</td>
+			<td><img src="/image/kakaoPay.png" class="pay"></td>
+			<input type="hidden" value="<c:forEach var="orderItem" items="${order.orderItems}" varStatus="status">
+				${orderItem.itemTotalPrice}
+				<c:set var="total" value="${total + orderItem.itemTotalPrice}"/>
+				<c:out value="${total}"/>
+			</c:forEach>">
+			<input type="hidden" value="<c:forEach var="orderItem" items="${order.orderItems}" varStatus="status">
+				${orderItem.isCancel}
+				<c:set var="isCancel" value="${isCancel + orderItem.isCancel}"/>
+				<c:out value="${isCancel}"/>
+			</c:forEach>">
+			<td style="color: #AE0000"><fmt:formatNumber value="${total}" pattern="#,###"/>원</td>
+			<td>미수령</td>
+			<c:choose>
+				<c:when test="${isCancel == 0}">
+					<td>배송준비중</td>
+					<td>확인</td>
+					<td><a href="" style="color: red">주문취소</a></td>
+				</c:when>
+				<c:otherwise>
+					<td>취소완료</td>
+					<td>확인</td>
+					<td>-</td>
+				</c:otherwise>
+			</c:choose>
+		</tr>
+	</c:forEach>
 
 
 
 </tbody>
 </table>
-<hr>
+<hr class="hrhr">
 
 
 <table style="width:100%;margin-bottom:10px;">
@@ -93,7 +110,7 @@
 </tr>
 <tr><td height="1" bgcolor="#D6D6D6" colspan="10"></td></tr>
 <tr height="25">
-	<td><div style="text-overflow:ellipsis;overflow:hidden;width:250px;padding-left:10px;line-height:18px;" nowrap="">발뮤다 회원가입 5% 쿠폰</div>
+	<td><div style="text-overflow:ellipsis;overflow:hidden;width:250px;padding-left:10px;line-height:18px;" nowrap="">다이쓴 회원가입 5% 쿠폰</div>
 		<div style="text-overflow:ellipsis;overflow:hidden;width:250px;padding-left:10px;line-height:18px;font-size:12px;color:#909090;" nowrap="">회원가입 5% 할인쿠폰</div>
 	</td>
 	<td><div style="text-overflow:ellipsis;overflow:hidden;width:250px;padding-left:10px;line-height:18px;" nowrap=""> - </div></td>
