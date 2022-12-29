@@ -44,7 +44,7 @@ public class Product {
 	
 	@Column(nullable = false, length = 30)
 	private int price; // 가격
-	
+
 	@Column(nullable = false, length = 20)
 	private String category;
 	

@@ -29,9 +29,6 @@ public class OrderController {
     private OrderService orderService;
 
     @Autowired
-    private SaleService saleService;
-
-    @Autowired
     private ProductService productService;
 
     @GetMapping("/order/complete")
@@ -108,11 +105,8 @@ public class OrderController {
 
                 Users seller = cartItem.getProduct().getSeller();
 
-                // sale, saleItem 에 담기
-                SaleItem saleItem = saleService.addSale(cartItem.getProduct().getId(), seller.getId(), cartItem);
-
                 // order, orderItem 에 담기
-                OrderItem orderItem = orderService.addCartOrder(cartItem.getProduct().getId(), user.getId(), cartItem, saleItem);
+                OrderItem orderItem = orderService.addCartOrder(cartItem.getProduct().getId(), user.getId(), cartItem);
 
                 orderItemList.add(orderItem);
             }

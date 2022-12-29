@@ -66,14 +66,6 @@ public class Users {
 	@OneToMany(mappedBy = "user")
 	private List<OrderItem> userOrderItem = new ArrayList<>();
 
-	// 판매자의 판매 상품들
-	@OneToMany(mappedBy = "seller")
-	private List<SaleItem> sellerSaleItem = new ArrayList<>();
-
-	// 판매자의 판매
-	@OneToMany(mappedBy = "seller")
-	private List<Sale> sellerSale;
-
 	private String oauth; //Kakao 회원판별
 	 
 	@CreationTimestamp //시간이 자동으로 입력
