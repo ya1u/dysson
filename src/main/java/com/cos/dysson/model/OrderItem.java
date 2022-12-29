@@ -36,13 +36,9 @@ public class OrderItem {
     private int itemCount;
     private int itemTotalPrice;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "saleItemId")
-    private SaleItem saleItem;
-
     private int isCancel;
 
-    public static OrderItem createOrderItem(int itemId, Users user, CartItem cartItem, SaleItem saleItem) {
+    public static OrderItem createOrderItem(int itemId, Users user, CartItem cartItem) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItemId(itemId);
         orderItem.setUser(user);
@@ -50,11 +46,10 @@ public class OrderItem {
         orderItem.setItemPrice(cartItem.getProduct().getPrice());
         orderItem.setItemCount(cartItem.getCount());
         orderItem.setItemTotalPrice(cartItem.getProduct().getPrice()*cartItem.getCount());
-        orderItem.setSaleItem(saleItem);
         return orderItem;
     }
 
-    public static OrderItem createOrderItem(int itemId, Users user, Product product, int count, Order order, SaleItem saleItem) {
+    public static OrderItem createOrderItem(int itemId, Users user, Product product, int count, Order order) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItemId(itemId);
         orderItem.setUser(user);
@@ -63,7 +58,6 @@ public class OrderItem {
         orderItem.setItemPrice(product.getPrice());
         orderItem.setItemCount(count);
         orderItem.setItemTotalPrice(product.getPrice()*count);
-        orderItem.setSaleItem(saleItem);
         return orderItem;
     }
 
