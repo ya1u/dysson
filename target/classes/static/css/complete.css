@@ -1,0 +1,23 @@
+.container {
+    padding: 100px;
+}
+
+.btn_order {
+    background-color: black;
+    color: #FFF;
+}
+
+.btn_home {
+    background-color: #FFF;
+    border: 1px solid black;
+    color: #000;
+    margin-left: 5px;
+}
+
+.img {
+    width: 80px;
+}
+
+h5 {
+    margin-bottom: 20px;
+}
