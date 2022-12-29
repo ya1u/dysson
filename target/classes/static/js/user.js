@@ -31,7 +31,7 @@ let index2={
 				
 		};
 
-		console.log(data.address)
+
 		$.ajax({
 			type:"POST",
 			url:"/auth/joinProc",
@@ -152,8 +152,41 @@ let index2={
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});
-	}
-		
-	
+	},
+	deleteById2: function(id) {
+		console.log(id);
+		let data = {
+			inputPwd : $("#inputPwd").val()
+		}
+
+		$.ajax({
+			type: "DELETE",
+			url: `/user/${id}`,
+			dataType: "json"
+		}).done(function(resp) {
+			alert("계정이 탈퇴되었습니다.");
+			location.href = "/logout";
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	},
+
+	// deleteById2: function(id) {
+	// 	console.log(id);
+	// 	let data = {
+	// 		inputPwd : $("#inputPwd").val()
+	// 	}
+	//
+	// 	$.ajax({
+	// 		type: "GET",
+	// 		url: '/mypage/userWithdrawal/' +data.inputPwd,
+	// 		dataType: "json"
+	// 	}).done(function(resp) {
+	// 		alert("계정이 탈퇴되었습니다.");
+	// 	}).fail(function(error) {
+	// 		alert(JSON.stringify(error));
+	// 	});
+
+
 }
 index2.init();

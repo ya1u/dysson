@@ -3,7 +3,7 @@ package com.cos.dysson.controller;
 import com.cos.dysson.config.auth.PrincipalDetail;
 import com.cos.dysson.model.RoleType;
 import com.cos.dysson.model.Users;
-import com.cos.dysson.repository.ProductRepository;
+import com.cos.dysson.repository.OrderItemRepository;
 import com.cos.dysson.repository.UserRepository;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.specification.AdminSpecification;
@@ -29,7 +29,8 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @GetMapping("/admin")
     public String admin(Model model,
@@ -53,7 +54,6 @@ public class AdminController {
 
             model.addAttribute("users", userRepository.findAll(spec, pageable));
         }
-
         model.addAttribute("category", category);
         model.addAttribute("product", productService.제품리스트(pageable));
         return "admin/admin";

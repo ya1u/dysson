@@ -2,6 +2,8 @@ package com.cos.dysson.service;
 
 import java.util.List;
 
+import com.cos.dysson.model.OrderItem;
+import com.cos.dysson.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,9 @@ public class ProductService {
 	
 	@Autowired 
 	private UserRepository userRepository;
+
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	@Transactional
 	public void 제품등록(Product product) {
@@ -56,7 +61,7 @@ public class ProductService {
 		product.setPrice(requestProduct.getPrice());
 		product.setCategory(requestProduct.getCategory());
 	}
-	
+
 	@Transactional
 	public Product ratingAvg(int productId,int rate) {
 		Product product = productRepository.findById(productId).orElseThrow(() -> {

@@ -36,15 +36,25 @@ public class UserApiController {
 	
 	@PostMapping("/auth/joinProc")
 	public ResponseDto<?> save(@Valid @RequestBody UserRequestDto userDto, BindingResult bindingResult) {
+		System.out.println("테스트테스트테스트테스트테스트테스트"+userDto);
 		if(bindingResult.hasErrors()) {
 			Map<String, String> validatorResult = userService.validateHandling(bindingResult);
-			
+
 			return new ResponseDto<>(HttpStatus.BAD_REQUEST.value(), validatorResult);
 		}
-		
+		System.out.println("테스트테스트테스트테스트테스트테스트"+userDto);
 		userService.회원가입(userDto);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+	@PostMapping("/user/{id}")
+	public ResponseDto<Integer> deleteById2(@PathVariable int id){
+
+		userService.userDel(id);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+	}
+
+	@PostMapping("/user/del")
+
 	
 	//회원정보수정
 	@PutMapping("/user")

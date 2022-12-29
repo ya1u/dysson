@@ -83,6 +83,7 @@
                 </select>&nbsp;
                 <input type="hidden" name="category" id="category" value="${param.category}">
                 <input type="hidden" name="searchType" id="searchType" value="username">
+
                 <input type="text" class="searchTerm" placeholder="Search" name="searchKeyword">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
@@ -159,6 +160,7 @@
                     <th>${product.id}</th>
                     <th>${product.category}</th>
                     <th class="text-width"><a href="/product/${product.id}">${product.name}</a></th>
+
                     <th><fmt:formatNumber value="${product.price}" pattern="#,###"/></th>
                     <th>${product.ratingAvg}</th>
                     <th>
@@ -201,9 +203,9 @@
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
             ['Day', '매출액'],
-            ['KITCHEN',  2120000],
-            ['AIR',  4220000],
-            ['CLEANER',  1200000],
+            ['KITCHEN',  1200000 ],
+            ['AIR',  1800000],
+            ['CLEANER',  500000],
 
 
 

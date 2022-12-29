@@ -1,6 +1,15 @@
 package com.cos.dysson.controller;
 
+import com.cos.dysson.config.auth.PrincipalDetail;
+import com.cos.dysson.model.CartItem;
+import com.cos.dysson.model.KakaoProfile;
+import com.cos.dysson.model.OAuthToken;
+import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.UserRepository;
+import com.cos.dysson.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -10,22 +19,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import com.cos.dysson.model.KakaoProfile;
-import com.cos.dysson.model.OAuthToken;
-import com.cos.dysson.model.Users;
-import com.cos.dysson.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UserController {
@@ -41,6 +48,9 @@ public class UserController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private BCryptPasswordEncoder encodeer;
 	
 	@GetMapping("/auth/joinForm")
 	public String joinForm() {
@@ -63,12 +73,25 @@ public class UserController {
 		return "user/userInfo";
 	}
 	@GetMapping("/mypage/userWithdrawal")
-	public String userWithdrawal(Model model) {
+	public String userWithdrawal(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
+		String enPwd = principal.getUser().getPassword();
 
+//		int id = principal.getUser().getId();
+//		model.addAttribute("enPwd",enPwd);
+//		System.out.println("해시코드 : " + enPwd);
+//		System.out.println(pwd);
 
-
+//		if(encodeer.matches(inputPwd,enPwd)) {
+//			userService.userDel(id);
+//
+//		} else {
+//			// 오류메세지 제공 (생략)
+//		}
 		return "user/userWithdrawal";
 	}
+
+
+
 
 
 	
