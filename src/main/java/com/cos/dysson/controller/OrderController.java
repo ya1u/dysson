@@ -150,10 +150,7 @@ public class OrderController {
     @Transactional
     @GetMapping("/order/cancel/{id}/{orderId}")
     public String orderCancel(@PathVariable("id") Integer id ,@PathVariable("orderId") Integer orderId) {
-        Users user = userService.findUser(id);
-        List<OrderItem> orderItem = orderService.findUserOrderItems(id);
-
-//        orderService.orderCancel(user, orderItem);
+        orderService.orderCancel(orderId);
 
         return "redirect:/mypage/"+id;
     }

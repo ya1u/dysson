@@ -161,6 +161,7 @@
             <input type="hidden" name="userId" id="userId" value="${principal.user.id}">
             <input type="hidden" name="cartId" id="cartId" value="${user.cart.id}">
             <input type="hidden" name="totalPrice" id="totalPrice" value="${totalPrice}">
+            <input type="hidden" name="category" id="category" value="${product.category}">
             <%---------------------%>
 
             <%--개별구매 시 필요 데이터--%>

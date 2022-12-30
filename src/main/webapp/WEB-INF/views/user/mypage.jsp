@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/mypage.css" rel="stylesheet">
-<%
-  pageContext.setAttribute("price",0);
-%>
 <div style="background-color:white;border-radius:4px;padding:20px;min-height:500px; width:960px; margin: auto;">
 	<br>
 	<h3><span style="font-size:20px">${principal.user.username } 님의</span> My Page</h3>
@@ -47,7 +44,7 @@
 		<th>수령확인</th>
 		<th>주문상태</th>
 		<th>상세보기</th>
-		<th> - </th>
+		<th style="width: 92px"> - </th>
 	</tr>
 	<c:forEach var="order" items="${orders}">
 		<c:set var = "total" value = "0" />
@@ -60,21 +57,16 @@
 				<c:set var="total" value="${total + orderItem.itemTotalPrice}"/>
 				<c:out value="${total}"/>
 			</c:forEach>">
-			<input type="hidden" value="<c:forEach var="orderItem" items="${order.orderItems}" varStatus="status">
-				${orderItem.isCancel}
-				<c:set var="isCancel" value="${isCancel + orderItem.isCancel}"/>
-				<c:out value="${isCancel}"/>
-			</c:forEach>">
-			<td style="color: #AE0000"><fmt:formatNumber value="${total}" pattern="#,###"/>원</td>
+			<td><fmt:formatNumber value="${total}" pattern="#,###"/>원</td>
 			<td>미수령</td>
 			<c:choose>
-				<c:when test="${isCancel == 0}">
+				<c:when test="${order.isCancel == 0}">
 					<td>배송준비중</td>
 					<td>확인</td>
-					<td><a href="" style="color: red">주문취소</a></td>
+					<td><a href="/order/cancel/${principal.user.id}/${order.id}" style="color: orangered">주문취소</a></td>
 				</c:when>
 				<c:otherwise>
-					<td>취소완료</td>
+					<td style="color: orangered;">취소완료</td>
 					<td>확인</td>
 					<td>-</td>
 				</c:otherwise>

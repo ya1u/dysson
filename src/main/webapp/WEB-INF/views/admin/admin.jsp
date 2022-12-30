@@ -70,10 +70,38 @@
 
 </style>
 <div class="container">
-    <div class="board-title" style="text-align: left; font-size: 25px; color:deepskyblue">| 매출표</div>
+    <div class="board-title" style="text-align: left; font-size: 25px; color:#333">| 매출표</div>
         <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <c:set var = "totalAll" value = "0" />
+    <c:set var = "totalKitchen" value = "0" />
+    <c:set var = "totalAir" value = "0" />
+    <c:set var = "totalCleaner" value = "0" />
+    <input type="hidden" value="<c:forEach var="orderItemAll" items="${orderItemAll}" varStatus="status">
+				${orderItemAll.itemTotalPrice}
+				<c:set var="totalAll" value="${totalAll + orderItemAll.itemTotalPrice}"/>
+				<c:out value="${totalAll}"/>
+			</c:forEach>">
+
+    <input type="hidden" value="<c:forEach var="orderItemKitchen" items="${orderItemKitchen}" varStatus="status">
+				${orderItemKitchen.itemTotalPrice}
+				<c:set var="totalKitchen" value="${totalKitchen + orderItemKitchen.itemTotalPrice}"/>
+				<c:out value="${totalKitchen}"/>
+			</c:forEach>">
+
+    <input type="hidden" value="<c:forEach var="orderItemAir" items="${orderItemAir}" varStatus="status">
+				${orderItemAir.itemTotalPrice}
+				<c:set var="totalAir" value="${totalAir + orderItemAir.itemTotalPrice}"/>
+				<c:out value="${totalAir}"/>
+			</c:forEach>">
+
+    <input type="hidden" value="<c:forEach var="orderItemCleaner" items="${orderItemCleaner}" varStatus="status">
+				${orderItemCleaner.itemTotalPrice}
+				<c:set var="totalCleaner" value="${totalCleaner + orderItemCleaner.itemTotalPrice}"/>
+				<c:out value="${totalCleaner}"/>
+			</c:forEach>">
+
     <c:if test="${category eq 'user'}">
-        <div class="board-title" style="text-align: left; font-size: 25px; color:deepskyblue">| 회원 관리</div>
+        <div class="board-title" style="text-align: left; font-size: 25px; color:#333">| 회원 관리</div>
         <!-- 정렬 및 검색 탭 -->
         <form action="/admin" method="GET" class="form-inline bd-highlight justify-content-between">
             <div class="search">
@@ -137,7 +165,7 @@
 
 
         <hr>
-        <div class="board-title" style="text-align: left; font-size: 25px; color:deepskyblue">| 상품 관리</div>
+        <div class="board-title" style="text-align: left; font-size: 25px; color:#333">| 상품 관리</div>
         <br>
         <div style="text-align: left; "><a href="/product/addForm" style="color:#4ba53a;"> # 상품 등록하기</a></div>
         <div style="text-align: left"># 등록된 상품</div>
@@ -203,9 +231,10 @@
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
             ['Day', '매출액'],
-            ['KITCHEN',  1200000 ],
-            ['AIR',  1800000],
-            ['CLEANER',  500000],
+            ['ALL', ${totalAll} ],
+            ['KITCHEN', ${totalKitchen} ],
+            ['AIR',  ${totalAir}],
+            ['CLEANER',  ${totalCleaner}],
 
 
 
@@ -216,7 +245,7 @@
             vAxis: {title: 'sales revenue'},
             hAxis: {title: '카테고리'},
             seriesType: 'bars',
-            series: {3: {type: 'line'}}
+            series: {4: {type: 'line'}}
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));

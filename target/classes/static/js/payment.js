@@ -11,7 +11,8 @@ let index = {
 	pay_cart: function() {
 		let data = {
 			id: $("#userId").val(),
-			totalPrice: $("#totalPrice").val()
+			totalPrice: $("#totalPrice").val(),
+			category: $("#category").val()
 		};
 
 		var IMP = window.IMP;
@@ -85,7 +86,8 @@ let index = {
 			id: $("#userId").val(),
 			productId: $("#productId").val(),
 			count: $("#amount").val(),
-			price: $("#price").val()
+			price: $("#price").val(),
+			category: $("#category").val()
 		};
 
 		var IMP = window.IMP;

@@ -36,6 +36,8 @@ public class Order {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate createDate;
 
+    private int isCancel;
+
     @PrePersist
     public void createDate() {
         this.createDate = LocalDate.now();

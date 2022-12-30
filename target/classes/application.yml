@@ -45,7 +45,7 @@ spring:
     hibernate:
     
 
-      ddl-auto: create-drop
+      ddl-auto: update
 
 
 

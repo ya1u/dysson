@@ -35,8 +35,9 @@ public class OrderItem {
     private int itemPrice;
     private int itemCount;
     private int itemTotalPrice;
+    private String category;
 
-    private int isCancel;
+//    private int isCancel;
 
     public static OrderItem createOrderItem(int itemId, Users user, CartItem cartItem) {
         OrderItem orderItem = new OrderItem();
@@ -46,6 +47,7 @@ public class OrderItem {
         orderItem.setItemPrice(cartItem.getProduct().getPrice());
         orderItem.setItemCount(cartItem.getCount());
         orderItem.setItemTotalPrice(cartItem.getProduct().getPrice()*cartItem.getCount());
+        orderItem.setCategory(cartItem.getProduct().getCategory());
         return orderItem;
     }
 
@@ -58,6 +60,7 @@ public class OrderItem {
         orderItem.setItemPrice(product.getPrice());
         orderItem.setItemCount(count);
         orderItem.setItemTotalPrice(product.getPrice()*count);
+        orderItem.setCategory(product.getCategory());
         return orderItem;
     }
 

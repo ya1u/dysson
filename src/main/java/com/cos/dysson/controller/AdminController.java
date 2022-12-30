@@ -1,6 +1,7 @@
 package com.cos.dysson.controller;
 
 import com.cos.dysson.config.auth.PrincipalDetail;
+import com.cos.dysson.model.OrderItem;
 import com.cos.dysson.model.RoleType;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.OrderItemRepository;
@@ -8,6 +9,7 @@ import com.cos.dysson.repository.UserRepository;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.specification.AdminSpecification;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -54,6 +58,16 @@ public class AdminController {
 
             model.addAttribute("users", userRepository.findAll(spec, pageable));
         }
+
+        List<OrderItem> orderItemKitchen = orderItemRepository.findByCategory("KITCHEN");
+        List<OrderItem> orderItemAir = orderItemRepository.findByCategory("AIR");
+        List<OrderItem> orderItemCleaner = orderItemRepository.findByCategory("CLEANER");
+        List<OrderItem> orderItemAll = orderItemRepository.findAll();
+
+        model.addAttribute("orderItemAll", orderItemAll);
+        model.addAttribute("orderItemKitchen", orderItemKitchen);
+        model.addAttribute("orderItemAir", orderItemAir);
+        model.addAttribute("orderItemCleaner", orderItemCleaner);
         model.addAttribute("category", category);
         model.addAttribute("product", productService.제품리스트(pageable));
         return "admin/admin";
