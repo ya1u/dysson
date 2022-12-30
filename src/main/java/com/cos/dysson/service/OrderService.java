@@ -72,13 +72,12 @@ public class OrderService {
 
     // 주문 취소 기능
     @Transactional
-    public void orderCancel(Users user, OrderItem cancelItem) {
-        Product product = productService.productView(cancelItem.getItemId());
+    public void orderCancel(Integer orderId) {
+        Order order = orderRepository.findOrderById(orderId);
 
-        // 해당 orderItem의 주문 상태를 1로 변경 -> 주문 취소를 의미
-        cancelItem.setIsCancel(cancelItem.getIsCancel() + 1);
+        order.setIsCancel(order.getIsCancel() + 1);
 
-        orderItemRepository.save(cancelItem);
+        orderRepository.save(order);
     }
 
     public List<Order> findByUserId(Integer id) {
