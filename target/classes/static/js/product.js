@@ -95,7 +95,7 @@ let index={
 			data.rate = 0;
 
 		}
-		if(data.content == "") {
+		if(data.content == "" || data.content == null) {
 			alert("내용을 입력해주세요")
 			return false;
 		}

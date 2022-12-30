@@ -48,9 +48,6 @@
               </c:otherwise>
             </c:choose>
           </h4>
-          
-          
-<!-- 장바구니 불러오기 코드 미구현-->
 
            <ul class="list-group mb-3">
              <c:choose>
@@ -74,8 +71,6 @@
                </c:otherwise>
                </c:choose>
             </li>
-
-            
             <li class="list-group-item d-flex justify-content-between">
               <span>합계 </span>
               <strong><fmt:formatNumber value="${totalPrice}" pattern="#,###"/>원</strong>
@@ -92,9 +87,6 @@
               <div class="col-sm-6">
                 <label for="name" class="form-label">이름</label>
                 <input type="text" class="form-control" id="name" placeholder="Name" value="${principal.user.name}" required>
-                <!-- <div class="invalid-feedback">
-                  Valid first name is required.
-                </div> -->
               </div>
 
 
@@ -139,11 +131,6 @@
               <label class="form-check-label" for="same-address">배송주소 불러오기</label>
             </div>
 
-<!--             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="save-info">
-              <label class="form-check-label" for="save-info">배송정보 저장</label>
-            </div> -->
-
             <hr class="my-4">
 
             <h4 class="mb-3">결제방법</h4>
@@ -180,23 +167,18 @@
             </c:choose>
           </form>
         </div>
-        
       </div>
     </main>
-
   </div>
 	<br>
-	
-  <!-- iamport.payment -->
-  <script>
-  
-  
-  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
   <script src="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.js"></script>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/kakaoAddress.js"></script>
+
+
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
   <script src="/js/payment.js"></script>
 <%@ include file="../layout/footer.jsp"%>

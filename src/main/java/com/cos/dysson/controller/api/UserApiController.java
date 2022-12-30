@@ -82,6 +82,29 @@ public class UserApiController {
 		}
 
 	}
+//	@PostMapping("/auth/idcheck")
+//	public void idcheck(@RequestParam("username") String username, HttpServletResponse response) throws IOException {
+//		response.setContentType("text/html; charset=UTF-8");
+//		PrintWriter out = response.getWriter();
+//
+//		if(userRepository.existsByUsername(username) == true){
+//			out.println("<script language='javascript'>");
+//			out.println("alert('존재하는 아이디 입니다. 다른 아이디를 입력해 주세요');");
+//
+//			out.println("</script>");
+//
+//		} else {
+//			out.println("<script language='javascript'>");
+//			out.println("alert('사용가능한 아이디입니다');");
+//
+//			out.println("</script>");
+//
+//		}
+//
+//	}
+
+
+
 
 	
 	//회원정보수정
