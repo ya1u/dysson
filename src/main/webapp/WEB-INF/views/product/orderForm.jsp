@@ -172,10 +172,10 @@
 
             <c:choose>
               <c:when test="${Count != null}">
-                <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay-product">구매하기(개별)</button>
+                <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay-product">구매하기</button>
               </c:when>
               <c:otherwise>
-                <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay-cart">구매하기(장바구니)</button>
+                <button class="w-100 btn btn-secondary btn-lg" type="button" id="btn-pay-cart">구매하기</button>
               </c:otherwise>
             </c:choose>
           </form>

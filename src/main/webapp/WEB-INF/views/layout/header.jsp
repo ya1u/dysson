@@ -73,7 +73,7 @@
 		            <a class="dropdown-item" href="/mypage/${principal.user.id}">My Page</a>
 
                     <c:if test="${principal.user.roles eq 'admin'}">
-                      <a class="dropdown-item" href="/admin">관리자 페이지</a>
+                      <a class="dropdown-item" href="/admin">Admin Page</a>
                     </c:if>
                     <c:choose>
                       <c:when test="${empty user.cart.count}">

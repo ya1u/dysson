@@ -98,8 +98,8 @@ public class ProductController {
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
-		String fileUrl = "C:\\image\\"; // 외부경로 windowz
-//		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 macz/
+//		String fileUrl = "C:\\image\\"; // 외부경로 windowz
+		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 macz/
 
 		do {
 			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
