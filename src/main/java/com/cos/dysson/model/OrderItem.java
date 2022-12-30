@@ -37,6 +37,10 @@ public class OrderItem {
     private int itemTotalPrice;
 
     private int isCancel;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category")
+    private Product product;
+
 
     public static OrderItem createOrderItem(int itemId, Users user, CartItem cartItem) {
         OrderItem orderItem = new OrderItem();

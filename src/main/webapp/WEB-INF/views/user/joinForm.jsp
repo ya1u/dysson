@@ -3,20 +3,21 @@
 <%@ include file="../layout/header.jsp"%>
 <link rel="stylesheet" href="/css/joinform.css">
 
-	<form>
+
 	    <div class="member">
 	      <!--<a href="#"><img class="logo" src="/image/logo.png"></a>  -->
 	
 	      <div class="field">
 	          <label for="username"><b><span style="color:red;">*</span>아이디</b></label>
 	          <div class="field-id">
-	            
+				  <form action="/user/'${username}'/exist" method="POST">
 	            <input type="text" placeholder="UserID" class="item" id="username" name="username" style="text-align: left;">
 	            <!-- id ajax 중복체크 -->
 <!-- 				<span class="id_ok">사용 가능한 아이디입니다.</span>
 				<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span> -->
-	            <button class="item" id="idCheck">중복확인</button>
 
+	            	<button class="item" id="idCheck" type="submit">중복확인</button>
+				  </form>
 	          </div>
 	          <p id="valid_username"></p>
 	      </div>
@@ -49,14 +50,14 @@
 	        <b>주소</b>
 	    
 	     
-	          <input type="text" id="address" placeholder="주소찾기" class="item" readonly style="text-align: left;">        
-	  
+	          <input type="text" id="address" placeholder="주소찾기" class="item" readonly style="text-align: left;">
+
 	          <input type="text" placeholder="상세주소" name="address_detail" id="addressDetail" style="text-align: left;">
 	        
 	      </div>
 	    <input type="button" value="가입하기" id="btn-save" style="text-align: left;">
 	</div>
-  </form>
+
 <script src="/js/user.js"></script>
 <!-- <script src="/js/joinCheck.js"></script> -->
 

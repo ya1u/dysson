@@ -87,8 +87,14 @@
 				<%--<label for="input_password" >비밀번호</label>--%>
 				<input type="hidden" id="userId" value="${principal.user.id }"/>
 				<input type="hidden" id="userPwd" value="${principal.user.password }"/>
-				<input type="password" name="pwd" placeholder="Password" class="input-pwd" id="inputPwd">
-				<button class="pwdbtn" type="button"  style="display: block;" onClick="index2.deleteById2(${principal.user.id})">확인</button>
+
+				<form action="/userdel/${principal.user.id}" method="post">
+				<input type="hidden" id="userId" value="${principal.user.id }"/>
+				<input type="hidden" id="userPwd" value="${principal.user.password }"/>
+				<input type="password" name="inputPwd" placeholder="Password" class="input-pwd" id="inputPwd">
+<%--				<button class="pwdbtn" type="submit"  style="display: block;" onClick="index2.deleteById2(${principal.user.id})">확인</button>--%>
+					<button class="pwdbtn" type="submit"  style="display: block">확인</button>
+				</form>
 <%--				<button class="pwdbtn" type="button"  style="display: block;" onclick="location.href='/mypage/userWithdrawal/'"> 확인</button>--%>
 			</div>
 
@@ -98,5 +104,5 @@
 </div>
 <!-- <script src="/js/mypage.js"></script> -->
 <%@ include file="../layout/footer.jsp"%>
-<%--<script type="text/javascript" src="/js/user.js"></script>--%>
+<script type="text/javascript" src="/js/user.js"></script>
 

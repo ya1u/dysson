@@ -154,18 +154,17 @@ let index2={
 		});
 	},
 	deleteById2: function(id) {
-		console.log(id);
-		let data = {
-			inputPwd : $("#inputPwd").val()
-		}
+
 
 		$.ajax({
-			type: "DELETE",
-			url: `/user/${id}`,
-			dataType: "json"
+			type: "POST",
+			url: `/userdel/${id}`,
+			data: {
+				inputPwd: $("#inputPwd").val()
+			}
 		}).done(function(resp) {
-			alert("계정이 탈퇴되었습니다.");
-			location.href = "/logout";
+			// alert("계정이 탈퇴되었습니다.");
+
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});

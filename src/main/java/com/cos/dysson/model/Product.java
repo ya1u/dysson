@@ -59,7 +59,8 @@ public class Product {
 	private int reviewCnt;
 	
 
-	@Column(length = 10) 
+	@Column(length = 10)
+	@ColumnDefault("0")
 	private double ratingAvg;
 	
 	@Column
