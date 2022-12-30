@@ -85,30 +85,6 @@ public class UserController {
 		model.addAttribute("orders", order);
 		return "user/mypage";
 	}
-//	@PostMapping("/user/{username}/exist")
-//	public String chkUsername(@RequestParam("#username") String username, HttpServletResponse response) throws IOException {
-////		return ResponseEntity.ok(userService.chkUsername(username));
-//		System.out.println("테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트");
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//
-//		if(userService.chkUsername(username) == true){
-//			out.println("<script language='javascript'>");
-//			out.println("alert('중복된 아이디 입니다');");
-////			out.println("location.href = '/logout'");
-//			out.println("</script>");
-//
-//		} else {
-//			out.println("<script language='javascript'>");
-//			out.println("alert('사용 가능한 아이디 입니다');");
-//			out.println("</script>");
-//
-//		}
-//		return "user/joinForm";
-//	}
-
-
-
 	@GetMapping("/auth/findPw")
 	public String findPwd() {
 		return "user/findPw";
@@ -117,29 +93,8 @@ public class UserController {
 	public String userInfo() {
 		return "user/userInfo";
 	}
-	@GetMapping("/mypage/userWithdrawal")
-	public String userWithdrawal(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
 
 
-//		int id = principal.getUser().getId();
-//		model.addAttribute("enPwd",enPwd);
-//		System.out.println("해시코드 : " + enPwd);
-//		System.out.println(pwd);
-
-//		if(encodeer.matches(inputPwd,enPwd)) {
-//			userService.userDel(id);
-//
-//		} else {
-//			// 오류메세지 제공 (생략)
-//		}
-		return "user/userWithdrawal";
-	}
-
-
-
-
-
-	
 	//카카오 로그인
 	@GetMapping("/auth/kakao/callback")
 	public String kakaoCallback(String code) {//Data를 리턴해주는 컨트롤러 함수
@@ -245,5 +200,13 @@ public class UserController {
 			SecurityContextHolder.getContext().setAuthentication(authentication);		
 			
 			return "redirect:/";
+	}
+
+	@GetMapping("/auth/idCheck/username/{username}")
+	public String pop(@PathVariable("username") String username, Model model) {
+		System.out.println("테스트 : " + username);
+
+		model.addAttribute("username", username);
+		return "/user/checkid";
 	}
 }
