@@ -98,8 +98,8 @@ public class ProductController {
 		String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
 		File destinationFile;
 		String destinationFileName;
-//		String fileUrl = "C:\\image\\"; // 외부경로 window
-		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 mac
+		String fileUrl = "C:\\image\\"; // 외부경로 windowz
+//		String fileUrl = "/Users/yalu/Documents/image/"; // 외부경로 macz/
 
 		do {
 			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
@@ -232,7 +232,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/product/reviewAvg/{productId}/{rate}")
-	public String reviewAvg(@PathVariable int productId ,@PathVariable int rate) {
+	public String reviewAvg(@PathVariable int productId ,@PathVariable int rate ) {
 		Product product = productService.ratingAvg(productId,rate);
 		
 		productRepository.save(product);

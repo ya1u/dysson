@@ -52,7 +52,7 @@ public class Boards {
 	
 	private int count; //조회수
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	//Many=Board, User = One 한명이 여러개의 게시글을 쓸 수 있다.
 	
 	@JoinColumn(name="userid")

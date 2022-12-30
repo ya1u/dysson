@@ -33,8 +33,8 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private OrderItemRepository orderItemRepository;
+//    @Autowired
+//    private OrderItemRepository orderItemRepository;
 
     @GetMapping("/admin")
     public String admin(Model model,

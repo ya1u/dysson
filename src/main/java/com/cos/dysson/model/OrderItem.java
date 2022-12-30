@@ -39,6 +39,7 @@ public class OrderItem {
 
 //    private int isCancel;
 
+
     public static OrderItem createOrderItem(int itemId, Users user, CartItem cartItem) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItemId(itemId);

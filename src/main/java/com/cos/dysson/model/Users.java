@@ -51,7 +51,7 @@ public class Users {
 	@Enumerated(EnumType.STRING)
 	private RoleType roles;
 
-	@OneToOne(mappedBy = "users")
+	@OneToOne(mappedBy = "users", cascade = CascadeType.REMOVE)
 	private Cart cart;
 
 	// 판매자가 가지고 있는 상품들
@@ -59,11 +59,11 @@ public class Users {
 	private List<Product> products = new ArrayList<>();
 
 	// 구매자의 주문
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Order> userOrder = new ArrayList<>();
 
 	// 구매자의 주문 상품들
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<OrderItem> userOrderItem = new ArrayList<>();
 
 	private String oauth; //Kakao 회원판별

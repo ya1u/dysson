@@ -1,22 +1,24 @@
 package com.cos.dysson.controller.api;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
 import com.cos.dysson.dto.ResponseDto;
 import com.cos.dysson.dto.SendTmpPwdDto;
 import com.cos.dysson.dto.UserRequestDto;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.UserRepository;
 import com.cos.dysson.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 @RestController
 public class UserApiController {
@@ -26,6 +28,9 @@ public class UserApiController {
 	
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder encodeer;
 	
 //	@PostMapping("/auth/joinProc")
 //	public ResponseDto<Integer> save(@RequestBody Users user) {
@@ -51,9 +56,32 @@ public class UserApiController {
 
 		userService.userDel(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
+
 	}
 
-	@PostMapping("/user/del")
+	@PostMapping("/userdel/{id}")
+	public void del(@RequestParam("inputPwd") String inputPwd, @PathVariable("id") int id, HttpServletResponse response) throws IOException {
+		Users users = userService.findUser(id);
+		String enPwd = users.getPassword();
+
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		if(encodeer.matches(inputPwd,enPwd)) {
+
+			userService.userDel(id);
+			out.println("<script language='javascript'>");
+			out.println("alert('회원탈퇴가 완료되었습니다');");
+			out.println("location.href = '/logout'");
+			out.println("</script>");
+		} else {
+			out.println("<script language='javascript'>");
+			out.println("alert('비밀번호를 다시 확인해주세요');");
+			out.println("location.href = '/mypage/userWithdrawal'");
+			out.println("</script>");
+		}
+
+	}
 
 	
 	//회원정보수정

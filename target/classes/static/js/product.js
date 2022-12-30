@@ -91,6 +91,14 @@ let index={
 			
 			
 		}
+		if(data.rate == null) {
+			data.rate = 0;
+
+		}
+		if(data.content == "") {
+			alert("내용을 입력해주세요")
+			return false;
+		}
 		$.ajax({ 
 			type:"POST",
 			url:`/api/product/${data.productId}/review`,

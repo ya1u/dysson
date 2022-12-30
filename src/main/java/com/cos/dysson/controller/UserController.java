@@ -39,7 +39,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.RequestWrapper;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +85,30 @@ public class UserController {
 		model.addAttribute("orders", order);
 		return "user/mypage";
 	}
+//	@PostMapping("/user/{username}/exist")
+//	public String chkUsername(@RequestParam("#username") String username, HttpServletResponse response) throws IOException {
+////		return ResponseEntity.ok(userService.chkUsername(username));
+//		System.out.println("테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트");
+//		response.setContentType("text/html; charset=UTF-8");
+//		PrintWriter out = response.getWriter();
+//
+//		if(userService.chkUsername(username) == true){
+//			out.println("<script language='javascript'>");
+//			out.println("alert('중복된 아이디 입니다');");
+////			out.println("location.href = '/logout'");
+//			out.println("</script>");
+//
+//		} else {
+//			out.println("<script language='javascript'>");
+//			out.println("alert('사용 가능한 아이디 입니다');");
+//			out.println("</script>");
+//
+//		}
+//		return "user/joinForm";
+//	}
+
+
+
 	@GetMapping("/auth/findPw")
 	public String findPwd() {
 		return "user/findPw";
@@ -91,7 +119,7 @@ public class UserController {
 	}
 	@GetMapping("/mypage/userWithdrawal")
 	public String userWithdrawal(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
-		String enPwd = principal.getUser().getPassword();
+
 
 //		int id = principal.getUser().getId();
 //		model.addAttribute("enPwd",enPwd);
