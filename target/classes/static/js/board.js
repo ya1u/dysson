@@ -19,11 +19,7 @@ let index = {
 			this.replySave();
 			
 		})
-/*		$("#btn-replyDelete").on("click",()=>{
-			this.replySave();
-			
-		})*/
-		
+
 	},
 	save: function() {
 		let data = {
@@ -88,12 +84,11 @@ let index = {
 
 		$.ajax({
 			type:"DELETE",
-			url:"/api/board/${boardId}/reply/${replyId}",
-			contentType:"application/json; charset=utf-8",
+			url:`/api/board/${boardId}/reply/${replyId}`,
 			dataType:"json"
 		}).done(function(resp){
 			alert("댓글삭제 성공.");
-			location.href="/board/${boardId}";
+			location.href=`/board/${boardId}`;
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		});
@@ -123,13 +118,14 @@ let index = {
 		
 		$.ajax({ 
 			type:"POST",
-			url:`/api/board/${data.boardsId}/reply`,
+			url:"/api/board/${data.boardsId}/reply",
 			data:JSON.stringify(data),
 			contentType:"application/json; charset=utf-8",
 			dataType:"json" 
 		}).done(function(resp){
-			/*alert("댓글 작성이 완료되었습니다.");*/
-			location.href=`/board/${data.boardsId}`;
+			alert("댓글 작성이 완료되었습니다.");
+			// location.href="/board/" + data.boardsId;
+			location.href="/board/" + data.boardsId;
 
 		}).fail(function(error){
 			alert(JSON.stringify(error));

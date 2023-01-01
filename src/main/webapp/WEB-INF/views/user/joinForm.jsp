@@ -12,7 +12,7 @@
 	          <div class="field-id">
 				  	<form name="frm">
 					  <input type="text" placeholder="UserID" class="item" id="username" name="username" style="width:250px;text-align: left;">
-						<input type="hidden" id="reid">
+						<input type="hidden" id="rename">
 						<button class="item" id="idCheck" type="button" >중복확인</button>
 					</form>
 

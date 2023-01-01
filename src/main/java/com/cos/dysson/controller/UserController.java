@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.RequestWrapper;
@@ -207,6 +208,21 @@ public class UserController {
 		System.out.println("테스트 : " + username);
 
 		model.addAttribute("username", username);
+		return "/user/checkid";
+	}
+	@GetMapping("/auth/checkId.do")
+	public String doGet(Model model, HttpServletResponse response, @RequestParam("username") String username) throws ServletException, IOException {
+		boolean chk = userService.chkUsername(username);
+		int result = 0;
+		System.out.println("체크체크체크체크" + chk);
+		if(chk == true) {
+			result = 1;
+
+		} else {
+			result = -1;
+		}
+		model.addAttribute("result",result);
+		model.addAttribute("username",username);
 		return "/user/checkid";
 	}
 }
