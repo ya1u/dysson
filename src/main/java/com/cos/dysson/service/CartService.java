@@ -102,7 +102,13 @@ public class CartService {
 		Cart cart = cartRepository.findByUsersId(userId);
 
 		int count = cart.getCount();
-		cart.setCount(count-1);
+		int cnt = count-1;
+
+		if (cnt >= 1) {
+			cart.setCount(cnt);
+		} else {
+			cart.setCount(1);
+		}
 	}
 
 	@Transactional

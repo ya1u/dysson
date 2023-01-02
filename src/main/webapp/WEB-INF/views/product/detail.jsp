@@ -66,6 +66,16 @@
 
 	padding-left: 10px;
 }
+
+.rate-image2 {
+	background-image:url(/image/rate.PNG);
+	background-repeat:no-repeat;
+	width: 95.594px;
+	height: 30px;
+	padding-top: 10px;
+	background-position: 10.1px 10px;
+	display: flex;
+}
   	
   		
   	
@@ -89,20 +99,18 @@
 			</span>
 			<span class="pro pro2" style="text-align:left;">
 
-						<div class="rate-image1 rateAvg">
-						
-							<c:forEach var="product" items="${ratingAvg}" varStatus="status" begin="1" end="${product.ratingAvg}">
-							
-							<span  class="rate1">★</span>
-							
-							</c:forEach>
-							<span class="nbsp">(<fmt:formatNumber value="${product.ratingCount}" pattern="0"/>)</span>
-						</div>	
-						
-						
-					
 				<table>
-		
+					<tr>
+						<td class="rate-image2">
+							<c:forEach var="product" items="${ratingAvg}" varStatus="status" begin="1" end="${product.ratingAvg}">
+								<span  class="rate1">★</span>
+							</c:forEach>
+							&nbsp;
+						</td>
+						<td style="padding-left: 0; padding-top: 10.5px">(<fmt:formatNumber value="${product.ratingCount}" pattern="0"/>)</td>
+					</tr>
+				</table>
+				<table>
 					<tr><th>한정 판매</th></tr>
 					<tr><td>오직 dysson에서만 구매 가능한 상품입니다.</td></tr>
 				</table>

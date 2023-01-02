@@ -1,10 +1,12 @@
 package com.cos.dysson.controller;
 
 import com.cos.dysson.config.auth.PrincipalDetail;
+import com.cos.dysson.model.Order;
 import com.cos.dysson.model.OrderItem;
 import com.cos.dysson.model.RoleType;
 import com.cos.dysson.model.Users;
 import com.cos.dysson.repository.OrderItemRepository;
+import com.cos.dysson.repository.OrderRepository;
 import com.cos.dysson.repository.UserRepository;
 import com.cos.dysson.service.ProductService;
 import com.cos.dysson.specification.AdminSpecification;
@@ -32,6 +34,9 @@ public class AdminController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     private OrderItemRepository orderItemRepository;
@@ -64,10 +69,13 @@ public class AdminController {
         List<OrderItem> orderItemCleaner = orderItemRepository.findByCategory("CLEANER");
         List<OrderItem> orderItemAll = orderItemRepository.findAll();
 
+        List<Order> order = orderRepository.findAll();
+
         model.addAttribute("orderItemAll", orderItemAll);
         model.addAttribute("orderItemKitchen", orderItemKitchen);
         model.addAttribute("orderItemAir", orderItemAir);
         model.addAttribute("orderItemCleaner", orderItemCleaner);
+        model.addAttribute("order", order);
         model.addAttribute("category", category);
         model.addAttribute("product", productService.제품리스트(pageable));
         return "admin/admin";

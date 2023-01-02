@@ -38,6 +38,8 @@ public class Order {
 
     private int isCancel;
 
+    private int isDelivery;
+
     @PrePersist
     public void createDate() {
         this.createDate = LocalDate.now();

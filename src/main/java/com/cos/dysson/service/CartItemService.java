@@ -26,7 +26,13 @@ public class CartItemService {
             return new IllegalArgumentException("제품 찾기 실패");
         });
         int count = cartItem.getCount();
-        cartItem.setCount(count-1);
+        int cnt = count-1;
+
+        if(cnt >= 1) {
+            cartItem.setCount(cnt);
+        } else {
+            cartItem.setCount(1);
+        }
     }
 
 }
