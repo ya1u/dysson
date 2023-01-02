@@ -218,7 +218,6 @@
             </li>
         </ul>
         <!-- 페이징 끝 -->
-
     </c:if>
 </div>
 <%@ include file="../layout/footer.jsp"%>

@@ -42,7 +42,7 @@ import lombok.NoArgsConstructor;
 	)
 public class Boards {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="BOARD_SEQ_GENERATOR1")
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="BOARD_SEQ_GENERATOR1")
 	private int id;
 	
 	@Column(nullable=false, length=100)

@@ -17,23 +17,10 @@
 	.box-pwd-input {
 		padding: 50px 64px 40px;
 	}
-	.pwdbtn {
-		position: relative;
-		display: block;
-		width: 100%;
-		height: 65px;
-		color: #fff;
-		text-align: center;
-		line-height: 65px;
-		background-color: #333;
-		font-size: 22px;
-		margin-top: 16px;
-		border: none;
-	}
 	.input-pwd {
 		position: relative;
 		width: 100%;
-		height: 67px;
+		height: 55px;
 		padding: 23px;
 		background: #fff;
 		border: 1px solid #d9d9d9;
@@ -42,6 +29,8 @@
 		font-weight: 400;
 		outline: 0;
 		box-sizing: border-box;
+		border-radius: 30px;
+		margin-bottom: 20px;
 	}
 
 
@@ -81,8 +70,8 @@
 			<div class="box-pwd-input">
 				<p>계정탈퇴를 하기 위해 비밀번호를 다시 한 번 입력해 주세요.</p>
 				<div style="margin-bottom: 16px">
-					<span>아이디</span>
-					<strong>${principal.user.username }</strong>
+					<span>아이디:</span>
+					<strong style="color:cornflowerblue">${principal.user.username }</strong>
 				</div>
 				<%--<label for="input_password" >비밀번호</label>--%>
 				<input type="hidden" id="userId" value="${principal.user.id }"/>
@@ -93,7 +82,9 @@
 				<input type="hidden" id="userPwd" value="${principal.user.password }"/>
 				<input type="password" name="inputPwd" placeholder="Password" class="input-pwd" id="inputPwd">
 <%--				<button class="pwdbtn" type="submit"  style="display: block;" onClick="index2.deleteById2(${principal.user.id})">확인</button>--%>
-					<button class="pwdbtn" type="submit"  style="display: block">확인</button>
+					<button type="submit"  class="btn-hover color-1" style="width:100%;background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);">확인</button>
+
 				</form>
 <%--				<button class="pwdbtn" type="button"  style="display: block;" onclick="location.href='/mypage/userWithdrawal/'"> 확인</button>--%>
 			</div>

@@ -95,6 +95,11 @@ public class UserController {
 		return "user/userInfo";
 	}
 
+	@GetMapping("/mypage/userWithdrawal")
+	public String userWithdrawal() {
+		return "user/userWithdrawal";
+	}
+
 
 	//카카오 로그인
 	@GetMapping("/auth/kakao/callback")

@@ -83,10 +83,6 @@
 	</ul>
 </div> --%>
 
- <!--Item slider text-->
-<c:if test="${principal.user.id==1}">
-		<a href="/product/addForm" class="hvr-icon-buzz">상품등록(관리자 전용)</a>
-</c:if>
 <!-- 상품검색 -->
   
   <form action="/product/store" method="GET" style="text-align: center;">

@@ -5,6 +5,9 @@
 	a {
 		text-decoration: none;
 	}
+	.btn-hover {
+		width: 100%;
+	}
 
 
 </style>
@@ -42,7 +45,7 @@
 		</table>	
 	</div>
 	
-	<div class="container" style="border:1px solid #eee; background-color:#e0e0e0">
+	<div class="container" style="border:1px solid #eee; ">
 	
 		<input type="hidden" id="id" value="${principal.user.id}"/>
 	
@@ -71,7 +74,8 @@
 		</c:if>
 
 		<hr>
-		<button id="btn-update"class="btn btn-primary btn-block">회원수정완료</button>
+		<button id="btn-update"class="btn-hover color-1" style="background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);">회원수정완료</button>
 	
 	
 	</div>

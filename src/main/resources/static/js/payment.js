@@ -4,6 +4,10 @@ let index = {
 			this.pay_cart();
 		});
 		$("#btn-pay-product").on("click",()=>{
+			if(document.querySelector("#address").value.length == 0) {
+				alert("주소를 입력해주세요")
+				return false;
+			}
 			this.pay_product();
 		});
 	},
