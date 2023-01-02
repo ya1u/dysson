@@ -43,7 +43,7 @@
 		<th>주문금액</th>
 		<th>수령확인</th>
 		<th>주문상태</th>
-		<th>상세보기</th>
+		<th>배송상태</th>
 		<th style="width: 92px"> - </th>
 	</tr>
 	<c:forEach var="order" items="${orders}">
@@ -61,13 +61,17 @@
 			<td>미수령</td>
 			<c:choose>
 				<c:when test="${order.isCancel == 0}">
-					<td>배송준비중</td>
-					<td>확인</td>
+					<td>결제완료</td>
+					<td>
+						<c:if test="${order.isDelivery == 0}">배송준비중</c:if>
+						<c:if test="${order.isDelivery == 1}">배송중</c:if>
+						<c:if test="${order.isDelivery == 2}">배송완료</c:if>
+					</td>
 					<td><a href="/order/cancel/${principal.user.id}/${order.id}" style="color: orangered">주문취소</a></td>
 				</c:when>
 				<c:otherwise>
 					<td style="color: orangered;">취소완료</td>
-					<td>확인</td>
+					<td>-</td>
 					<td>-</td>
 				</c:otherwise>
 			</c:choose>

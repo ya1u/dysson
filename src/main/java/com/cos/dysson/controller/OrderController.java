@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -149,9 +150,17 @@ public class OrderController {
     // 주문 취소하기 기능
     @Transactional
     @GetMapping("/order/cancel/{id}/{orderId}")
-    public String orderCancel(@PathVariable("id") Integer id ,@PathVariable("orderId") Integer orderId) {
+    public String orderCancel(@PathVariable("id") Integer id ,@PathVariable("orderId") Integer orderId, HttpServletRequest request) {
         orderService.orderCancel(orderId);
 
-        return "redirect:/mypage/"+id;
+        return "redirect:" + request.getHeader("Referer");
+    }
+
+    // ADMIN 배송상태 변경
+    @GetMapping ("/admin/order/isDelivery/{orderId}")
+    public String plus(@PathVariable int orderId) {
+        orderService.isDeliverySet(orderId);
+
+        return "redirect:/admin";
     }
 }

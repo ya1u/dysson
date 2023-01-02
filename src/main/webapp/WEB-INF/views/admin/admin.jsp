@@ -164,7 +164,7 @@
     <!-- 페이징 끝 -->
 
 
-        <hr>
+        <br>
         <div class="board-title" style="text-align: left; font-size: 25px; color:#333">| 상품 관리</div>
         <br>
         <div style="text-align: left; "><a href="/product/addForm" style="color:#4ba53a;"> # 상품 등록하기</a></div>
@@ -219,6 +219,60 @@
         </ul>
         <!-- 페이징 끝 -->
     </c:if>
+
+    <br>
+    <div class="board-title" style="text-align: left; font-size: 25px; color:#333">| 주문 관리</div>
+    <br>
+    <table class="table table-sm table-hover">
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th style="width: 7%;">주문번호</th>
+            <th style="width: 13%;">주문일시</th>
+            <th style="width: 10%;">주문자(ID)</th>
+            <th style="width: 9%;">주문상태</th>
+            <th style="width: 30%;">배송지</th>
+            <th style="width: 9%;">배송상태</th>
+            <th style="width: 40%;">관리</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <c:forEach var="order" items="${order}">
+            <tr class="line">
+                <th>${order.id}</th>
+                <th>${order.createDate}</th>
+                <th>${order.user.username}</th>
+                <c:choose>
+                <c:when test="${order.isCancel == 0}">
+                    <th>결제완료</th>
+                </c:when>
+                <c:otherwise>
+                    <th>취소완료</th>
+                </c:otherwise>
+                </c:choose>
+                <th>${order.user.address}</th>
+                <th>
+                    <c:choose>
+                        <c:when test="${order.isCancel == 0}">
+                            <c:if test="${order.isDelivery == 0}">배송준비중</c:if>
+                            <c:if test="${order.isDelivery == 1}">배송중</c:if>
+                            <c:if test="${order.isDelivery == 2}">배송완료</c:if>
+                        </c:when>
+                        <c:otherwise>-</c:otherwise>
+                    </c:choose>
+                </th>
+                <th>
+                    <c:choose>
+                        <c:when test="${order.isCancel == 0}">
+                            <button class="btn btn-kick"><a href="/order/cancel/${order.user.id}/${order.id}">주문취소</a></button>
+                            <button class="btn btn-kick"><a href="/admin/order/isDelivery/${order.id}">배송상태변경</a></button>
+                        </c:when>
+                        <c:otherwise>-</c:otherwise>
+                    </c:choose>
+                </th>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 <%@ include file="../layout/footer.jsp"%>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

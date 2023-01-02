@@ -21,9 +21,6 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Autowired
-    private ProductService productService;
-
     // 회원가입 하면 회원 당 주문 하나 생성
     public void createOrder(Users user) {
         Order order = Order.createOrder(user);
@@ -76,11 +73,23 @@ public class OrderService {
         Order order = orderRepository.findOrderById(orderId);
 
         order.setIsCancel(order.getIsCancel() + 1);
+        order.setIsDelivery(0);
 
         orderRepository.save(order);
     }
 
     public List<Order> findByUserId(Integer id) {
         return orderRepository.findOrdersByUserId(id);
+    }
+
+    @Transactional
+    public void isDeliverySet(int orderId) {
+        Order order = orderRepository.findOrderById(orderId);
+
+        if (order.getIsDelivery() < 2) {
+            order.setIsDelivery(order.getIsDelivery() + 1);
+        } else {
+            order.setIsDelivery(0);
+        }
     }
 }
