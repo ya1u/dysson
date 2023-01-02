@@ -79,10 +79,10 @@ public class BoardService {
 	}
 	
 	
-//	@Transactional
-//	public void 댓글삭제(int replyId) {
-//		replyRepository.deleteById(replyId);
-//	}
+	@Transactional
+	public void 댓글삭제(int replyId) {
+		replyRepository.deleteById(replyId);
+	}
 
 	
 }

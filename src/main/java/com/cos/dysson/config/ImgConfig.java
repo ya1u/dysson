@@ -9,8 +9,8 @@ public class ImgConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/img/**").addResourceLocations("file:///C:/image/"); // 외부경로 window
-		registry.addResourceHandler("/img/**").addResourceLocations("file:///Users/yalu/Documents/image/"); // 외부경로 mac
+		registry.addResourceHandler("/img/**").addResourceLocations("file:///C:/image/"); // 외부경로 window
+//		registry.addResourceHandler("/img/**").addResourceLocations("file:///Users/yalu/Documents/image/"); // 외부경로 mac
 
 		
 		

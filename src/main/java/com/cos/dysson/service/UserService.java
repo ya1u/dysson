@@ -46,10 +46,7 @@ public class UserService {
 		userRepository.save(user); //하나의 트랜젝션
 	}
 
-	@Transactional
-	public void pwdCompare(int pwd) {
 
-	}
 	
 	@Transactional
 	public void 회원가입(UserRequestDto userDto) {

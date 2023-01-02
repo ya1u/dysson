@@ -25,12 +25,12 @@ import lombok.Setter;
 		name = "BALMUDA_SEQ_GENERATOR2"
 		, sequenceName = "BALMUDA_SEQ2"
 		, initialValue = 1
-		, allocationSize = 1
+		, allocationSize = 19
 		)
 public class Product {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "BALMUDA_SEQ_GENERATOR2")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BALMUDA_SEQ_GENERATOR2")
 	private int id;
 	
 	@Column(nullable = false, length = 50)

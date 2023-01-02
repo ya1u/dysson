@@ -9,9 +9,11 @@ import com.cos.dysson.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -38,6 +40,8 @@ public class UserApiController {
 //		userService.회원가입(user);
 //		return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
 //	}
+
+
 	
 	@PostMapping("/auth/joinProc")
 	public ResponseDto<?> save(@Valid @RequestBody UserRequestDto userDto, BindingResult bindingResult) {
@@ -82,26 +86,7 @@ public class UserApiController {
 		}
 
 	}
-//	@PostMapping("/auth/idcheck")
-//	public void idcheck(@RequestParam("username") String username, HttpServletResponse response) throws IOException {
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//
-//		if(userRepository.existsByUsername(username) == true){
-//			out.println("<script language='javascript'>");
-//			out.println("alert('존재하는 아이디 입니다. 다른 아이디를 입력해 주세요');");
-//
-//			out.println("</script>");
-//
-//		} else {
-//			out.println("<script language='javascript'>");
-//			out.println("alert('사용가능한 아이디입니다');");
-//
-//			out.println("</script>");
-//
-//		}
-//
-//	}
+
 
 
 

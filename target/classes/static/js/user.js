@@ -5,6 +5,10 @@ let index2={
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
 			}
+			if(document.frm.rename.value.length==0){
+				alert("아이디 중복 체크를 해주세요.");
+				return false;
+			}
 			this.save();
 		});
 
@@ -99,7 +103,7 @@ let index2={
 			dataType:"json"
 		}).done(function(resp){
 			alert("회원수정이 완료되었습니다.");
-			location.href="/auth/mypage";
+			location.href="/mypage/" + data.id;
 			//응답이 정상
 		}).fail(function(error){
 			alert(JSON.stringify(error));
@@ -188,9 +192,10 @@ let index2={
 		window.open(url,"_blank_1", "toolbar=no , menubar=no, scrollbars=yes,resizeable=no,width=450px,height=200px");
 
 	},
-	idok: function (username) {
+	idok: function(username) {
+
 		opener.frm.username.value=document.frm.username.value;
-		opener.frm.reid.value=document.frm.username.value;
+		opener.frm.rename.value=document.frm.username.value;
 		self.close();
 
 	}

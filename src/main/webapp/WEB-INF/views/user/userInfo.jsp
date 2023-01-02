@@ -62,10 +62,13 @@
 			<label for="addressDetail">상세주소</label> <input type="text" 
 				class="form-control" placeholder="상세주소입력"id="addressDetail" name="address_detail">
 		</div>
-		<div class="form-group">
-			<label for="pwd">Password</label> <input type="password" "
-				class="form-control" placeholder="Enter password" id="password">
-		</div>
+		<c:if test="${empty principal.user.oauth}">
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					class="form-control" placeholder="Enter password" id="password" value="${principal.user.password}">
+				<p id="valid_password"></p>
+			</div>
+		</c:if>
 
 		<hr>
 		<button id="btn-update"class="btn btn-primary btn-block">회원수정완료</button>
