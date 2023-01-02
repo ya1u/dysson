@@ -112,9 +112,9 @@
               <div class="col-12">
                 <label for="address" class="form-label">주소</label>
                 <input type="text" class="form-control" id="address" placeholder="주소" value="${principal.user.address}" required>
-                <div class="invalid-feedback">
-                  Please enter your shipping address.
-                </div>
+<%--                <div class="invalid-feedback">--%>
+<%--                  Please enter your shipping address.--%>
+<%--                </div>--%>
               </div>
 
               <div class="col-12">
@@ -127,7 +127,7 @@
             <hr class="my-4">
 
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="same-address">
+              <input type="checkbox" class="form-check-input" id="same-address" checked>
               <label class="form-check-label" for="same-address">배송주소 불러오기</label>
             </div>
 

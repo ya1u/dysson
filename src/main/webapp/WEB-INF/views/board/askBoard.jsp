@@ -102,13 +102,12 @@
     <br>
     <br>
     <div class="buttons">
-      <a href="#"><button class="btn btn-success">메인으로 돌아가기</button></a>
       <c:if test="${principal.user.id != null}">
-      <a href="/board/askSaveForm"><button class="btn btn-secondary float-right">글 작성</button></a>
+      <a href="/board/askSaveForm"><i class="fa-solid fa-pen-to-square fa-2x"></i></a>
       </c:if>
     </div>
     <hr>
-    <table class="table  table-sm table-hover">
+    <table class="table table-sm table-hover">
       <thead class="thead-dark">
         <tr class="text-center">
           <th style="width: 10%;">번호</th>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
 <style>
 	a {
 	text-decoration: none;
@@ -96,9 +96,8 @@
     <br>
     <br>
     <div class="buttons">
-      <a href="#"><button class="btn btn-success">메인으로 돌아가기</button></a>
       <c:if test="${principal.user.roles eq 'admin'}">
-      <a href="/board/saveForm"><button class="btn btn-secondary float-right">글 작성</button></a>
+          <a href="/board/saveForm"> <i class="fa-solid fa-pen-to-square fa-2x"></i></a>
       </c:if>
     </div>
     <hr>
