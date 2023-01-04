@@ -39,8 +39,8 @@ VALUES(17,'Dysson X1 터보 로봇청소기','Dysson',1190000,'CLEANER',0,0,0,'c
 INSERT INTO product(id,name,made,price,category,ratingAvg,ratingCount,ratingSum,imgName,imgOriName,imgUrl,content)
 VALUES(18,'Dysson 손 진공 청소기','Dysson',99000,'CLEANER',0,0,0,'cleaner6.jpg','cleaner6.jpg','C:\\image\\','<p><img src="/img/detailC6.jpg"></p>');
 
-INSERT INTO users(id,username,name,password,email,phone,address,roles)
-VALUES(999,'admin','마동석','$2a$10$AD9E8Ne7SawgY6pDBsPeGOZRn6SYrzRvSH0xlY.Da6LOBJoFWiKMK','admin@admin.com','01012345678','서울 종로구 청와대로 1 (청와대)','admin');
+INSERT INTO users(id,username,name,password,email,phone,address,roles,createDate)
+VALUES(999,'admin','마동석','$2a$10$AD9E8Ne7SawgY6pDBsPeGOZRn6SYrzRvSH0xlY.Da6LOBJoFWiKMK','admin@admin.com','01012345678','서울 종로구 청와대로 1 (청와대)','admin','23/01/01 00:00:00.0');
 
 
 

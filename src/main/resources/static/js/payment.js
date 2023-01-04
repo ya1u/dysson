@@ -80,7 +80,7 @@ let index = {
 				msg += '에러내용 : ' + resp.error_msg;
 
 				//실패시 이동페이지
-				location.href = "/";
+				/*location.href = "/";*/
 				alert(msg);
 			}
 		});
@@ -155,7 +155,7 @@ let index = {
 				msg += '에러내용 : ' + resp.error_msg;
 
 				//실패시 이동페이지
-				location.href = "/";
+				/*location.href = "/";*/
 				alert(msg);
 			}
 		});
